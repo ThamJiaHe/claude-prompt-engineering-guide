@@ -14,6 +14,7 @@
 - [Overview](#overview)
 - [Features](#features)
 - [Quick Start](#quick-start)
+- [Skills Collection](#skills-collection)
 - [Core Content](#core-content)
 - [Documentation Structure](#documentation-structure)
 - [Key Sections](#key-sections)
@@ -99,6 +100,64 @@ Start with the comprehensive **[Claude Prompt Engineering Guide](./Claude-Prompt
 Customize one of our prompt templates:
 - [Minimal Prompt Template](./templates/minimal-prompt-template.md) — Quick projects
 - [Comprehensive Prompt Template](./templates/comprehensive-prompt-template.md) — Complex tasks
+
+### 5. Explore Claude Skills
+
+Discover reusable skill packages in our growing collection:
+- **[Skills Directory](./skills/)** — Browse available skills and contribute your own
+- **[Skill Template](./skills/examples/example-feedback-analyzer.md)** — Example feedback analyzer skill
+- **Learn to create skills** — Full documentation in [skills/README.md](./skills/README.md)
+
+---
+
+## 📦 Skills Collection
+
+### What Are Claude Skills?
+
+**Claude Skills** are modular, reusable task packages that extend Claude's capabilities with domain-specific knowledge, procedures, and workflows. They're designed to be:
+
+- ✅ **Modular** — Self-contained, focused on specific tasks
+- ✅ **Reusable** — Used across different conversations and projects
+- ✅ **Composable** — Multiple skills can work together seamlessly
+- ✅ **Discoverable** — Claude automatically identifies relevant skills
+- ✅ **Efficient** — Progressive disclosure prevents context bloat
+
+### Available Skills
+
+Our comprehensive collection includes **22 production-ready skills**:
+
+**Web Development**: NextJS App Router, Tailwind Design System, NextAuth, API Development
+**Infrastructure**: AWS, GCP, Neon Serverless, Prisma ORM
+**Testing**: Vitest, Playwright E2E, Code Review, Testing Frameworks
+**DevOps**: Vercel Deployment, Database Migrations, Monitoring & Logging, Git Workflow
+**Standards**: TypeScript, Performance, SEO, Security, Accessibility, Feedback Analysis
+
+[→ View All 22 Skills](./skills/)
+
+### Quick Links
+
+- 📚 **[Full Skills Documentation](./skills/README.md)** — Learn everything about skills
+- 🛠️ **[How to Create Skills](./skills/README.md#-how-to-create-your-own-skills)** — Step-by-step guide
+- 📋 **[Skill Template](./skills/examples/example-feedback-analyzer.md)** — Use as a starting point
+- 🤝 **[Contribute Your Skill](./skills/README.md#-contributing)** — Share with the community
+
+### Why Use Skills?
+
+Skills help you:
+
+- 📚 **Standardize processes** across your team
+- 🎯 **Ensure consistency** in outputs and workflows
+- ⏱️ **Save time** with pre-built procedures
+- 🔧 **Customize Claude** for your specific domain
+- 📈 **Improve quality** through proven patterns
+
+### Getting Started
+
+1. **Browse** available skills in [skills/examples/](./skills/examples/)
+2. **Copy** a skill to use in your conversations
+3. **Reference** the skill in your prompts: "Use the [Skill Name] to..."
+4. **Create** your own skills following [our template](./skills/README.md#-skill-template)
+5. **Contribute** your skills back to the community
 
 ---
 
@@ -201,6 +260,11 @@ claude-prompt-engineering-guide/
 ├── templates/                         # Ready-to-use templates
 │   ├── minimal-prompt-template.md    # Quick template
 │   └── comprehensive-prompt-template.md # Full template
+│
+├── skills/                            # Claude Skills collection
+│   ├── README.md                     # Skills guide and documentation
+│   └── examples/                      # Example skills
+│       └── example-feedback-analyzer.md # Customer feedback analyzer skill
 │
 └── .github/                          # GitHub configuration
     ├── ISSUE_TEMPLATE/
