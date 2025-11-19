@@ -1,3 +1,14 @@
+<!-- Language Selector -->
+<div align="center">
+
+📖 **Select Your Language:**
+
+[English](./README.md) | [简体中文](./README.zh-CN.md) | [日本語](./README.ja.md)
+
+</div>
+
+---
+
 # 🎯 Claude Prompt Engineering Guide
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

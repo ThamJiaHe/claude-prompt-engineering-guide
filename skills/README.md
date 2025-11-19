@@ -1,3 +1,14 @@
+<!-- Language Selector -->
+<div align="center">
+
+📖 **Select Your Language:**
+
+[English](./README.md) | [简体中文](./README.zh-CN.md) | [日本語](./README.ja.md)
+
+</div>
+
+---
+
 # 📦 Claude Skills Collection
 
 Welcome to the Claude Skills repository! This directory contains reusable, modular task packages that extend Claude's capabilities with domain-specific knowledge, procedures, and workflows.
