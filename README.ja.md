@@ -13,10 +13,27 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/yourusername/claude-prompt-engineering-guide?style=social)](https://github.com/yourusername/claude-prompt-engineering-guide)
-[![Last Updated](https://img.shields.io/badge/Last%20Updated-Nov%202025-blue)](https://github.com/yourusername/claude-prompt-engineering-guide)
+[![Last Updated](https://img.shields.io/badge/Last%20Updated-Jan%202026-blue)](https://github.com/yourusername/claude-prompt-engineering-guide)
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-> 🚀 **Opus、Sonnet、Haikuモデル向けの専門的なClaudeプロンプト作成ガイド。MCP、スキル、Superpowers、高度なプロンプトエンジニアリングテクニックの包括的なカバレッジを含みます。**
+> 🚀 **Opus 4.5、Sonnet、Haikuモデル向けの専門的なClaudeプロンプト作成ガイド。MCP、スキル、Superpowers、高度なプロンプトエンジニアリングテクニックの包括的なカバレッジを含みます。**
+
+---
+
+## 📣 2026年1月アップデート
+
+本ガイドは2025年11月〜2026年1月のClaude エコシステムの変更に対応して全面更新されました：
+
+| 機能 | 説明 |
+|------|------|
+| **Claude Opus 4.5** | 新フラッグシップモデル、`effort`パラメータ対応 (low/medium/high) |
+| **Claude Cowork** | 自律ファイル管理環境 (2026年1月12日) |
+| **Claude Code v2.x** | Plan Mode、/rewind、GitHub Actions統合 |
+| **Context7 MCP** | 最新ライブラリドキュメント取得 |
+| **自己進化ルールパターン** | CLAUDE.md動的更新パターン |
+| **システムプロンプト分析** | 24,000トークンシステムプロンプト分析 |
+
+**クイックリンク**: [Claude Codeガイド](./docs/claude-code-guide.md) | [MCP統合](./docs/mcp-integration.md) | [移行ガイド](./MIGRATION-NOV2025-JAN2026.md)
 
 ---
 
@@ -184,7 +201,7 @@ Claude 4.xモデルは非常に高い能力を持っていますが、その能�
 - Claudeがプロンプトを処理する方法
 
 #### セクション2：Claude モデル概要
-- **Claude Opus 4.1** — 最も強力なモデル
+- **Claude Opus 4.5** — 最も強力なフラッグシップモデル（effortパラメータ対応）
 - **Claude Sonnet 4.5** — バランスの取れたパフォーマンスとコスト
 - **Claude Haiku 4.5** — 高速で効率的
 - 料金とパフォーマンスの比較

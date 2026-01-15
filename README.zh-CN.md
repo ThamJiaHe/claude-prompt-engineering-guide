@@ -13,10 +13,27 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/yourusername/claude-prompt-engineering-guide?style=social)](https://github.com/yourusername/claude-prompt-engineering-guide)
-[![Last Updated](https://img.shields.io/badge/Last%20Updated-Nov%202025-blue)](https://github.com/yourusername/claude-prompt-engineering-guide)
+[![Last Updated](https://img.shields.io/badge/Last%20Updated-Jan%202026-blue)](https://github.com/yourusername/claude-prompt-engineering-guide)
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-> 🚀 **编写专业 Claude Standard 提示词的最终指南，涵盖 Opus、Sonnet 和 Haiku 模型**，全面覆盖 MCP、技能、Superpowers 以及高级提示词工程技术。
+> 🚀 **编写专业 Claude Standard 提示词的最终指南，涵盖 Opus 4.5、Sonnet 和 Haiku 模型**，全面覆盖 MCP、技能、Superpowers 以及高级提示词工程技术。
+
+---
+
+## 📣 2026年1月更新
+
+本指南已全面更新，涵盖2025年11月至2026年1月的最新Claude生态变化：
+
+| 功能 | 描述 |
+|------|------|
+| **Claude Opus 4.5** | 新旗舰模型，支持 `effort` 参数 (low/medium/high) |
+| **Claude Cowork** | 自主文件管理环境 (2026年1月12日) |
+| **Claude Code v2.x** | Plan Mode、/rewind、GitHub Actions 集成 |
+| **Context7 MCP** | 获取最新库文档 |
+| **自进化规则模式** | CLAUDE.md 动态更新模式 |
+| **系统提示词洞察** | 24,000 token 系统提示词分析 |
+
+**快速链接**: [Claude Code 指南](./docs/claude-code-guide.md) | [MCP 集成](./docs/mcp-integration.md) | [迁移指南](./MIGRATION-NOV2025-JAN2026.md)
 
 ---
 
@@ -184,7 +201,7 @@ Claude 4.x 模型功能非常强大，但要充分利用其功能需要 **结构
 - Claude 如何处理提示词
 
 #### 第 2 部分：Claude 模型概览
-- **Claude Opus 4.1** — 最强大的模型
+- **Claude Opus 4.5** — 最强大的旗舰模型（支持 effort 参数）
 - **Claude Sonnet 4.5** — 性能和成本平衡
 - **Claude Haiku 4.5** — 快速高效
 - 定价和性能对比
