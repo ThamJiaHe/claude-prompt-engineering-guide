@@ -2,6 +2,8 @@
 
 Learn about Claude Skills and how to use them in your workflows.
 
+> **Last Updated: January 15, 2026** | Includes wrapper pattern, progressive disclosure, and enterprise skills
+
 ---
 
 ## What Are Claude Skills?
@@ -15,6 +17,13 @@ Learn about Claude Skills and how to use them in your workflows.
 - ✅ **Discoverable** — Claude automatically finds relevant Skills
 - ✅ **Composable** — Multiple Skills can work together
 - ✅ **Efficient** — Progressive disclosure avoids overwhelming context
+
+### January 2026 Updates
+
+- **Wrapper pattern** — Token-efficient skill architecture
+- **Progressive disclosure** — Load heavy logic only when needed
+- **Enterprise skills** — Organization-wide skill management
+- **Skill scopes** — Personal, Project, and Enterprise levels
 
 ---
 
@@ -41,6 +50,137 @@ Skills use an intelligent loading system that:
 - Loads full instructions when needed
 - Bundles resources for dependent operations
 - Avoids wasting tokens on unused information
+
+---
+
+## Wrapper Pattern (Jan 2026 Best Practice)
+
+The wrapper pattern is the recommended architecture for token-efficient skills.
+
+### The Problem
+
+**OLD approach** (loads everything at startup):
+```
+❌ All skills in context window from start
+❌ 67,300 tokens consumed by 7 MCP servers before conversation starts
+❌ Only 33% of 200K context budget remaining
+```
+
+### The Solution
+
+**NEW approach** (progressive disclosure):
+```
+✅ Thin wrapper skill (50-100 lines)
+✅ Heavy logic in separate files
+✅ Loaded only when skill is invoked
+✅ Context cost only on use, not at startup
+```
+
+### Wrapper Pattern Structure
+
+```
+my-skill/
+├── SKILL.md           # Thin wrapper (50-100 lines) - always in context
+├── implementation/
+│   └── full-logic.md  # Heavy logic (1,000+ lines) - loaded on demand
+├── templates/
+│   └── examples.md    # Templates - loaded on demand
+└── resources/
+    └── data.json      # Resources - loaded on demand
+```
+
+### Example Wrapper Skill
+
+**SKILL.md (100 lines - always in context)**:
+```markdown
+---
+name: documentation-updater
+description: Updates documentation after coding sessions by analyzing conversation and codebase
+---
+
+# Documentation Updater Skill
+
+## When to Use
+Use this skill after completing a coding session to update project documentation.
+
+## How It Works
+1. Analyzes conversation and codebase changes
+2. Distributes insights across CLAUDE.md, README.md, docs/
+3. Updates hierarchies and strategies
+
+## Implementation
+See ./implementation/full-logic.md for complete implementation details.
+```
+
+**./implementation/full-logic.md (1,326 lines - loaded on demand)**:
+```markdown
+# Full Implementation Details
+
+[Heavy logic, detailed procedures, extensive examples...]
+```
+
+### Benefits
+
+| Aspect | Old Approach | Wrapper Pattern |
+|--------|--------------|-----------------|
+| **Startup Cost** | High (all skills loaded) | Low (only metadata) |
+| **Token Usage** | Constant overhead | Pay-per-use |
+| **Parallel Execution** | Limited | Enabled |
+| **Token Isolation** | None | Heavy ops isolated |
+
+### Guidelines
+
+- Keep SKILL.md under **100 lines**
+- Keep each reference file under **200 lines**
+- Use indexed structure for targeted updates
+- Prioritize "just-in-time" loading
+- Test with representative queries
+
+---
+
+## Skill Scopes
+
+Skills can exist at three levels:
+
+### 1. Personal Skills
+- **Location**: `~/.claude/skills/`
+- **Scope**: Available across all your projects
+- **Use Case**: Personal workflows, preferences
+
+### 2. Project Skills
+- **Location**: `.claude/skills/` (in project root)
+- **Scope**: Specific to current project
+- **Use Case**: Project conventions, team standards
+
+### 3. Enterprise Skills
+- **Location**: Organization-managed
+- **Scope**: Organization-wide
+- **Use Case**: Compliance, brand guidelines, company standards
+
+---
+
+## Skill Discovery Process
+
+### How Claude Finds Skills
+
+1. **Discovery** (startup)
+   - Claude loads only `name` and `description` of each skill
+   - Minimal token consumption (~100 tokens per skill)
+
+2. **Activation** (on match)
+   - When request matches skill's description, Claude asks to use the skill
+   - User can approve or decline
+
+3. **Execution** (on approval)
+   - Claude loads full SKILL.md content
+   - Loads referenced files or runs bundled scripts as needed
+   - Follows skill's instructions
+
+### Testing Skills
+
+To test a specific skill, ask Claude to do a task that matches the skill's description.
+
+**Example**: If your skill has description "Reviews pull requests for code quality", ask Claude to "Review the changes in my current branch."
 
 ---
 
@@ -305,8 +445,33 @@ Create a Word document with:
 
 ---
 
+---
+
+## When to Create a Skill
+
+Create a skill when you:
+- Do something **more than 3 times**
+- Need consistent, repeatable workflows
+- Want to share procedures across projects or teams
+- Need to standardize complex multi-step processes
+
+### Skill Creation Guidelines
+
+1. Use real use cases for testing (not constructed examples)
+2. Skills are reusable by commands, agents, hooks
+3. Start with wrapper pattern from day one
+4. Test with representative queries
+5. Iterate based on actual usage
+
+---
+
 ## Learn More
 
 - [Official Anthropic Skills Documentation](https://docs.anthropic.com)
 - [Skills Repository](https://github.com/anthropics/skills)
 - [Claude Prompt Engineering Guide](../Claude-Prompt-Guide.md)
+- [Skill Creator Documentation](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md)
+
+---
+
+*Last Updated: January 15, 2026*
