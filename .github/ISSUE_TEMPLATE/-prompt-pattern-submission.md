@@ -1,5 +1,5 @@
 ---
-name: " Prompt Pattern Submission"
+name: "Prompt Pattern Submission"
 about: Share a working prompt pattern or technique with the community
 title: "[PATTERN]"
 labels: community, prompt-pattern
