@@ -2,6 +2,8 @@
 
 Learn how to integrate Model Context Protocol (MCP) with Claude for extended capabilities.
 
+> **Last Updated: January 15, 2026** | Includes Context7 MCP, dynamic loading patterns, and context window management
+
 ---
 
 ## What is MCP?
@@ -14,6 +16,13 @@ Learn how to integrate Model Context Protocol (MCP) with Claude for extended cap
 - ✅ **Custom Tools** — Connect to your own systems and APIs
 - ✅ **Local Files** — Read and write files on your machine
 - ✅ **External Services** — Integrate with databases, APIs, and platforms
+
+### January 2026 Updates
+
+- **Context7 MCP** — Up-to-date library documentation (#2 ranked MCP server)
+- **Dynamic loading** — Load/unload MCP servers during sessions
+- **SSE deprecated** — Migrate to streamableHttp transport
+- **Context window management** — Critical for multiple MCP servers
 
 ---
 
@@ -208,6 +217,121 @@ response = client.messages.create(
 
 ---
 
+## Context Window Problem (CRITICAL)
+
+**Warning**: Multiple MCP servers can consume massive context before any conversation starts.
+
+### Real-World Example
+- 7 MCP servers active
+- **67,300 tokens consumed** (33.7% of 200K context budget)
+- **Before any conversation starts**
+
+### Why This Matters
+Each MCP server registers its tools with Claude. Tool definitions consume context tokens. More servers = more token consumption = less room for actual conversation.
+
+### Solutions
+
+#### 1. Keep MCP Servers Disabled When Not Using
+```
+Best Practice (Jan 2026):
+- Keep most MCP servers installed but TURNED OFF
+- Only enable servers you're actively using
+- Claude Code knows what MCPs you have, will ask to enable if needed
+```
+
+#### 2. Lazy-Load MCP Tools
+Only load tool definitions when needed, not at startup.
+
+#### 3. Dynamic MCP Loading
+Load during session as needed, unload when done:
+```json
+{
+  "mcpServers": {
+    "context7": {
+      "autoStart": false,
+      "loadOnDemand": true
+    }
+  }
+}
+```
+
+#### 4. MCP Tool Whitelisting
+Explicitly allow only specific tools:
+```json
+{
+  "mcpServers": {
+    "perplexity": {
+      "toolConfiguration": {
+        "enabled": true,
+        "allowedTools": ["search", "research"]
+      }
+    }
+  }
+}
+```
+
+---
+
+## Context7 MCP Configuration
+
+Context7 provides **up-to-date, version-specific library documentation**. Ranked #2 in "Top 10 MCP Servers 2026".
+
+### Why Use Context7?
+- Get latest React 19 docs (not outdated React 18)
+- Fetch version-specific API changes
+- Pull examples from official sources
+- Avoid LLM knowledge cutoff issues
+
+### Remote HTTP Configuration (Recommended)
+```json
+{
+  "mcpServers": {
+    "context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "type": "streamableHttp",
+      "headers": {
+        "Authorization": "Bearer YOUR_API_KEY"
+      }
+    }
+  }
+}
+```
+
+### Local stdio Configuration
+```json
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp", "--api-key", "YOUR_API_KEY"]
+    }
+  }
+}
+```
+
+### OAuth Support
+Change endpoint from `/mcp` to `/mcp/oauth` for OAuth 2.0 authentication:
+```json
+{
+  "mcpServers": {
+    "context7": {
+      "url": "https://mcp.context7.com/mcp/oauth",
+      "type": "streamableHttp"
+    }
+  }
+}
+```
+
+### Usage Example
+```
+User: "Show me the latest Next.js 15 App Router documentation"
+
+Claude will use Context7 to fetch current Next.js 15 docs,
+not outdated training data from 2024.
+```
+
+---
+
 ## Popular MCP Servers
 
 ### First-Party (Anthropic)
@@ -218,13 +342,16 @@ response = client.messages.create(
 | **GitHub** | GitHub API access | Repository queries |
 | **Slack** | Slack workspace access | Team communication |
 
-### Community
+### Community (Top Ranked Jan 2026)
 
-- **Web Search** — Real-time search capabilities
-- **Database** — SQL database queries
-- **Perplexity** — Web research and fact-checking
-- **AWS** — Amazon Web Services integration
-- **Docker** — Container management
+| Server | Purpose | Ranking |
+|--------|---------|---------|
+| **Context7** | Up-to-date library docs | #2 |
+| **Perplexity** | Web research | Top 10 |
+| **Web Search** | Real-time search | Popular |
+| **Database** | SQL queries | Popular |
+| **AWS** | Amazon Web Services | Popular |
+| **Docker** | Container management | Popular |
 
 ---
 
@@ -337,9 +464,72 @@ claude --mcp-config /full/path/to/mcp-config.json -p "Your prompt"
 
 ---
 
+---
+
+## SSE Transport Migration (Deprecated)
+
+**Status**: SSE transport is deprecated as of November 2025.
+
+### Migration: SSE → streamableHttp
+
+**OLD (Deprecated)**:
+```json
+{
+  "mcpServers": {
+    "server": {
+      "transport": "sse",
+      "url": "https://example.com/sse"
+    }
+  }
+}
+```
+
+**NEW (Recommended)**:
+```json
+{
+  "mcpServers": {
+    "server": {
+      "type": "streamableHttp",
+      "url": "https://example.com/mcp"
+    }
+  }
+}
+```
+
+### Why Migrate?
+- SSE has connection stability issues
+- streamableHttp supports async operations
+- Better error handling and recovery
+- Future MCP features require streamableHttp
+
+---
+
+## MCP Wildcard Permissions
+
+For trusted MCP servers, you can grant wildcard permissions:
+
+```json
+{
+  "mcpServers": {
+    "perplexity": {
+      "permissions": ["mcpserver:*"]
+    }
+  }
+}
+```
+
+**Warning**: Only use wildcards for servers you fully trust.
+
+---
+
 ## Learn More
 
 - [MCP Official Documentation](https://modelcontextprotocol.io)
 - [Anthropic MCP Guide](https://docs.anthropic.com)
 - [Community MCP Servers](https://github.com/modelcontextprotocol)
+- [Context7 MCP](https://github.com/upstash/context7)
+
+---
+
+*Last Updated: January 15, 2026*
 
