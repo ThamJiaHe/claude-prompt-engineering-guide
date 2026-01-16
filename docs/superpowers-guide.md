@@ -2,6 +2,8 @@
 
 Master advanced Claude Code capabilities with the Superpowers plugin.
 
+> **Last Updated: January 15, 2026** | Includes hooks best practices and browser automation
+
 ---
 
 ## What is Superpowers?
@@ -13,6 +15,7 @@ Master advanced Claude Code capabilities with the Superpowers plugin.
 - 📊 State tracking and memory
 - 🚀 Performance optimization
 - 🛠️ Development utilities
+- 🌐 Browser automation (Superpowers Chrome)
 
 ---
 
@@ -277,6 +280,81 @@ Validates at every layer:
 
 ---
 
+## Hooks Best Practices (Jan 2026)
+
+Hooks allow you to run custom code in response to Claude Code events. The January 2026 update introduces new patterns for optimal hook usage.
+
+### Block-at-Submit, Not Block-at-Write
+
+**OLD (Pre-2026)**:
+```
+❌ Block at every file write
+❌ Many interruptions
+❌ Claude gets stopped often
+❌ Poor user experience
+```
+
+**NEW (Jan 2026)**:
+```
+✅ Let Claude finish entire plan
+✅ Validate at the end (UserPromptSubmit hook)
+✅ OR validate before commit
+✅ Fewer interrupts, smoother workflow
+```
+
+**Recommendation from Ryan Lewis** (Claude Code team): "Run hooks at the end of work, not during work."
+
+### Input Modification Over Blocking
+
+Instead of blocking tool calls, modify inputs to fix issues:
+
+**OLD approach** (blocking):
+```typescript
+// Blocks the tool call, shows error
+if (badInput) {
+  return { blocked: true, reason: "Invalid input" }
+}
+```
+
+**NEW approach** (input modification):
+```typescript
+// Fixes input, Claude never sees error
+if (badInput) {
+  return { updatedInput: correctedInput }
+}
+```
+
+**Benefits**:
+- Makes corrections invisible to Claude
+- No error messages cluttering context
+- Smoother workflow
+- Claude proceeds with fixed input
+
+### Example: Fixing Regex in PreToolUse Hook
+
+```typescript
+// Instead of rejecting bad regex pattern
+export function preToolUse(input: ToolInput) {
+  if (input.tool === "grep" && !isValidRegex(input.pattern)) {
+    // Fix the regex instead of blocking
+    const fixedPattern = escapeSpecialChars(input.pattern);
+    return { updatedInput: { ...input, pattern: fixedPattern } };
+  }
+  return { proceed: true };
+}
+```
+
+### Hook Timing Recommendations
+
+| Event | Recommended Use |
+|-------|-----------------|
+| **UserPromptSubmit** | Final validation before execution |
+| **PreToolUse** | Input correction/modification |
+| **PostToolUse** | Logging, metrics, cleanup |
+| **PreCommit** | Code quality checks before git commit |
+
+---
+
 ## Real-World Example
 
 ### Scenario: Build Complete Feature with Superpowers
@@ -364,5 +442,9 @@ Validates at every layer:
 ## Learn More
 
 - [Superpowers GitHub](https://github.com/obra/superpowers-chrome)
-- [Claude Code Documentation](../docs/claude-code-guide.md)
+- [Claude Code Documentation](./claude-code-guide.md)
 - [Claude Prompt Engineering Guide](../Claude-Prompt-Guide.md)
+
+---
+
+*Last Updated: January 15, 2026*

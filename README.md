@@ -13,10 +13,36 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/yourusername/claude-prompt-engineering-guide?style=social)](https://github.com/yourusername/claude-prompt-engineering-guide)
-[![Last Updated](https://img.shields.io/badge/Last%20Updated-Nov%202025-blue)](https://github.com/yourusername/claude-prompt-engineering-guide)
+[![Last Updated](https://img.shields.io/badge/Last%20Updated-Jan%202026-blue)](https://github.com/yourusername/claude-prompt-engineering-guide)
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-> 🚀 **The definitive guide to writing professional Claude Standard prompts for Opus, Sonnet, and Haiku models** with comprehensive coverage of MCP, Skills, Superpowers, and advanced prompt engineering techniques.
+> 🚀 **The definitive guide to writing professional Claude Standard prompts for Opus 4.5, Sonnet 4.5, and Haiku 4.5 models** with comprehensive coverage of MCP, Skills, Superpowers, Claude Cowork, and advanced prompt engineering techniques.
+
+---
+
+## 📅 January 2026 Major Update
+
+> **Last Updated: January 15, 2026** | **170+ verified sources** | **Complete ecosystem refresh**
+
+### What's New
+
+| Feature | Description |
+|---------|-------------|
+| ✨ **Claude Opus 4.5** | New effort parameter (low/medium/high), infinite chats, enhanced computer use |
+| 🤖 **Claude Cowork** | Autonomous file management for non-technical users (Jan 12, 2026) |
+| 🔌 **Context7 MCP** | Up-to-date library documentation, ranked #2 MCP server |
+| 📋 **Self-Evolving CLAUDE.md** | Auto-updating rules pattern for project learning |
+| 🛠️ **Skills Wrapper Pattern** | Token-efficient progressive disclosure architecture |
+| 🔐 **System Prompt Insights** | Analysis of 24,000-token leaked system prompt |
+| ⚠️ **Usage Limit Changes** | Important updates since Jan 1, 2026 |
+
+### Quick Links to New Content
+
+- [Effort Parameter Guide](./Claude-Prompt-Guide.md#effort-parameter-opus-45) — Control token usage vs thoroughness
+- [Claude Cowork Guide](./docs/cowork-guide.md) — Autonomous workflow automation
+- [Context7 MCP Setup](./docs/mcp-integration.md#context7-mcp-configuration) — Up-to-date library docs
+- [Self-Evolving CLAUDE.md](./templates/example-clauderules.md) — Auto-updating project rules
+- [Migration Guide](./MIGRATION-NOV2025-JAN2026.md) — Upgrade from Nov 2025
 
 ---
 
@@ -184,9 +210,9 @@ The comprehensive reference document containing:
 - How Claude processes prompts
 
 #### Section 2: Claude Models Overview
-- **Claude Opus 4.1** — Most powerful model
+- **Claude Opus 4.5** — Most powerful model with effort parameter (Nov 2025)
 - **Claude Sonnet 4.5** — Balanced performance and cost
-- **Claude Haiku 4.5** — Fast and efficient
+- **Claude Haiku 4.5** — Fast and efficient with extended thinking
 - Pricing and performance comparison
 
 #### Section 3: System Prompts vs User Prompts
@@ -218,28 +244,35 @@ The comprehensive reference document containing:
 - Role prompting
 
 #### Section 7: Tools, MCP, Skills & Superpowers
-- Model Context Protocol (MCP)
-- MCP Filesystem Server
-- Claude Skills system
+- Model Context Protocol (MCP) with Context7
+- Dynamic MCP loading patterns
+- Claude Skills with wrapper pattern
 - Superpowers plugin by obra
 - Perplexity MCP integration
 
-#### Section 8: Prompt Engineering for Different Environments
+#### Section 8: System Prompt Insights (NEW)
+- Analysis of 24,000-token leaked system prompt
+- Constitutional AI behavior patterns
+- Actionable insights for prompt engineering
+
+#### Section 9: Prompt Engineering for Different Environments
 - Claude.ai web interface
 - Claude Desktop app
 - Claude Code (CLI/VS Code)
+- Claude Cowork (NEW - Jan 2026)
 - Claude API (direct integration)
 
-#### Section 9: Common Patterns & Examples
+#### Section 10: Common Patterns & Examples
 - Pattern 1: Technical Code Review
 - Pattern 2: Business Analysis with Data
 - Pattern 3: Long-Horizon Coding Tasks
 - Pattern 4: Research and Synthesis
 - Pattern 5: Document Creation with Skills
 
-#### Section 10: Quick Reference Card
+#### Section 11: Quick Reference Card
 - Minimal prompt template
 - Comprehensive prompt template
+- Effort parameter examples
 - Quick checks checklist
 
 ---
@@ -355,8 +388,9 @@ The Claude Prompt Engineering Guide synthesizes publicly available information f
 
 ## 🙏 Acknowledgments
 
-**Created:** November 19, 2025  
-**Location:** Singapore  
+**Created:** November 19, 2025
+**Last Major Update:** January 15, 2026
+**Location:** Singapore
 **Purpose:** Deep research synthesis for professional Claude prompt engineering
 
 ### Credits

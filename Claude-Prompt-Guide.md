@@ -1,9 +1,12 @@
 # Claude Professional Prompt Engineering Guide
-## Comprehensive Reference for Claude Code Opus & Sonnet 4.5 with Superpowers, Skills, MCP & Perplexity Integration
+## Comprehensive Reference for Claude Opus 4.5, Sonnet 4.5 & Haiku 4.5 with Superpowers, Skills, MCP & Perplexity Integration
 
-**Created: November 19, 2025**  
-**Location: Singapore**  
-**Purpose: Deep research synthesis for professional Claude prompt engineering**
+**Created:** November 19, 2025
+**Last Major Update:** January 15, 2026
+**Location:** Singapore
+**Purpose:** Deep research synthesis for professional Claude prompt engineering
+
+> **January 2026 Update**: This guide now covers Claude Opus 4.5 (effort parameter), Claude Cowork, Context7 MCP, system prompt insights, and self-evolving CLAUDE.md patterns. Based on 170+ verified sources.
 
 ---
 
@@ -16,9 +19,10 @@
 5. [Claude 4.x Best Practices](#claude-4x-best-practices)
 6. [Advanced Techniques](#advanced-techniques)
 7. [Tools, MCP, Skills & Superpowers](#tools-mcp-skills--superpowers)
-8. [Prompt Engineering for Different Environments](#prompt-engineering-for-different-environments)
-9. [Common Patterns & Examples](#common-patterns--examples)
-10. [Memory Bank Reference](#memory-bank-reference)
+8. [System Prompt Insights (Jan 2026)](#system-prompt-insights-jan-2026)
+9. [Prompt Engineering for Different Environments](#prompt-engineering-for-different-environments)
+10. [Common Patterns & Examples](#common-patterns--examples)
+11. [Memory Bank Reference](#memory-bank-reference)
 
 ---
 
@@ -35,25 +39,58 @@ Claude was developed with **character training** - not just safety, but rich tra
 
 ## Claude Models Overview
 
-### Current Model Family (as of Nov 2025)
+### Current Model Family (as of January 2026)
 
-#### Claude Opus 4.1 / Claude Opus 4
+#### Claude Opus 4.5 (Released Nov 24, 2025)
 - **Purpose**: Most powerful model for complex challenges
 - **Best for**: Long-horizon reasoning, complex analysis, legal/financial work
-- **API String**: `claude-opus-4-20250514`
-- **Pricing**: 15/MTok (input), 75/MTok (output)
+- **API String**: `claude-opus-4-5-20251101`
+- **Pricing**: $5/MTok (input), $25/MTok (output)
+- **NEW Features**:
+  - **Effort parameter** (low/medium/high) — controls token usage vs thoroughness
+  - **Infinite chats** — automatic context summarization, no hard limit errors
+  - **Enhanced computer use** — zoom action for UI inspection
+  - **Persistent thinking blocks** — reasoning history maintained across conversations
 
-#### Claude Sonnet 4.5 / Claude Sonnet 4
+#### Effort Parameter (Opus 4.5)
+
+The effort parameter is a major new feature for controlling token usage:
+
+| Effort | Token Savings | Use Case |
+|--------|---------------|----------|
+| **High** | 0% (default) | Complex reasoning, difficult coding, agentic tasks |
+| **Medium** | ~76% fewer output tokens | Balanced speed/cost/performance |
+| **Low** | ~50% token savings | Simple tasks, subagents, quick formatting |
+
+**API Usage**:
+```python
+import anthropic
+
+client = anthropic.Anthropic(api_key="your-api-key")
+
+response = client.beta.messages.create(
+    model="claude-opus-4-5-20251101",
+    betas=["effort-2025-11-24"],  # REQUIRED for effort parameter
+    max_tokens=4096,
+    messages=[{"role": "user", "content": "Analyze trade-offs..."}],
+    output_config={"effort": "medium"}  # "low", "medium", "high"
+)
+```
+
+**Key Insight**: At medium effort, Opus 4.5 matches Sonnet 4.5's best SWE-bench score while using 76% fewer output tokens.
+
+#### Claude Sonnet 4.5
 - **Purpose**: Smart, efficient model for everyday use
 - **Best for**: Balanced performance and cost, coding, research
-- **API String**: `claude-sonnet-4-5-20250929` or `claude-sonnet-4-20250514`
-- **Pricing**: 3/MTok (input), 15/MTok (output)
+- **API String**: `claude-sonnet-4-5-20250929`
+- **Pricing**: $3/MTok (input), $15/MTok (output)
 - **Special Features**: Exceptional state tracking, context awareness, parallel tool execution
 
 #### Claude Haiku 4.5
 - **Purpose**: Fastest model for daily tasks
 - **Best for**: Simple queries, high-volume operations
-- **Pricing**: 1/MTok (input), 5/MTok (output)
+- **Pricing**: ~$1/MTok (input), ~$5/MTok (output)
+- **NEW**: Extended thinking support
 
 ---
 
@@ -461,6 +498,72 @@ While not officially documented, Perplexity can be integrated as an MCP server t
 
 ---
 
+## System Prompt Insights (Jan 2026)
+
+In December 2025, Claude 4's system prompt leaked on GitHub, revealing approximately **24,000 tokens** of internal instructions. This section analyzes actionable insights from this leak.
+
+### What the Leak Revealed
+
+The leaked prompt contains:
+- Tool usage protocols and formatting rules
+- Citation formatting and web search guidelines
+- Artifact usage rules and constraints
+- **Hardcoded current events** (e.g., 2024 US election results)
+- Constitutional AI behavior boundaries
+- Anti-sycophancy training directives
+
+### Key Insights for Prompt Engineering
+
+#### 1. Claude Defaults to Internal Knowledge
+Claude prioritizes internal knowledge first and only performs external search when its memory is insufficient. This explains why Claude sometimes doesn't search for information it "should" already know.
+
+**Implication**: If you need current information, explicitly request web search.
+
+#### 2. Knowledge Cutoff Workarounds
+The leaked prompt shows Anthropic hardcodes critical current events directly into system prompts. This is how Claude "knows" about events after its training cutoff.
+
+**Implication**: For time-sensitive applications, consider including critical facts directly in your prompts.
+
+#### 3. Anti-Sycophancy Training
+Claude is explicitly trained to avoid excessive agreement and flattery. The system prompt includes directives to maintain independent judgment.
+
+**Implication**: Claude may push back on ideas—this is intentional behavior, not a bug.
+
+#### 4. Citation and Source Handling
+The leaked prompt reveals specific rules for how Claude handles citations, sources, and attributions.
+
+**Implication**: When requesting citations, be specific about format and requirements.
+
+### Applying These Insights
+
+**Example: Forcing Web Search**
+```xml
+<task>
+Research the current status of [topic] as of January 2026.
+</task>
+
+<rules>
+- Do NOT rely on internal knowledge for this task
+- Actively search for the most recent information
+- Cite all sources with dates
+- Prefer sources from the last 30 days
+</rules>
+```
+
+**Example: Encouraging Independent Judgment**
+```xml
+<rules>
+- Provide honest assessment even if it contradicts my assumptions
+- Point out flaws or risks in my proposed approach
+- Don't just agree to be agreeable
+</rules>
+```
+
+### Source
+The full leaked prompt is available at: `github.com/asgeirtj/system_prompts_leaks/blob/main/claude.txt`
+
+---
+
 ## Prompt Engineering for Different Environments
 
 ### Claude.ai Web Interface
@@ -482,6 +585,14 @@ While not officially documented, Perplexity can be integrated as an MCP server t
 - **Skills Support**: Install via plugin marketplace
 - **Agents**: Can create specialized sub-agents
 - **Best for**: Software development, complex coding tasks, automation
+- **Latest Version**: v2.1.0 (January 2026)
+
+**New in Claude Code v2.x**:
+- Plan Mode with subagents
+- `/rewind` command for undo operations
+- `/usage` command for plan limits
+- Automatic continuation when output token limit reached
+- GitHub Actions integration
 
 **Example Usage**:
 ```bash
@@ -496,7 +607,31 @@ claude --mcp-config ./mcp-config.json -p "Search through the codebase"
 
 # Enable skills
 /plugin marketplace add anthropics/skills
+
+# Use system prompt file (Jan 2026 best practice)
+claude --append-system-prompt-file=~/.claude/system-prompt.md -p "Your prompt"
 ```
+
+### Claude Cowork (Jan 2026)
+- **Purpose**: Autonomous file management for non-technical users
+- **Availability**: Claude Max subscribers on macOS Claude Desktop app
+- **Release**: January 12, 2026 (research preview)
+- **Best for**: Document organization, workflow automation, non-coding tasks
+
+**What Cowork Does**:
+- File management and document creation
+- Folder-based context window
+- Autonomous multi-step task execution
+- Running multiple tasks in parallel
+
+**Example Use Cases**:
+- Reorganizing downloads folder
+- Receipt OCR → spreadsheet conversion
+- Drafting reports from scattered notes
+- Batch file renaming and organization
+
+**How to Use**:
+Point Claude at a folder and describe the outcome. Claude reads existing files, creates or edits new ones, and keeps you updated as it works through a plan.
 
 ### Claude API (Direct Integration)
 - **Full Control**: Complete customization of system prompts, tools, MCP servers
@@ -994,16 +1129,28 @@ This is NOT about asking Claude AI directly—it's about crafting the optimal pr
 
 ## Document Metadata
 
-**Version**: 1.0  
-**Last Updated**: November 19, 2025  
-**Maintained By**: Research synthesis from official Anthropic sources  
-**Sources**: 
-- 39 official files from your provided materials
-- 85+ web sources from Anthropic documentation, GitHub repositories, and community resources
-- Comprehensive analysis of Claude 4.x model capabilities and prompt engineering best practices
+**Version**: 2.0
+**Created**: November 19, 2025
+**Last Major Update**: January 15, 2026
+**Maintained By**: Research synthesis from official Anthropic sources
+**Sources**:
+- 170+ verified web sources (January 2026 research)
+- Official Anthropic documentation and engineering blogs
+- GitHub issues and community discussions
+- System prompt leak analysis
+- Comprehensive analysis of Claude 4.5 model capabilities
+
+**January 2026 Update Includes**:
+- Claude Opus 4.5 effort parameter documentation
+- Claude Cowork guide
+- Context7 MCP configuration
+- System prompt insights from leaked prompt
+- Self-evolving CLAUDE.md patterns
+- Skills wrapper architecture
+- Usage limit changes and workarounds
 
 **Usage License**: This document synthesizes publicly available information from Anthropic and open-source community resources. Use it as a reference for understanding and implementing effective Claude prompt engineering.
 
 ---
 
-*End of Guide*
+*Last Updated: January 15, 2026*

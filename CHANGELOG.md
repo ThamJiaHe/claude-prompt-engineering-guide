@@ -7,6 +7,79 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.0.0] - 2026-01-15
+
+### Added
+
+#### New Documentation
+- ✨ **Claude Code Guide** — Comprehensive guide for Claude Code v2.1.0 CLI features
+- ✨ **Self-Evolving CLAUDE.md Template** — Template for living documentation pattern
+- ✨ **System Prompt Insights Section** — Analysis of Claude's 24K token system prompt
+- ✨ **Migration Guide** — Nov 2025 to Jan 2026 migration documentation
+
+#### New Features & Patterns
+- 🚀 **Effort Parameter** — Claude Opus 4.5's `low/medium/high` effort control with API examples
+- 🚀 **Skills Wrapper Pattern** — Token-efficient progressive disclosure architecture
+- 🚀 **Hooks Best Practices** — Block-at-submit and input modification patterns
+- 🚀 **Context7 MCP Configuration** — Up-to-date library documentation integration
+- 🚀 **Dynamic MCP Loading** — Load/unload MCP servers during sessions
+
+#### Claude Code v2.x Coverage
+- ✨ Plan Mode with subagents for parallel execution
+- ✨ `/rewind` and `/usage` commands
+- ✨ GitHub Actions integration with `/install-github-app`
+- ✨ 4-step workflow pattern (Research, Plan, Implement, Commit)
+- ✨ Multi-window guidance for long-horizon projects
+- ✨ Boris Cherny's advanced GitHub workflow documentation
+
+### Changed
+
+#### Model Updates
+- 🔄 **Claude Opus 4.5** — Now the flagship model (Nov 24, 2025)
+- 🔄 **Model Hierarchy** — Opus 4.5 > Sonnet 4.5 > Haiku 4.5
+- 🔄 **API Examples** — Updated to use `claude-opus-4-5-20251101`
+
+#### Environment Updates
+- 🔄 **Claude Cowork** — New autonomous file management environment (Jan 12, 2026)
+- 🔄 **SSE Deprecated** — Migrate to `streamableHttp` transport for MCP
+
+#### Documentation Improvements
+- 🔄 **Main Guide v2.0** — Updated with Opus 4.5, effort parameter, system prompt insights
+- 🔄 **MCP Integration** — Context window management and Context7 configuration
+- 🔄 **Skills Guide** — Wrapper pattern, progressive disclosure, skill scopes
+- 🔄 **Superpowers Guide** — Hooks timing recommendations and input modification
+
+### Fixed
+
+- 🐛 Context window consumption warning for multiple MCP servers (67K token example)
+- 🐛 Deprecated `--output-style` flag migration to `--append-system-prompt-file`
+
+### Deprecated
+
+- ⚠️ **SSE Transport** — Use `streamableHttp` instead
+- ⚠️ **Output Style Flags** — Use system prompt files instead
+
+### Documentation Coverage
+
+#### Models Covered
+- ✅ Claude Opus 4.5 (flagship, effort parameter)
+- ✅ Claude Sonnet 4.5
+- ✅ Claude Haiku 4.5
+
+#### Environments Covered
+- ✅ Claude.ai web interface
+- ✅ Claude Desktop app
+- ✅ Claude Code v2.1.0 (CLI/VS Code)
+- ✅ Claude Cowork (autonomous file management)
+- ✅ Claude API with effort parameter
+
+#### New Integrations
+- ✅ Context7 MCP (up-to-date library docs)
+- ✅ GitHub Actions for Claude Code
+- ✅ Self-evolving CLAUDE.md pattern
+
+---
+
 ## [1.0.0] - 2025-11-19
 
 ### Added
@@ -98,6 +171,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [ ] Advanced prompt optimization guide
 - [ ] Benchmark/evaluation framework
 - [ ] Domain-specific pattern collections
+- [ ] Claude Cowork deep-dive guide
+- [ ] Extended thinking patterns documentation
 
 ---
 
@@ -155,6 +230,12 @@ When submitting a PR, include a changelog entry describing your changes:
 ---
 
 ## Release History
+
+### Version 2.0.0 (January 2026 Update)
+
+- **Release Date**: January 15, 2026
+- **Status**: ✅ Stable
+- **Changes**: Major update with Claude Opus 4.5, effort parameter, Claude Cowork, Context7 MCP, self-evolving patterns, and comprehensive Claude Code v2.x documentation
 
 ### Version 1.0.0 (Initial Release)
 
