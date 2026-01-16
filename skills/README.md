@@ -24,6 +24,7 @@ Welcome to the Claude Skills repository! This directory contains reusable, modul
 - ✅ **Composable** — Multiple Skills can work together seamlessly
 - ✅ **Discoverable** — Claude automatically identifies relevant Skills
 - ✅ **Efficient** — Progressive disclosure prevents context bloat
+- ✅ **Token-Optimized** — Wrapper pattern keeps context lean (Jan 2026)
 
 ### Why Use Skills?
 
@@ -142,7 +143,7 @@ Use this skill when analyzing documents.
 """
 
 response = client.messages.create(
-    model="claude-opus-4-20250514",
+    model="claude-opus-4-5-20251101",  # Updated Jan 2026
     max_tokens=2048,
     system=system_prompt,
     messages=[
@@ -155,6 +156,47 @@ response = client.messages.create(
 
 print(response.content[0].text)
 ```
+
+---
+
+## 🆕 Wrapper Pattern for Token Efficiency (Jan 2026)
+
+> **New in January 2026:** The wrapper pattern dramatically reduces token consumption while maintaining full skill functionality.
+
+### The Problem
+
+Loading full skill content into every conversation wastes tokens. A complex skill might be 500+ lines but only 50 lines are needed for most invocations.
+
+### The Solution: Thin Wrappers
+
+Create a **thin SKILL.md** (50-100 lines) that:
+1. Provides essential context and triggers
+2. References separate implementation files
+3. Loads details on-demand via progressive disclosure
+
+### Wrapper Structure
+
+```
+my-skill/
+├── SKILL.md              # Thin wrapper (≤100 lines)
+├── implementation/
+│   ├── phase-1.md        # Detailed procedures
+│   ├── phase-2.md        # Advanced patterns
+│   └── troubleshooting.md
+└── examples/
+    └── real-world.md
+```
+
+### Benefits
+
+| Metric | Traditional | Wrapper Pattern |
+|--------|-------------|-----------------|
+| Initial Load | 500+ lines | 50-100 lines |
+| Token Cost | High | 70-80% reduction |
+| Context Space | Consumed | Preserved |
+| Flexibility | Low | High |
+
+For complete implementation details, see the [Skills Guide - Wrapper Pattern](../docs/skills-guide.md#wrapper-pattern-architecture).
 
 ---
 
@@ -464,7 +506,11 @@ All skills in this collection are provided under the **MIT License** unless othe
 
 ---
 
-**Last Updated:** November 19, 2025
+**Last Updated:** January 15, 2026
 **Location:** Claude Prompt Engineering Guide Repository
 **Maintained By:** Community Contributors
+
+---
+
+> **January 2026 Updates:** Added wrapper pattern documentation, updated model references to Claude Opus 4.5, and aligned with Claude Code v2.x skill management features.
 

@@ -2,7 +2,9 @@
 name: "AWS Cloud Infrastructure"
 description: "Deploy Node.js applications on AWS using EC2, RDS, and managed services with security best practices. Apply when setting up AWS infrastructure, configuring databases, managing security, or optimizing costs."
 allowed-tools: Read, Write, Edit, Bash
-version: 1.0.0
+version: 1.1.0
+updated: 2026-01-15
+compatibility: Claude Opus 4.5, Claude Code v2.x
 ---
 
 # AWS Cloud Infrastructure
@@ -456,3 +458,11 @@ Enforces security best practices:
 - AWS RDS: https://docs.aws.amazon.com/rds
 - PM2 Documentation: https://pm2.keymetrics.io
 - Nginx Reverse Proxy: https://nginx.org/en/docs
+
+---
+
+**Last Updated:** January 15, 2026
+**Version:** 1.1.0
+**Status:** Production Ready ✅
+
+> **January 2026 Note:** This skill has been updated for compatibility with Claude Code v2.x and Claude Opus 4.5. For complex infrastructure planning, use Claude Opus 4.5 with `effort: high` to get comprehensive deployment strategies.

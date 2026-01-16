@@ -25,11 +25,12 @@ This skill helps Claude:
 ## Metadata
 
 - **Name:** customer-feedback-analyzer
-- **Version:** 1.0.0
+- **Version:** 1.1.0
 - **Author:** Claude Prompt Engineering Guide
 - **Created:** 2025-11-19
-- **Updated:** 2025-11-19
+- **Updated:** 2026-01-15
 - **Category:** Analysis & Research
+- **Compatibility:** Claude Opus 4.5, Claude Code v2.x
 
 ---
 
@@ -408,6 +409,9 @@ MIT License — Use freely and modify as needed.
 ---
 
 **Created:** November 19, 2025
-**Version:** 1.0.0
+**Updated:** January 15, 2026
+**Version:** 1.1.0
 **Status:** Ready to Use ✅
+
+> **January 2026 Note:** This skill works optimally with Claude Opus 4.5 and its effort parameter. For large feedback sets, consider using `effort: high` in API calls for comprehensive analysis.
 
