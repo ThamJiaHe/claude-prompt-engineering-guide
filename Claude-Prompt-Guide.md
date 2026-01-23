@@ -14,15 +14,16 @@
 0. ["Ask Claude" Protocol - How to Use This Guide](#ask-claude-protocol---how-to-use-this-guide)
 1. [Understanding Claude's Architecture](#understanding-claudes-architecture)
 2. [Claude Models Overview](#claude-models-overview)
-3. [System Prompts vs User Prompts](#system-prompts-vs-user-prompts)
-4. [Anthropic's Official Prompt Structure](#anthropics-official-prompt-structure)
-5. [Claude 4.x Best Practices](#claude-4x-best-practices)
-6. [Advanced Techniques](#advanced-techniques)
-7. [Tools, MCP, Skills & Superpowers](#tools-mcp-skills--superpowers)
-8. [System Prompt Insights (Jan 2026)](#system-prompt-insights-jan-2026)
-9. [Prompt Engineering for Different Environments](#prompt-engineering-for-different-environments)
-10. [Common Patterns & Examples](#common-patterns--examples)
-11. [Memory Bank Reference](#memory-bank-reference)
+3. [Claude vs Competition (January 2026)](#claude-vs-competition-january-2026)
+4. [System Prompts vs User Prompts](#system-prompts-vs-user-prompts)
+5. [Anthropic's Official Prompt Structure](#anthropics-official-prompt-structure)
+6. [Claude 4.x Best Practices](#claude-4x-best-practices)
+7. [Advanced Techniques](#advanced-techniques)
+8. [Tools, MCP, Skills & Superpowers](#tools-mcp-skills--superpowers)
+9. [System Prompt Insights (Jan 2026)](#system-prompt-insights-jan-2026)
+10. [Prompt Engineering for Different Environments](#prompt-engineering-for-different-environments)
+11. [Common Patterns & Examples](#common-patterns--examples)
+12. [Memory Bank Reference](#memory-bank-reference)
 
 ---
 
@@ -91,6 +92,90 @@ response = client.beta.messages.create(
 - **Best for**: Simple queries, high-volume operations
 - **Pricing**: ~$1/MTok (input), ~$5/MTok (output)
 - **NEW**: Extended thinking support
+
+---
+
+## Claude vs Competition (January 2026)
+
+This section provides a factual comparison of Claude against major competitors based on January 2026 benchmarks and capabilities.
+
+### Coding Accuracy Benchmarks
+
+| Model | SWE-bench Accuracy | Notes |
+|-------|-------------------|-------|
+| **Claude Opus 4.5** | 93.7% | Highest accuracy in code generation |
+| GPT-4o | 90.2% | Strong but slightly behind Claude |
+| Gemini 3 Pro | 71.9% | Significant gap in coding tasks |
+
+**Key Finding**: Claude leads in coding accuracy by 3.5 percentage points over GPT-4o and 21.8 points over Gemini 3 Pro.
+
+### Context Window Comparison
+
+| Model | Context Window | Notes |
+|-------|---------------|-------|
+| Gemini 3 Pro | 2,000,000 tokens | Largest available context |
+| Claude Sonnet 4.5 (API) | 1,000,000 tokens | Extended context via API |
+| Claude Opus 4.5 | 200,000 tokens | Standard context window |
+| ChatGPT (GPT-4o) | 128,000 tokens | Smallest among major models |
+
+**Key Finding**: Gemini offers 10x more context than standard Claude, making it superior for research tasks requiring massive document ingestion.
+
+### Multimodal Capabilities
+
+| Capability | Claude 4.5 | ChatGPT (GPT-4o) | Gemini 3 Pro |
+|------------|-----------|------------------|--------------|
+| Text | ✅ | ✅ | ✅ |
+| Images | ✅ | ✅ | ✅ |
+| Audio Input | ❌ | ✅ | ✅ |
+| Video Input | ❌ | ❌ | ✅ |
+| Voice Output | ❌ | ✅ | ✅ |
+
+**Key Finding**: Gemini has the richest multimodal support. Claude is limited to text and images, which is a notable weakness for multimedia workflows.
+
+### Strengths by Model
+
+| Model | Primary Strengths | Notable Weaknesses |
+|-------|-------------------|-------------------|
+| **Claude 4.5** | Precision, complex reasoning, HIPAA compliance, coding accuracy, instruction following | Slower response times, can be overcautious, limited multimodal |
+| **ChatGPT** | Speed, brainstorming, ecosystem integration, voice features | Lower coding accuracy than Claude |
+| **Gemini 3 Pro** | Massive context window, multimodal richness, Google integration | Significantly lower coding accuracy |
+
+### Winner by Use Case
+
+| Use Case | Recommended Model | Rationale |
+|----------|-------------------|-----------|
+| **Legal/Healthcare** | Claude | HIPAA compliance, precision, nuanced reasoning |
+| **Coding/Development** | Claude | 93.7% accuracy leads all competitors |
+| **Creative Writing/Brainstorming** | ChatGPT | Faster iteration, more conversational |
+| **Research (Large Documents)** | Gemini | 2M token context window |
+| **Full-Stack Development** | Claude + Antigravity | Best coding accuracy with specialized tooling |
+| **Multimedia Processing** | Gemini | Video and audio input support |
+| **Enterprise Compliance** | Claude | Stronger safety guarantees, HIPAA |
+
+### Honest Assessment of Claude's Weaknesses
+
+When choosing Claude, be aware of these limitations:
+
+1. **Response Speed**: Claude tends to be slower than ChatGPT for simple queries
+2. **Overcautious Behavior**: Claude may refuse tasks that competitors would attempt
+3. **Limited Multimodal**: No audio or video processing (text + images only)
+4. **Context Window**: Standard 200K is smaller than Gemini's 2M tokens
+5. **Voice Features**: No native voice input/output like ChatGPT
+
+### When NOT to Choose Claude
+
+- **Real-time voice interactions**: Use ChatGPT
+- **Video analysis workflows**: Use Gemini
+- **Processing 500K+ token documents**: Use Gemini (or Claude Sonnet API with extended context)
+- **Rapid creative brainstorming**: ChatGPT may iterate faster
+
+### When Claude is the Clear Winner
+
+- **Production code generation**: 93.7% accuracy matters at scale
+- **Regulated industries**: HIPAA compliance and safety guarantees
+- **Complex multi-step reasoning**: Extended thinking and effort parameter
+- **Instruction following**: Claude excels at following detailed specifications
+- **Agentic workflows**: Claude Code + Superpowers ecosystem
 
 ---
 
