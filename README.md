@@ -22,7 +22,17 @@
 
 ## 📅 January 2026 Major Update
 
-> **Last Updated: January 15, 2026** | **170+ verified sources** | **Complete ecosystem refresh**
+> **Last Updated: January 23, 2026** | **170+ verified sources** | **Complete ecosystem refresh**
+
+### Product Ecosystem Status (Jan 23, 2026)
+
+| Status | Products | Notes |
+|--------|----------|-------|
+| **Excellent** | Desktop, CLI, API, Browser Extension | Stable, feature-complete |
+| ⚠️ **Broken** | Usage Limits, Context Compression | Critical issues since Jan 1 |
+| ✨ **Emerging** | Claude Cowork (Jan 12), Skills | New, evolving features |
+
+**Scorecard**: 4 Excellent, 2 Broken, 2 Emerging (8 total products evaluated)
 
 ### What's New
 
@@ -35,6 +45,17 @@
 | 🛠️ **Skills Wrapper Pattern** | Token-efficient progressive disclosure architecture |
 | 🔐 **System Prompt Insights** | Analysis of 24,000-token leaked system prompt |
 | ⚠️ **Usage Limit Changes** | Important updates since Jan 1, 2026 |
+
+### ⚠️ Critical Issues (Jan 2026)
+
+| Issue | Status | Reference |
+|-------|--------|-----------|
+| **Usage Limits Crisis** | Max subscribers getting ~80% less than promised | [GitHub #16868](https://github.com/anthropics/claude-code/issues/16868), [#17358](https://github.com/anthropics/claude-code/issues/17358) |
+| **Context Compression** | Broken Jan 14-19, may still have issues | [GitHub #354](https://github.com/anthropics/claude-code/issues/354) |
+| **Quality Regression** | Reports of degraded output quality | Community reports |
+| **Prompt Ignoring Bug** | Claude ignoring instructions (Jan 13-15) | Now resolved |
+
+**Recommendation**: Monitor [GitHub Issues](https://github.com/anthropics/claude-code/issues) for updates on these critical issues.
 
 ### Quick Links to New Content
 
@@ -389,7 +410,7 @@ The Claude Prompt Engineering Guide synthesizes publicly available information f
 ## 🙏 Acknowledgments
 
 **Created:** November 19, 2025
-**Last Major Update:** January 15, 2026
+**Last Major Update:** January 23, 2026
 **Location:** Singapore
 **Purpose:** Deep research synthesis for professional Claude prompt engineering
 

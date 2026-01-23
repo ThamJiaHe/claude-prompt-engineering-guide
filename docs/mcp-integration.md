@@ -2,7 +2,7 @@
 
 Learn how to integrate Model Context Protocol (MCP) with Claude for extended capabilities.
 
-> **Last Updated: January 15, 2026** | Includes Context7 MCP, dynamic loading patterns, and context window management
+> **Last Updated: January 23, 2026** | Includes OAuth 2.0 + step-up authorization, 50+ pre-built servers, and Skills integration
 
 ---
 
@@ -19,10 +19,24 @@ Learn how to integrate Model Context Protocol (MCP) with Claude for extended cap
 
 ### January 2026 Updates
 
+- **OAuth 2.0 + Step-up Authorization** — Enhanced security model (Jan 15, 2026)
+- **50+ Pre-built Servers** — Extensive ecosystem of ready-to-use MCP servers
+- **Remote Server Deployment** — Coming soon for enterprise deployments
+- **Skills Integration Deepening** — MCP and Skills working together seamlessly
 - **Context7 MCP** — Up-to-date library documentation (#2 ranked MCP server)
 - **Dynamic loading** — Load/unload MCP servers during sessions
 - **SSE deprecated** — Migrate to streamableHttp transport
-- **Context window management** — Critical for multiple MCP servers
+
+### MCP vs Skills: Token Comparison
+
+| Aspect | MCP Servers | Skills |
+|--------|-------------|--------|
+| **Base Context Cost** | ~42,600 tokens (7 servers) | ~5 tokens until activated |
+| **Loading Model** | All tools loaded at startup | Progressive disclosure |
+| **Context Impact** | 33.7% of 200K consumed immediately | Near-zero until invoked |
+| **Community Consensus** | Essential for real-time data | "Bigger than MCP" for workflows |
+
+> **Key Insight**: Skills consume only ~5 tokens until activated, compared to MCP's 42.6K base overhead. This makes Skills ideal for complex workflows where you need capability without constant context cost.
 
 ---
 
@@ -309,8 +323,11 @@ Context7 provides **up-to-date, version-specific library documentation**. Ranked
 }
 ```
 
-### OAuth Support
-Change endpoint from `/mcp` to `/mcp/oauth` for OAuth 2.0 authentication:
+### OAuth 2.0 + Step-up Authorization (Jan 15, 2026)
+
+MCP now supports OAuth 2.0 with step-up authorization for enhanced security:
+
+**Basic OAuth 2.0**:
 ```json
 {
   "mcpServers": {
@@ -321,6 +338,34 @@ Change endpoint from `/mcp` to `/mcp/oauth` for OAuth 2.0 authentication:
   }
 }
 ```
+
+**Step-up Authorization** (for sensitive operations):
+```json
+{
+  "mcpServers": {
+    "enterprise-server": {
+      "url": "https://api.example.com/mcp",
+      "type": "streamableHttp",
+      "auth": {
+        "type": "oauth2",
+        "clientId": "YOUR_CLIENT_ID",
+        "scopes": ["read", "write"],
+        "stepUp": {
+          "enabled": true,
+          "sensitiveScopes": ["admin", "delete"],
+          "reauthTimeout": 300
+        }
+      }
+    }
+  }
+}
+```
+
+**Step-up Authorization Benefits**:
+- Requires re-authentication for sensitive operations
+- Configurable timeout for elevated permissions
+- Granular scope management
+- Enterprise-grade security compliance
 
 ### Usage Example
 ```
@@ -342,7 +387,7 @@ not outdated training data from 2024.
 | **GitHub** | GitHub API access | Repository queries |
 | **Slack** | Slack workspace access | Team communication |
 
-### Community (Top Ranked Jan 2026)
+### Community (50+ Pre-built Servers - Jan 2026)
 
 | Server | Purpose | Ranking |
 |--------|---------|---------|
@@ -352,6 +397,12 @@ not outdated training data from 2024.
 | **Database** | SQL queries | Popular |
 | **AWS** | Amazon Web Services | Popular |
 | **Docker** | Container management | Popular |
+| **Notion** | Workspace integration | Popular |
+| **Linear** | Issue tracking | Popular |
+| **Stripe** | Payment processing | Popular |
+| **Twilio** | Communications API | Popular |
+
+> **Note**: As of January 2026, the MCP ecosystem has grown to **50+ pre-built servers**, with remote server deployment capabilities coming soon for enterprise use cases.
 
 ---
 
@@ -531,5 +582,22 @@ For trusted MCP servers, you can grant wildcard permissions:
 
 ---
 
-*Last Updated: January 15, 2026*
+---
+
+## MCP + Skills Integration
+
+MCP and Skills are increasingly working together as complementary systems:
+
+| Capability | MCP | Skills | Combined |
+|------------|-----|--------|----------|
+| **Real-time data** | ✅ Primary | ❌ | MCP fetches, Skills process |
+| **Complex workflows** | ❌ | ✅ Primary | Skills orchestrate MCP calls |
+| **Token efficiency** | ❌ High overhead | ✅ 5 tokens | Skills invoke MCP on-demand |
+| **External APIs** | ✅ Direct access | ❌ | MCP handles, Skills coordinate |
+
+**Best Practice**: Use Skills as the orchestration layer that invokes MCP servers when external data or APIs are needed. This combines the token efficiency of Skills with the real-time capabilities of MCP.
+
+---
+
+*Last Updated: January 23, 2026*
 

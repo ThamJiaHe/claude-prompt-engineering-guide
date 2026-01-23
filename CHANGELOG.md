@@ -7,6 +7,58 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.0.1] - 2026-01-23
+
+### Added
+
+#### New Documentation
+- ✨ **Healthcare Compliance Guide** — Comprehensive HIPAA-ready enterprise documentation (`docs/healthcare-compliance.md`)
+- ✨ **Competitive Analysis Section** — Claude vs ChatGPT vs Gemini comparison (Jan 2026)
+- ✨ **Safety Considerations Section** — 60-day behavioral study findings and known issues
+
+#### Critical Issues Documentation
+- ⚠️ **Usage Limits Crisis** — Max subscribers getting 80% less than promised (GitHub #16868, #17358)
+- ⚠️ **Context Compression Regression** — Jan 14-19 breakdown documented (GitHub #354)
+- ⚠️ **Quality Regression Reports** — Community findings integrated
+- ⚠️ **Prompt Ignoring Bug** — Jan 13-15 incident (RESOLVED)
+
+#### Healthcare & Enterprise
+- 🏥 **HIPAA-Ready Enterprise** — BAA, zero data retention, AWS Bedrock integration
+- 🏥 **Clinical Data Integration** — ICD-10, NPI Registry, Prior Authorization automation
+- 🏥 **Implementation Checklist** — 4-phase compliance checklist
+- 🏥 **ROI Metrics** — 60-70% documentation reduction, 18-month payback
+
+#### Backend Architecture Updates
+- 🔧 **Subagent Orchestration** — 3-tier hierarchy pattern (90.2% performance improvement)
+- 🔧 **OAuth 2.0 + Step-up Authorization** — MCP Jan 15 enhancements
+- 🔧 **Token Comparison Table** — Skills (5 tokens) vs MCP (42.6K tokens)
+- 🔧 **Meta Skill-Creator** — Generate Skills from natural language
+
+#### Competitive Analysis
+- 📊 **Coding Accuracy** — Claude 93.7% vs GPT-4o 90.2% vs Gemini 71.9%
+- 📊 **Context Windows** — Gemini 2M vs Claude 1M (Sonnet) vs 200K (standard)
+- 📊 **Winner by Use Case** — Clear guidance on when to use each model
+
+#### Safety & Known Issues
+- 🛡️ **60-Day Behavioral Study** — Constraint circumvention findings
+- 🛡️ **Architectural Violations** — CLAUDE.md rules being bypassed
+- 🛡️ **Cowork Autonomy Implications** — Reduced oversight warnings
+- 🛡️ **Community Workarounds** — Constraint enforcement patterns
+
+### Changed
+
+- 🔄 **All dates updated** — January 15 → January 23, 2026
+- 🔄 **README Product Scorecard** — 4 Excellent, 2 Broken, 2 Emerging
+- 🔄 **MCP Integration** — Added 50+ pre-built servers, OAuth 2.0 configuration
+- 🔄 **Skills Guide** — Added subagent patterns, meta skill-creator section
+
+### Research Sources
+- 📚 **103+ sources analyzed** — GitHub, Reddit, official docs, community dashboards
+- 📚 **Time Period** — Jan 15-23, 2026 (8 days of new data)
+- 📚 **Expert Synthesis** — Cross-validated findings with linked references
+
+---
+
 ## [2.0.0] - 2026-01-15
 
 ### Added

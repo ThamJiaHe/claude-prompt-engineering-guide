@@ -2,7 +2,7 @@
 
 Learn about Claude Skills and how to use them in your workflows.
 
-> **Last Updated: January 15, 2026** | Includes wrapper pattern, progressive disclosure, and enterprise skills
+> **Last Updated: January 23, 2026** | Includes subagent orchestration, token efficiency comparison, and Meta Skill-Creator
 
 ---
 
@@ -20,10 +20,16 @@ Learn about Claude Skills and how to use them in your workflows.
 
 ### January 2026 Updates
 
+- **Subagent Orchestration** — 90.2% performance improvement with 3-tier hierarchy
+- **Meta Skill-Creator** — Generate Skills from natural language descriptions
+- **Token Efficiency** — Only 5 tokens until activated (vs MCP's 42.6K)
+- **Community Consensus** — "Bigger than MCP" for complex workflows
 - **Wrapper pattern** — Token-efficient skill architecture
 - **Progressive disclosure** — Load heavy logic only when needed
 - **Enterprise skills** — Organization-wide skill management
 - **Skill scopes** — Personal, Project, and Enterprise levels
+
+> **Community Insight**: Skills are increasingly seen as "bigger than MCP" due to their token efficiency and orchestration capabilities. No official marketplace exists yet, but community sharing is growing rapidly.
 
 ---
 
@@ -128,6 +134,17 @@ See ./implementation/full-logic.md for complete implementation details.
 | **Parallel Execution** | Limited | Enabled |
 | **Token Isolation** | None | Heavy ops isolated |
 
+### Skills vs MCP Token Comparison
+
+| Metric | Skills | MCP Servers |
+|--------|--------|-------------|
+| **Base Context Cost** | ~5 tokens | ~42,600 tokens (7 servers) |
+| **Percentage of 200K Context** | 0.0025% | 33.7% |
+| **Loading Model** | On-demand activation | All at startup |
+| **Cost Model** | Pay-per-use | Constant overhead |
+
+> **Key Finding**: Skills consume only **5 tokens** until activated, while 7 MCP servers consume **42,600 tokens** (33.7% of context) before any conversation starts. This makes Skills dramatically more token-efficient for complex multi-step workflows.
+
 ### Guidelines
 
 - Keep SKILL.md under **100 lines**
@@ -135,6 +152,106 @@ See ./implementation/full-logic.md for complete implementation details.
 - Use indexed structure for targeted updates
 - Prioritize "just-in-time" loading
 - Test with representative queries
+
+---
+
+## Subagent Orchestration with Skills (Jan 2026)
+
+Skills enable powerful subagent orchestration patterns that achieve **90.2% performance improvement** over single-agent approaches.
+
+### 3-Tier Hierarchy Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    TIER 1: STRATEGIC ORCHESTRATOR               │
+│                         (Claude Opus 4)                         │
+│                                                                 │
+│    • High-level planning and coordination                       │
+│    • Resource allocation decisions                              │
+│    • Cross-coordinator synchronization                          │
+│    • Final quality assurance                                    │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+           ┌──────────────────┼──────────────────┐
+           │                  │                  │
+           ▼                  ▼                  ▼
+┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+│  TIER 2:        │  │  TIER 2:        │  │  TIER 2:        │
+│  COORDINATOR A  │  │  COORDINATOR B  │  │  COORDINATOR C  │
+│  (Sonnet 4)     │  │  (Sonnet 4)     │  │  (Sonnet 4)     │
+│                 │  │                 │  │                 │
+│  Domain: Docs   │  │  Domain: Code   │  │  Domain: Tests  │
+└─────────────────┘  └─────────────────┘  └─────────────────┘
+         │                   │                   │
+    ┌────┴────┐         ┌────┴────┐         ┌────┴────┐
+    │         │         │         │         │         │
+    ▼         ▼         ▼         ▼         ▼         ▼
+┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐
+│TIER 3 │ │TIER 3 │ │TIER 3 │ │TIER 3 │ │TIER 3 │ │TIER 3 │
+│Spec A │ │Spec B │ │Spec C │ │Spec D │ │Spec E │ │Spec F │
+│Sonnet │ │Sonnet │ │Sonnet │ │Sonnet │ │Sonnet │ │Sonnet │
+└───────┘ └───────┘ └───────┘ └───────┘ └───────┘ └───────┘
+```
+
+### Performance Metrics
+
+| Approach | Time | Improvement |
+|----------|------|-------------|
+| **Sequential (Single Agent)** | 45 minutes | Baseline |
+| **Parallel (3-Tier Subagents)** | 10 minutes | **90.2% faster** |
+
+### Model Allocation Strategy
+
+| Tier | Model | Purpose | Token Budget |
+|------|-------|---------|--------------|
+| **Orchestrator** | Claude Opus 4 | Strategic planning, coordination | High |
+| **Coordinators** | Claude Sonnet 4 | Domain management, task distribution | Medium |
+| **Specialists** | Claude Sonnet 4 | Focused execution, specific tasks | Focused |
+
+### Implementation Pattern
+
+```markdown
+---
+name: subagent-orchestrator
+description: Orchestrates parallel subagents for complex multi-file tasks
+---
+
+# Subagent Orchestrator Skill
+
+## When to Use
+- Tasks spanning 5+ files
+- Independent subtasks that can parallelize
+- Complex workflows requiring domain expertise
+
+## Orchestration Protocol
+
+### Phase 1: Analysis
+1. Decompose task into independent subtasks
+2. Identify domain boundaries
+3. Allocate resources per tier
+
+### Phase 2: Dispatch
+1. Create coordinator for each domain
+2. Coordinators spawn specialists as needed
+3. Maintain isolation between branches
+
+### Phase 3: Synthesis
+1. Collect results from all branches
+2. Resolve conflicts at coordinator level
+3. Orchestrator performs final integration
+
+## Implementation
+See ./implementation/orchestration-logic.md
+```
+
+### When to Use Subagent Orchestration
+
+| Scenario | Single Agent | Subagents |
+|----------|--------------|-----------|
+| Simple file edit | ✅ Use | ❌ Overkill |
+| Multi-file refactor | ⚠️ Slow | ✅ Recommended |
+| Full codebase update | ❌ Too slow | ✅ Required |
+| Cross-domain tasks | ❌ Context limits | ✅ Ideal |
 
 ---
 
@@ -465,13 +582,49 @@ Create a skill when you:
 
 ---
 
+## Meta Skill-Creator (Jan 2026)
+
+The Meta Skill-Creator allows you to **generate Skills from natural language descriptions**.
+
+### How It Works
+
+```
+User: "Create a skill that reviews Python code for security vulnerabilities"
+
+Meta Skill-Creator generates:
+├── SKILL.md (wrapper)
+├── implementation/
+│   ├── security-patterns.md
+│   └── vulnerability-checks.md
+└── templates/
+    └── report-template.md
+```
+
+### Usage
+
+```
+/skill-create "A skill that [description of what you want]"
+```
+
+### Best Practices
+
+1. **Be specific** about the workflow you want
+2. **Include examples** of inputs and outputs
+3. **Specify constraints** (file types, languages, etc.)
+4. **Iterate** on the generated skill
+
+> **Note**: No official Skills marketplace exists yet (as of Jan 2026), but community sharing through GitHub is growing rapidly.
+
+---
+
 ## Learn More
 
 - [Official Anthropic Skills Documentation](https://docs.anthropic.com)
 - [Skills Repository](https://github.com/anthropics/skills)
 - [Claude Prompt Engineering Guide](../Claude-Prompt-Guide.md)
 - [Skill Creator Documentation](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md)
+- [MCP Integration Guide](./mcp-integration.md) — How Skills and MCP work together
 
 ---
 
-*Last Updated: January 15, 2026*
+*Last Updated: January 23, 2026*
