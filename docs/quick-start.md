@@ -357,5 +357,9 @@ Remember these 5 principles:
 
 ---
 
-**Ready?** Pick a task above and start writing your first professional Claude prompt! 🚀
+**Ready?** Pick a task above and start writing your first professional Claude prompt!
+
+---
+
+**Last Updated:** January 24, 2026
 

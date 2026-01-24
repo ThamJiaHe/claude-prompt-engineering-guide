@@ -9,6 +9,10 @@
 
 ---
 
+> **翻訳ステータス [2026-01-24]:** 英語版README.mdは2026年1月24日に更新されました。この翻訳（1月15日版）は一部古い可能性があります。最新のリンクと情報については英語版を参照してください。
+
+---
+
 # 🎯 Claude プロンプトエンジニアリングガイド
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

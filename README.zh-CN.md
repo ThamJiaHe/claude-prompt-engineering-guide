@@ -9,6 +9,10 @@
 
 ---
 
+> **翻译状态 [2026-01-24]:** 英文版 README.md 已于2026年1月24日更新。本翻译（1月15日版）可能略有过时。请参阅英文版获取最新链接和信息。
+
+---
+
 # 🎯 Claude 提示词工程指南
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
