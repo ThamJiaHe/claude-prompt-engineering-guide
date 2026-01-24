@@ -2,7 +2,9 @@
 name: "NextAuth.js Authentication"
 description: "Implement authentication with NextAuth.js v5, Google OAuth, credentials provider, session management, and protected routes. Apply when building auth flows, protecting routes, managing sessions, or implementing RBAC."
 allowed-tools: Read, Write, Edit, Bash
-version: 1.0.0
+version: 1.1.0
+compatibility: Claude Opus 4.5, Claude Code v2.x
+updated: 2026-01-24
 ---
 
 # NextAuth.js Authentication
@@ -516,3 +518,10 @@ Enforces security best practices:
 - NextAuth.js v5: https://authjs.dev
 - Google OAuth Setup: https://console.cloud.google.com
 - Prisma Adapter: https://authjs.dev/reference/adapter/prisma
+---
+
+**Last Updated:** January 24, 2026
+**Compatibility:** Claude Opus 4.5, Claude Code v2.x
+**Status:** Production Ready
+
+> **January 2026 Update:** This skill is compatible with Claude Opus 4.5 and Claude Code v2.x. For complex tasks, use the `effort: high` parameter for thorough analysis.

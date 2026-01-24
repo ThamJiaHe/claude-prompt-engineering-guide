@@ -2,7 +2,9 @@
 name: "Prisma ORM Database"
 description: "Design database schemas, create migrations, manage data relationships, and sync with production using Prisma. Apply when designing database schemas, creating migrations, or defining data models."
 allowed-tools: Read, Write, Edit, Bash
-version: 1.0.0
+version: 1.1.0
+compatibility: Claude Opus 4.5, Claude Code v2.x
+updated: 2026-01-24
 ---
 
 # Prisma ORM Database
@@ -530,3 +532,10 @@ Enforces database best practices:
 - Prisma Migrate: https://www.prisma.io/docs/orm/prisma-migrate
 - Schema: https://www.prisma.io/docs/orm/prisma-schema
 - Relations: https://www.prisma.io/docs/orm/prisma-schema/relations
+---
+
+**Last Updated:** January 24, 2026
+**Compatibility:** Claude Opus 4.5, Claude Code v2.x
+**Status:** Production Ready
+
+> **January 2026 Update:** This skill is compatible with Claude Opus 4.5 and Claude Code v2.x. For complex tasks, use the `effort: high` parameter for thorough analysis.

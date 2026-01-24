@@ -2,7 +2,9 @@
 name: "Code Review"
 description: "Systematically review PRs for security, testing, code quality, accessibility. Apply when reviewing pull requests, auditing endpoints, checking security controls, or verifying test coverage."
 allowed-tools: Read, Grep, Edit
-version: 2.0.0
+version: 2.1.0
+compatibility: Claude Opus 4.5, Claude Code v2.x
+updated: 2026-01-24
 ---
 
 # Code Review
@@ -340,3 +342,10 @@ Enforces CLAUDE.md Section 2 & 8-10:
 - **AP-1 through AP-10**: Admin portal security
 - **U-1 through U-6**: UX/accessibility
 - **S-1 through S-10**: Security
+---
+
+**Last Updated:** January 24, 2026
+**Compatibility:** Claude Opus 4.5, Claude Code v2.x
+**Status:** Production Ready
+
+> **January 2026 Update:** This skill is compatible with Claude Opus 4.5 and Claude Code v2.x. For complex tasks, use the `effort: high` parameter for thorough analysis.

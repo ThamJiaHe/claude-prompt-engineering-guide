@@ -2,7 +2,9 @@
 name: "Vitest Unit Testing"
 description: "Write fast unit tests with Vitest, coverage reporting, mocking, and snapshots. Apply when testing utilities, components, services, or building test coverage."
 allowed-tools: Read, Write, Edit, Bash
-version: 1.0.0
+version: 1.1.0
+compatibility: Claude Opus 4.5, Claude Code v2.x
+updated: 2026-01-24
 ---
 
 # Vitest Unit Testing
@@ -413,3 +415,10 @@ Enforces T-1 through T-10:
 - Vitest Docs: https://vitest.dev
 - Testing Library: https://testing-library.com
 - Vitest Examples: https://github.com/vitest-dev/vitest/tree/main/examples
+---
+
+**Last Updated:** January 24, 2026
+**Compatibility:** Claude Opus 4.5, Claude Code v2.x
+**Status:** Production Ready
+
+> **January 2026 Update:** This skill is compatible with Claude Opus 4.5 and Claude Code v2.x. For complex tasks, use the `effort: high` parameter for thorough analysis.

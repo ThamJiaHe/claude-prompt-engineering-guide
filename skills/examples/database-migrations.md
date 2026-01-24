@@ -2,7 +2,9 @@
 name: "Database & Migrations"
 description: "Design schemas, create reversible migrations, validate data at API and DB layers. Apply when designing databases, creating migrations, defining models, or modifying schema."
 allowed-tools: Read, Write, Edit, Bash
-version: 2.0.0
+version: 2.1.0
+compatibility: Claude Opus 4.5, Claude Code v2.x
+updated: 2026-01-24
 ---
 
 # Database & Migrations
@@ -424,3 +426,10 @@ Before marking database work complete:
 Enforces CLAUDE.md Section 4 & 2:
 - **D-1 through D-4**: Database standards
 - **C-10**: Validation standards
+---
+
+**Last Updated:** January 24, 2026
+**Compatibility:** Claude Opus 4.5, Claude Code v2.x
+**Status:** Production Ready
+
+> **January 2026 Update:** This skill is compatible with Claude Opus 4.5 and Claude Code v2.x. For complex tasks, use the `effort: high` parameter for thorough analysis.
