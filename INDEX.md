@@ -1,6 +1,6 @@
 # Repository Index
 
-> **Version:** 2.0.1 | **Last Updated:** January 24, 2026
+> **Version:** 2.0.2 | **Last Updated:** January 24, 2026
 
 Master navigation for the Claude Prompt Engineering Guide repository.
 
@@ -28,9 +28,18 @@ Master navigation for the Claude Prompt Engineering Guide repository.
 | [claude-code-guide.md](./docs/claude-code-guide.md) | Claude Code CLI tool guide |
 | [cowork-guide.md](./docs/cowork-guide.md) | Claude Cowork autonomous workflows |
 | [mcp-integration.md](./docs/mcp-integration.md) | Model Context Protocol setup |
+| [mcp-ecosystem-overview.md](./docs/mcp-ecosystem-overview.md) | MCP ecosystem guide (Jan 2026) |
 | [skills-guide.md](./docs/skills-guide.md) | Skills documentation and patterns |
 | [superpowers-guide.md](./docs/superpowers-guide.md) | Superpowers plugin guide |
 | [healthcare-compliance.md](./docs/healthcare-compliance.md) | HIPAA/healthcare integration |
+
+### Research & Analysis (`docs/`)
+
+| File | Description |
+|------|-------------|
+| [research-report-jan-2026.md](./docs/research-report-jan-2026.md) | Institutional-grade research report (8,500+ words) |
+| [ecosystem-market-analysis.md](./docs/ecosystem-market-analysis.md) | Market position & growth analysis |
+| [pricing-comparison-jan-2026.md](./docs/pricing-comparison-jan-2026.md) | Claude vs GPT-4 vs Gemini pricing |
 
 ### Examples (`docs/examples/`)
 
@@ -129,9 +138,12 @@ Master navigation for the Claude Prompt Engineering Guide repository.
 - **Using Claude Code?** See [Claude Code Guide](./docs/claude-code-guide.md)
 - **Need skills?** Browse [Skills Examples](./skills/examples/)
 - **Migrating?** Check [Migration Guide](./MIGRATION-NOV2025-JAN2026.md)
+- **Market Analysis?** Read [Ecosystem Market Analysis](./docs/ecosystem-market-analysis.md)
+- **Pricing Info?** See [Pricing Comparison Guide](./docs/pricing-comparison-jan-2026.md)
+- **MCP Integration?** Check [MCP Ecosystem Overview](./docs/mcp-ecosystem-overview.md)
 
 ---
 
 **Repository:** Claude Prompt Engineering Guide
-**Version:** 2.0.1
+**Version:** 2.0.2
 **Updated:** January 24, 2026
