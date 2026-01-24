@@ -380,7 +380,7 @@ client = anthropic.Anthropic(api_key="your-api-key")
 # Include skill capabilities in your request
 
 response = client.messages.create(
-    model="claude-opus-4-20250514",
+    model="claude-opus-4-5-20251101",
     max_tokens=2048,
     system="You are a document creation specialist with access to document Skills.",
     messages=[

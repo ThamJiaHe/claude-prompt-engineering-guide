@@ -2,7 +2,9 @@
 name: "Performance Optimization"
 description: "Optimize Next.js bundle size with code splitting, tree shaking, lazy loading, and build configuration. Apply when improving performance, reducing bundle size, analyzing dependencies, or optimizing load times."
 allowed-tools: Read, Write, Edit, Bash
-version: 1.0.0
+version: 1.1.0
+compatibility: Claude Opus 4.5, Claude Code v2.x
+updated: 2026-01-24
 ---
 
 # Performance Optimization
@@ -436,3 +438,10 @@ Enforces performance optimization:
 - Next.js Performance: https://nextjs.org/learn/foundation/how-nextjs-works/rendering
 - Bundle Analysis: https://nextjs.org/docs/advanced-features/analyzing-bundles
 - Web Vitals: https://web.dev/vitals
+---
+
+**Last Updated:** January 24, 2026
+**Compatibility:** Claude Opus 4.5, Claude Code v2.x
+**Status:** Production Ready
+
+> **January 2026 Update:** This skill is compatible with Claude Opus 4.5 and Claude Code v2.x. For complex tasks, use the `effort: high` parameter for thorough analysis.

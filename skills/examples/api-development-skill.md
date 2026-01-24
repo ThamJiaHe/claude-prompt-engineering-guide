@@ -2,7 +2,9 @@
 name: "API Development"
 description: "Build REST APIs with proper error handling, status codes, request validation, response formatting, and rate limiting. Apply when creating API routes, handling errors, validating input, or designing API responses."
 allowed-tools: Read, Write, Edit, Bash
-version: 1.0.0
+version: 1.1.0
+compatibility: Claude Opus 4.5, Claude Code v2.x
+updated: 2026-01-24
 ---
 
 # API Development
@@ -411,3 +413,10 @@ Enforces security and usability:
 - RFC 7807 Problem Details: https://tools.ietf.org/html/rfc7807
 - HTTP Status Codes: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 - Express Rate Limiting: https://github.com/nfriedly/express-rate-limit
+---
+
+**Last Updated:** January 24, 2026
+**Compatibility:** Claude Opus 4.5, Claude Code v2.x
+**Status:** Production Ready
+
+> **January 2026 Update:** This skill is compatible with Claude Opus 4.5 and Claude Code v2.x. For complex tasks, use the `effort: high` parameter for thorough analysis.

@@ -2,7 +2,9 @@
 name: "Tailwind CSS Design System"
 description: "Build consistent, accessible UI components with Tailwind CSS, shadcn/ui, and custom design tokens. Apply when styling components, creating design systems, implementing responsive layouts, or optimizing CSS performance."
 allowed-tools: Read, Write, Edit
-version: 1.0.0
+version: 1.1.0
+compatibility: Claude Opus 4.5, Claude Code v2.x
+updated: 2026-01-24
 ---
 
 # Tailwind CSS Design System
@@ -507,3 +509,10 @@ Enforces design consistency:
 - Tailwind CSS Docs: https://tailwindcss.com/docs
 - shadcn/ui: https://ui.shadcn.com
 - CVA (Class Variance Authority): https://cva.style
+---
+
+**Last Updated:** January 24, 2026
+**Compatibility:** Claude Opus 4.5, Claude Code v2.x
+**Status:** Production Ready
+
+> **January 2026 Update:** This skill is compatible with Claude Opus 4.5 and Claude Code v2.x. For complex tasks, use the `effort: high` parameter for thorough analysis.

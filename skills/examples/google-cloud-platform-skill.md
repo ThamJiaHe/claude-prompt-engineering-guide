@@ -2,7 +2,9 @@
 name: "Google Cloud Platform & APIs"
 description: "Deploy Node.js applications on Google Cloud with Cloud Run, Cloud Firestore, and Google APIs. Implement OAuth2 authentication and manage service accounts. Apply when building serverless applications, integrating Google services, or deploying to GCP."
 allowed-tools: Read, Write, Edit, Bash
-version: 1.0.0
+version: 1.1.0
+compatibility: Claude Opus 4.5, Claude Code v2.x
+updated: 2026-01-24
 ---
 
 # Google Cloud Platform & APIs
@@ -531,3 +533,10 @@ Enforces security and deployment best practices:
 - Firebase: https://firebase.google.com/docs
 - Google APIs: https://developers.google.com/apis-explorer
 - OAuth 2.0: https://developers.google.com/identity/protocols/oauth2
+---
+
+**Last Updated:** January 24, 2026
+**Compatibility:** Claude Opus 4.5, Claude Code v2.x
+**Status:** Production Ready
+
+> **January 2026 Update:** This skill is compatible with Claude Opus 4.5 and Claude Code v2.x. For complex tasks, use the `effort: high` parameter for thorough analysis.

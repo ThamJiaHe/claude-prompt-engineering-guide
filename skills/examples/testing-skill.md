@@ -2,7 +2,9 @@
 name: "Testing Strategy"
 description: "Apply TDD with RED-GREEN-REFACTOR cycles, separate unit tests from integration tests, ensure comprehensive coverage. Apply when writing tests, evaluating test coverage, testing databases, or testing admin flows."
 allowed-tools: Read, Write, Edit, Bash
-version: 2.0.0
+version: 2.1.0
+compatibility: Claude Opus 4.5, Claude Code v2.x
+updated: 2026-01-24
 ---
 
 # Testing Strategy
@@ -431,3 +433,10 @@ Enforces CLAUDE.md Section 3:
 - **T-8**: Edge cases tested
 - **T-9**: Redundant tests better than missing coverage
 - **T-10**: RED-GREEN-REFACTOR cycle
+---
+
+**Last Updated:** January 24, 2026
+**Compatibility:** Claude Opus 4.5, Claude Code v2.x
+**Status:** Production Ready
+
+> **January 2026 Update:** This skill is compatible with Claude Opus 4.5 and Claude Code v2.x. For complex tasks, use the `effort: high` parameter for thorough analysis.

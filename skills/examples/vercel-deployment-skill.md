@@ -2,7 +2,9 @@
 name: "Vercel Deployment"
 description: "Deploy Next.js to Vercel with zero-config, manage environment variables, set up CI/CD pipelines, and optimize production performance. Apply when deploying to Vercel, configuring environments, or setting up CI/CD workflows."
 allowed-tools: Read, Write, Edit, Bash
-version: 1.0.0
+version: 1.1.0
+compatibility: Claude Opus 4.5, Claude Code v2.x
+updated: 2026-01-24
 ---
 
 # Vercel Deployment
@@ -488,3 +490,10 @@ Enforces deployment best practices:
 - Next.js Deployment: https://nextjs.org/learn/basics/deploying
 - GitHub Actions: https://docs.github.com/en/actions
 - Environment Variables: https://vercel.com/docs/projects/environment-variables
+---
+
+**Last Updated:** January 24, 2026
+**Compatibility:** Claude Opus 4.5, Claude Code v2.x
+**Status:** Production Ready
+
+> **January 2026 Update:** This skill is compatible with Claude Opus 4.5 and Claude Code v2.x. For complex tasks, use the `effort: high` parameter for thorough analysis.
