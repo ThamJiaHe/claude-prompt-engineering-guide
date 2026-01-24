@@ -315,7 +315,9 @@ claude-prompt-engineering-guide/
 │   ├── skills-guide.md               # Skills documentation
 │   ├── superpowers-guide.md          # Superpowers plugin guide
 │   ├── api-guide.md                  # API integration guide
+│   ├── cowork-guide.md               # Claude Cowork autonomous workflows
 │   ├── claude-code-guide.md          # Claude Code CLI guide
+│   ├── healthcare-compliance.md      # HIPAA/healthcare integration
 │   └── examples/                      # Real-world examples
 │       ├── coding-tasks.md
 │       ├── research-tasks.md
