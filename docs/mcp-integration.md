@@ -200,7 +200,7 @@ client = anthropic.Anthropic(api_key="your-api-key")
 
 # Include beta header for MCP support
 response = client.messages.create(
-    model="claude-opus-4-20250514",
+    model="claude-opus-4-5-20251101",
     max_tokens=2048,
     system="You are a helpful assistant with access to local files and web search.",
     messages=[
