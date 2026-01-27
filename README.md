@@ -318,6 +318,7 @@ claude-prompt-engineering-guide/
 │   ├── cowork-guide.md               # Claude Cowork autonomous workflows
 │   ├── claude-code-guide.md          # Claude Code CLI guide
 │   ├── healthcare-compliance.md      # HIPAA/healthcare integration
+│   ├── automation-guide.md           # Automated research system guide
 │   └── examples/                      # Real-world examples
 │       ├── coding-tasks.md
 │       ├── research-tasks.md
@@ -333,11 +334,24 @@ claude-prompt-engineering-guide/
 │   └── examples/                      # Example skills
 │       └── example-feedback-analyzer.md # Customer feedback analyzer skill
 │
+├── scripts/                           # Automation scripts
+│   ├── auto-research.py              # Perplexity API research
+│   ├── analyze-findings.py           # Analysis and categorization
+│   ├── auto-update.py                # Documentation updates
+│   └── validate-updates.py           # Validation checks
+│
+├── config/                            # Configuration files
+│   ├── search-queries.json           # Search query definitions
+│   └── auto-update-rules.json        # Update rules mapping
+│
 └── .github/                          # GitHub configuration
+    ├── workflows/
+    │   └── daily-research.yml        # Automated research workflow
     ├── ISSUE_TEMPLATE/
     │   ├── bug_report.md
     │   └── feature_request.md
-    └── PULL_REQUEST_TEMPLATE.md
+    ├── PULL_REQUEST_TEMPLATE.md
+    └── pr-template-automated.md      # Automated PR template
 ```
 
 ---
@@ -412,7 +426,7 @@ The Claude Prompt Engineering Guide synthesizes publicly available information f
 ## 🙏 Acknowledgments
 
 **Created:** November 19, 2025
-**Last Major Update:** January 23, 2026
+**Last Major Update:** January 27, 2026
 **Location:** Singapore
 **Purpose:** Deep research synthesis for professional Claude prompt engineering
 
@@ -468,6 +482,42 @@ Want to improve this guide? [See CONTRIBUTING.md](./CONTRIBUTING.md) for the pro
 4. **Pick a template**
    - Quick project? → [Minimal Template](./templates/minimal-prompt-template.md)
    - Complex task? → [Comprehensive Template](./templates/comprehensive-prompt-template.md)
+
+---
+
+## 🤖 Automated Research System
+
+This repository includes an automated daily research system that keeps documentation up-to-date.
+
+### How It Works
+
+| Phase | Description |
+|-------|-------------|
+| **Research** | Daily Perplexity API searches for Claude/Anthropic updates |
+| **Analysis** | Categorizes findings by topic and assesses impact |
+| **Update** | Automatically updates metadata; flags substantial changes |
+| **Validation** | Checks markdown syntax, links, version consistency |
+| **Review** | Creates PR for human review before merge |
+
+### Schedule
+
+- **Runs Daily**: 2:00 AM SGT (18:00 UTC)
+- **Manual Trigger**: Available via GitHub Actions UI
+
+### Configuration
+
+- **Search Queries**: `config/search-queries.json`
+- **Update Rules**: `config/auto-update-rules.json`
+- **Workflow**: `.github/workflows/daily-research.yml`
+
+### Key Principles
+
+- ✅ **Human-in-the-Loop**: All substantial changes require review
+- ✅ **Conservative**: Only metadata auto-updated
+- ✅ **Traceable**: All claims linked to sources
+- ✅ **Reversible**: Easy rollback if needed
+
+📖 **[Full Documentation →](./docs/automation-guide.md)**
 
 ---
 

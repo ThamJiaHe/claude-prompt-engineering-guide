@@ -1,0 +1,241 @@
+{
+  "version": "1.0",
+  "description": "Topic-to-file mapping rules for automated documentation updates",
+
+  "topics": {
+    "claude_models": {
+      "name": "Claude Models",
+      "keywords": [
+        "Opus 4.5", "Sonnet 4.5", "Haiku 4.5",
+        "Opus 4", "Sonnet 4", "Haiku 4",
+        "Claude 4", "Claude 5",
+        "model release", "new model", "model update",
+        "claude-opus", "claude-sonnet", "claude-haiku",
+        "benchmark", "SWE-bench", "coding accuracy"
+      ],
+      "target_files": [
+        "Claude-Prompt-Guide.md"
+      ],
+      "sections": [
+        "## Claude Models Overview",
+        "## Claude vs Competition"
+      ],
+      "priority": 1
+    },
+
+    "claude_code": {
+      "name": "Claude Code CLI",
+      "keywords": [
+        "Claude Code", "claude-code",
+        "CLI", "terminal agent",
+        "v2.1", "v2.2", "v2.3", "v3.0",
+        "skill hot-reload", "session teleportation",
+        "Plan Mode", "hooks", "worktrees",
+        "claude code update", "code release"
+      ],
+      "target_files": [
+        "Claude-Prompt-Guide.md",
+        "docs/claude-code-guide.md"
+      ],
+      "sections": [
+        "### Claude Code",
+        "## Claude Code"
+      ],
+      "priority": 1
+    },
+
+    "mcp": {
+      "name": "Model Context Protocol",
+      "keywords": [
+        "MCP", "Model Context Protocol",
+        "MCP server", "MCP client",
+        "mcp-server", "mcp-client",
+        "Context7", "filesystem server",
+        "MCP connector", "protocol update",
+        "Linux Foundation", "AAIF"
+      ],
+      "target_files": [
+        "docs/mcp-integration.md",
+        "docs/mcp-ecosystem-overview.md",
+        "Claude-Prompt-Guide.md"
+      ],
+      "sections": [
+        "## Model Context Protocol",
+        "### MCP",
+        "## Available Servers"
+      ],
+      "priority": 2
+    },
+
+    "skills": {
+      "name": "Claude Skills",
+      "keywords": [
+        "Skills", "skill", "SKILL.md",
+        "marketplace", "skill marketplace",
+        "skill install", "new skill",
+        "progressive disclosure", "skill wrapper"
+      ],
+      "target_files": [
+        "docs/skills-guide.md",
+        "Claude-Prompt-Guide.md"
+      ],
+      "sections": [
+        "## Claude Skills",
+        "### Skills"
+      ],
+      "priority": 2
+    },
+
+    "pricing": {
+      "name": "Pricing & Costs",
+      "keywords": [
+        "pricing", "price", "cost",
+        "token", "MTok", "per million",
+        "$", "dollars", "credits",
+        "batch API", "prompt caching",
+        "rate limit", "usage limit"
+      ],
+      "target_files": [
+        "docs/pricing-comparison-jan-2026.md",
+        "Claude-Prompt-Guide.md"
+      ],
+      "sections": [
+        "## Pricing",
+        "### Pricing",
+        "## January 2026 Pricing"
+      ],
+      "priority": 1
+    },
+
+    "api": {
+      "name": "Claude API",
+      "keywords": [
+        "API", "endpoint", "SDK",
+        "anthropic-sdk", "anthropic SDK",
+        "messages API", "completions",
+        "effort parameter", "extended thinking",
+        "tool use", "function calling",
+        "API update", "breaking change"
+      ],
+      "target_files": [
+        "docs/api-guide.md",
+        "Claude-Prompt-Guide.md"
+      ],
+      "sections": [
+        "## Claude API",
+        "### API"
+      ],
+      "priority": 1
+    },
+
+    "ecosystem_tools": {
+      "name": "Ecosystem Tools",
+      "keywords": [
+        "OpenCode", "opencode",
+        "AirLLM", "airllm",
+        "Codex", "codex CLI",
+        "Cursor", "Continue", "Cline",
+        "GitHub Copilot", "Copilot CLI",
+        "Warp", "terminal integration"
+      ],
+      "target_files": [
+        "docs/research-opencode-clawbot-jan-2026.md",
+        "Claude-Prompt-Guide.md"
+      ],
+      "sections": [
+        "## Ecosystem Tools",
+        "## OpenCode CLI"
+      ],
+      "priority": 3
+    },
+
+    "cowork": {
+      "name": "Claude Cowork",
+      "keywords": [
+        "Cowork", "cowork",
+        "autonomous", "file management",
+        "folder access", "desktop automation"
+      ],
+      "target_files": [
+        "docs/cowork-guide.md",
+        "Claude-Prompt-Guide.md"
+      ],
+      "sections": [
+        "### Claude Cowork",
+        "## Claude Cowork"
+      ],
+      "priority": 2
+    },
+
+    "superpowers": {
+      "name": "Superpowers Plugin",
+      "keywords": [
+        "Superpowers", "superpowers",
+        "obra", "superpowers-chrome",
+        "browser control", "Chrome DevTools"
+      ],
+      "target_files": [
+        "docs/superpowers-guide.md",
+        "Claude-Prompt-Guide.md"
+      ],
+      "sections": [
+        "### Superpowers"
+      ],
+      "priority": 3
+    },
+
+    "enterprise": {
+      "name": "Enterprise & Compliance",
+      "keywords": [
+        "enterprise", "HIPAA", "SOC 2",
+        "compliance", "security",
+        "BAA", "data retention",
+        "audit", "governance"
+      ],
+      "target_files": [
+        "docs/healthcare-compliance.md",
+        "Claude-Prompt-Guide.md"
+      ],
+      "sections": [
+        "## Enterprise",
+        "### Healthcare"
+      ],
+      "priority": 2
+    }
+  },
+
+  "update_rules": {
+    "conservative_mode": true,
+    "require_high_confidence": true,
+    "max_changes_per_file": 3,
+    "require_source_citation": true,
+    "auto_version_bump": true,
+    "changelog_required": true
+  },
+
+  "excluded_files": [
+    "LICENSE",
+    "CONTRIBUTING.md",
+    ".gitignore",
+    "scripts/*.py",
+    "config/*.json"
+  ],
+
+  "impact_thresholds": {
+    "high": {
+      "description": "Major updates that affect core functionality",
+      "examples": ["new model release", "breaking API change", "major price change"],
+      "action": "update"
+    },
+    "medium": {
+      "description": "Significant updates worth documenting",
+      "examples": ["new feature", "performance improvement", "minor price adjustment"],
+      "action": "consider"
+    },
+    "low": {
+      "description": "Minor updates that may not need documentation",
+      "examples": ["bug fix", "documentation update", "minor enhancement"],
+      "action": "skip"
+    }
+  }
+}
