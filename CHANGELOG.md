@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.0.3] - 2026-01-27
+
+### Added
+
+#### New Research Documentation
+- ✨ **Ecosystem Tools Research** — OpenCode CLI, AirLLM, external coding agents comparison (`docs/research-opencode-clawbot-jan-2026.md`)
+- ✨ **ultimate.claude** — Master system prompt for Claude projects with repo-specific rules
+
+#### Planning Templates
+- 📋 **task.md** — Living backlog template with Inbox, In Progress, Blocked, Done sections
+- 📋 **progress.md** — Daily/weekly session log for context restoration
+- 📋 **activity.md** — Chronological action timeline with hook integration
+
+#### Tool Comparisons
+- 🔧 **OpenCode CLI** — 75+ LLM providers, GitHub Copilot auth, vendor-agnostic workflows
+- 🔧 **AirLLM** — 70B models on 4GB VRAM, edge inference, hybrid patterns with Claude
+- 🔧 **External Agents** — OpenAI Codex, GitHub Copilot CLI integration patterns
+- 🔧 **Decision Matrix** — When to use Claude Code vs OpenCode vs AirLLM
+
+### Changed
+
+- 🔄 **Claude-Prompt-Guide.md** — Added "Ecosystem Tools (January 2026)" section
+- 🔄 **INDEX.md** — Added planning templates section and ecosystem tools links
+- 🔄 **All dates** — Updated to January 27, 2026
+
+### Research Notes
+
+- 📚 **Clawdbot/Clawbot** — No evidence found in authoritative sources; may be misspelling or emerging project
+- 📚 **OpenCode** — Gained official GitHub support January 16, 2026
+- 📚 **Planning patterns** — Synthesized from Claude Code best practices documentation
+
+---
+
 ## [2.0.2] - 2026-01-24
 
 ### Added
