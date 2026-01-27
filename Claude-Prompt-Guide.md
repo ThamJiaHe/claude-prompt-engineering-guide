@@ -1069,6 +1069,64 @@ Before creating the deck:
 
 ---
 
+## Ecosystem Tools (January 2026)
+
+Beyond Claude's core offerings, several tools complement or extend Claude-driven development workflows.
+
+### Overview
+
+| Tool | Type | Best For |
+|------|------|----------|
+| **OpenCode CLI** | Open-source coding agent | Multi-provider workflows, vendor-agnostic development |
+| **AirLLM** | Memory-optimized inference | Running 70B models on consumer GPUs, edge deployment |
+| **OpenAI Codex** | CLI coding agent | Fast GPT prototyping, OpenAI ecosystem integration |
+
+### OpenCode CLI
+
+Open-source terminal coding agent supporting 75+ LLM providers (including Claude via API). Official GitHub integration as of January 16, 2026.
+
+**Key features:**
+- Switch providers mid-session without lock-in
+- GitHub Copilot authentication (use existing subscription)
+- Local Ollama support for privacy-focused development
+- Beautiful terminal UI with Vim-like editing
+
+**When to use:** Vendor-agnostic workflows, CI/CD with local models, existing Copilot subscriptions.
+
+**When to stay with Claude Code:** Best reasoning quality, Skills/MCP ecosystem, Superpowers integration.
+
+### AirLLM
+
+Memory-optimized library enabling 70B+ parameter models on 4GB VRAM through layer-by-layer inference.
+
+**Realistic use with Claude:**
+- Local preprocessing (PII stripping) → Claude API for reasoning
+- Development testing before consuming Claude tokens
+- Offline fallback with sync to Claude when connected
+
+**Limitations:** Inference latency, no fine-tuning support, not enterprise-supported.
+
+### External Coding Agents
+
+OpenAI Codex and GitHub Copilot CLI provide alternative coding agent experiences. No direct Claude integration exists, but you can coordinate via:
+- OpenCode as multi-provider orchestrator
+- Custom MCP bridges
+- Task handoffs (Codex for prototyping → Claude for refinement)
+
+### Tool Selection Guide
+
+| Scenario | Recommended Tool |
+|----------|-----------------|
+| Enterprise, need best reasoning | **Claude Code** |
+| Vendor lock-in concerns | **OpenCode CLI** |
+| Local model experiments | **AirLLM + Claude hybrid** |
+| Existing Copilot subscription | **OpenCode + Copilot auth** |
+| Complex multi-day projects | **Claude Code + planning/*.md files** |
+
+**Full analysis:** See [docs/research-opencode-clawbot-jan-2026.md](./docs/research-opencode-clawbot-jan-2026.md)
+
+---
+
 ## Memory Bank Reference
 
 ### Purpose of This Document
@@ -1307,7 +1365,10 @@ This is NOT about asking Claude AI directly—it's about crafting the optimal pr
 - **[Pricing Comparison Guide](./docs/pricing-comparison-jan-2026.md)** — Claude vs GPT-4 vs Gemini pricing analysis
 - **[MCP Ecosystem Overview](./docs/mcp-ecosystem-overview.md)** — MCP integration guide with examples
 - **[Research Report (Jan 2026)](./docs/research-report-jan-2026.md)** — Full institutional-grade research report
+- **[Ecosystem Tools Research](./docs/research-opencode-clawbot-jan-2026.md)** — OpenCode CLI, AirLLM, external agents
+- **[ultimate.claude](./ultimate.claude)** — Master system prompt for this repository
+- **[Planning Templates](./planning/)** — Task backlog, progress log, activity timeline
 
 ---
 
-*Last Updated: January 24, 2026*
+*Last Updated: January 27, 2026*

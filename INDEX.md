@@ -1,6 +1,6 @@
 # Repository Index
 
-> **Version:** 2.0.2 | **Last Updated:** January 24, 2026
+> **Version:** 2.0.3 | **Last Updated:** January 27, 2026
 
 Master navigation for the Claude Prompt Engineering Guide repository.
 
@@ -12,6 +12,7 @@ Master navigation for the Claude Prompt Engineering Guide repository.
 |------|-------------|
 | [README.md](./README.md) | Main repository introduction and quick links |
 | [Claude-Prompt-Guide.md](./Claude-Prompt-Guide.md) | Comprehensive prompt engineering guide |
+| [ultimate.claude](./ultimate.claude) | Master system prompt for Claude projects |
 | [CHANGELOG.md](./CHANGELOG.md) | Version history and release notes |
 | [CONTRIBUTING.md](./CONTRIBUTING.md) | Contribution guidelines |
 | [LICENSE](./LICENSE) | MIT License |
@@ -40,6 +41,15 @@ Master navigation for the Claude Prompt Engineering Guide repository.
 | [research-report-jan-2026.md](./docs/research-report-jan-2026.md) | Institutional-grade research report (8,500+ words) |
 | [ecosystem-market-analysis.md](./docs/ecosystem-market-analysis.md) | Market position & growth analysis |
 | [pricing-comparison-jan-2026.md](./docs/pricing-comparison-jan-2026.md) | Claude vs GPT-4 vs Gemini pricing |
+| [research-opencode-clawbot-jan-2026.md](./docs/research-opencode-clawbot-jan-2026.md) | OpenCode CLI, AirLLM, external agents |
+
+### Planning Templates (`planning/`)
+
+| File | Description |
+|------|-------------|
+| [task.md](./planning/task.md) | Living backlog for Claude projects |
+| [progress.md](./planning/progress.md) | Daily/weekly session log |
+| [activity.md](./planning/activity.md) | Chronological action timeline |
 
 ### Examples (`docs/examples/`)
 
@@ -141,9 +151,11 @@ Master navigation for the Claude Prompt Engineering Guide repository.
 - **Market Analysis?** Read [Ecosystem Market Analysis](./docs/ecosystem-market-analysis.md)
 - **Pricing Info?** See [Pricing Comparison Guide](./docs/pricing-comparison-jan-2026.md)
 - **MCP Integration?** Check [MCP Ecosystem Overview](./docs/mcp-ecosystem-overview.md)
+- **Alternative Tools?** See [OpenCode/AirLLM Research](./docs/research-opencode-clawbot-jan-2026.md)
+- **Project Planning?** Use [Planning Templates](./planning/)
 
 ---
 
 **Repository:** Claude Prompt Engineering Guide
-**Version:** 2.0.2
-**Updated:** January 24, 2026
+**Version:** 2.0.3
+**Updated:** January 27, 2026
