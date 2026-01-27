@@ -33,6 +33,7 @@ Master navigation for the Claude Prompt Engineering Guide repository.
 | [skills-guide.md](./docs/skills-guide.md) | Skills documentation and patterns |
 | [superpowers-guide.md](./docs/superpowers-guide.md) | Superpowers plugin guide |
 | [healthcare-compliance.md](./docs/healthcare-compliance.md) | HIPAA/healthcare integration |
+| [automation-guide.md](./docs/automation-guide.md) | Automated research system guide |
 
 ### Research & Analysis (`docs/`)
 

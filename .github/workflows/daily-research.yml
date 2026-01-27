@@ -1,0 +1,379 @@
+# Daily Claude Ecosystem Research Automation
+# Automatically searches for Claude updates, analyzes findings, and creates PRs
+#
+# Schedule: Daily at 2 AM SGT (18:00 UTC)
+# Manual trigger: workflow_dispatch
+#
+# Required Secrets:
+#   - PERPLEXITY_API_KEY: For web search
+#   - ANTHROPIC_API_KEY: For Claude analysis (optional, uses Perplexity if not set)
+#
+# The workflow creates a PR for human review - no auto-merge
+
+name: Daily Claude Ecosystem Research
+
+on:
+  schedule:
+    # Run daily at 2 AM SGT (18:00 UTC previous day)
+    - cron: '0 18 * * *'
+
+  workflow_dispatch:
+    inputs:
+      force_update:
+        description: 'Force update even if no changes detected'
+        required: false
+        default: 'false'
+        type: boolean
+      search_scope:
+        description: 'Search scope'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - claude-models
+          - claude-code
+          - mcp
+          - pricing
+          - tools
+
+env:
+  PYTHON_VERSION: '3.11'
+  NODE_VERSION: '20'
+
+jobs:
+  research:
+    name: Research & Analyze
+    runs-on: ubuntu-latest
+    outputs:
+      has_updates: ${{ steps.analyze.outputs.has_updates }}
+      summary: ${{ steps.analyze.outputs.summary }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install requests pyyaml python-dateutil markdown
+
+      - name: Get last run date
+        id: last_run
+        run: |
+          # Get date of last successful run from git tags or default to 7 days ago
+          LAST_TAG=$(git tag -l "auto-research-*" --sort=-creatordate | head -1)
+          if [ -n "$LAST_TAG" ]; then
+            LAST_DATE=$(git log -1 --format=%ci "$LAST_TAG" | cut -d' ' -f1)
+          else
+            LAST_DATE=$(date -d "7 days ago" +%Y-%m-%d)
+          fi
+          echo "last_date=$LAST_DATE" >> $GITHUB_OUTPUT
+          echo "Last research date: $LAST_DATE"
+
+      - name: Run research script
+        id: research
+        env:
+          PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
+          SEARCH_SCOPE: ${{ inputs.search_scope || 'all' }}
+          LAST_SEARCH_DATE: ${{ steps.last_run.outputs.last_date }}
+        run: |
+          python scripts/auto-research.py
+          echo "Research completed"
+
+      - name: Analyze findings
+        id: analyze
+        env:
+          PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python scripts/analyze-findings.py
+
+          # Check if we have meaningful updates
+          if [ -f "output/analysis_summary.json" ]; then
+            HAS_UPDATES=$(python -c "import json; d=json.load(open('output/analysis_summary.json')); print('true' if d.get('has_updates', False) else 'false')")
+            SUMMARY=$(python -c "import json; d=json.load(open('output/analysis_summary.json')); print(d.get('summary', 'No summary')[:500])")
+            echo "has_updates=$HAS_UPDATES" >> $GITHUB_OUTPUT
+            echo "summary<<EOF" >> $GITHUB_OUTPUT
+            echo "$SUMMARY" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "has_updates=false" >> $GITHUB_OUTPUT
+            echo "summary=No findings to analyze" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Upload research artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-data
+          path: output/
+          retention-days: 30
+
+  update:
+    name: Update Documentation
+    needs: research
+    if: needs.research.outputs.has_updates == 'true' || inputs.force_update == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      files_changed: ${{ steps.update.outputs.files_changed }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install requests pyyaml python-dateutil markdown
+
+      - name: Download research artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: research-data
+          path: output/
+
+      - name: Update documentation
+        id: update
+        run: |
+          python scripts/auto-update.py
+
+          # Check what files changed
+          FILES_CHANGED=$(git diff --name-only | wc -l)
+          echo "files_changed=$FILES_CHANGED" >> $GITHUB_OUTPUT
+
+          if [ "$FILES_CHANGED" -gt 0 ]; then
+            echo "Files changed:"
+            git diff --name-only
+          else
+            echo "No files changed"
+          fi
+
+      - name: Validate updates
+        if: steps.update.outputs.files_changed != '0'
+        run: |
+          python scripts/validate-updates.py
+          echo "Validation passed"
+
+      - name: Upload updated files
+        if: steps.update.outputs.files_changed != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: updated-docs
+          path: |
+            Claude-Prompt-Guide.md
+            INDEX.md
+            CHANGELOG.md
+            VERSION
+            docs/
+            planning/
+          retention-days: 7
+
+  create-pr:
+    name: Create Pull Request
+    needs: [research, update]
+    if: needs.update.outputs.files_changed != '0'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Download updated docs
+        uses: actions/download-artifact@v4
+        with:
+          name: updated-docs
+          path: .
+
+      - name: Download research data
+        uses: actions/download-artifact@v4
+        with:
+          name: research-data
+          path: output/
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create branch and commit
+        id: commit
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          BRANCH="auto-research/$DATE-${{ github.run_number }}"
+
+          git checkout -b "$BRANCH"
+          git add -A
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            git commit -m "docs: automated research update - $DATE
+
+This PR was automatically generated by the daily research workflow.
+
+Co-Authored-By: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+
+            git push origin "$BRANCH"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate PR body
+        if: steps.commit.outputs.has_changes == 'true'
+        id: pr_body
+        run: |
+          DATE=$(date +%Y-%m-%d)
+
+          # Read analysis summary if available
+          if [ -f "output/analysis_summary.json" ]; then
+            SUMMARY=$(python3 -c "import json; d=json.load(open('output/analysis_summary.json')); print(d.get('summary', 'No summary available'))")
+            TOPICS=$(python3 -c "import json; d=json.load(open('output/analysis_summary.json')); print(', '.join(d.get('topics_found', [])))")
+            SOURCES=$(python3 -c "import json; d=json.load(open('output/analysis_summary.json')); print(d.get('source_count', 0))")
+          else
+            SUMMARY="Automated research update"
+            TOPICS="general"
+            SOURCES="N/A"
+          fi
+
+          # Create PR body
+          cat > pr_body.md << EOF
+          ## Automated Research Update - $DATE
+
+          This PR was automatically generated by the daily research workflow.
+
+          ### Summary
+
+          $SUMMARY
+
+          ### Topics Covered
+
+          $TOPICS
+
+          ### Sources Analyzed
+
+          $SOURCES sources were analyzed for this update.
+
+          ### Files Changed
+
+          \`\`\`
+          $(git diff --name-only HEAD~1)
+          \`\`\`
+
+          ### Review Checklist
+
+          - [ ] Changes are accurate and well-sourced
+          - [ ] No broken links or formatting issues
+          - [ ] Version and changelog are correctly updated
+          - [ ] No sensitive information included
+
+          ---
+
+          🤖 *This PR was automatically generated. Please review before merging.*
+          EOF
+
+          echo "Generated PR body"
+
+      - name: Create Pull Request
+        if: steps.commit.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DATE=$(date +%Y-%m-%d)
+
+          gh pr create \
+            --base main \
+            --head "${{ steps.commit.outputs.branch }}" \
+            --title "docs: automated research update - $DATE" \
+            --body-file pr_body.md \
+            --label "automated,documentation,research"
+
+      - name: Tag successful run
+        if: steps.commit.outputs.has_changes == 'true'
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          git tag "auto-research-$DATE-${{ github.run_number }}"
+          git push origin "auto-research-$DATE-${{ github.run_number }}"
+
+  notify:
+    name: Send Notifications
+    needs: [research, update, create-pr]
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Prepare notification
+        id: notification
+        run: |
+          if [ "${{ needs.create-pr.result }}" == "success" ]; then
+            STATUS="✅ PR Created"
+            MESSAGE="Daily research completed. A new PR has been created for review."
+          elif [ "${{ needs.research.outputs.has_updates }}" == "false" ]; then
+            STATUS="ℹ️ No Updates"
+            MESSAGE="Daily research completed. No significant updates found."
+          else
+            STATUS="⚠️ Workflow Issue"
+            MESSAGE="The daily research workflow encountered an issue. Please check the logs."
+          fi
+
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+          echo "message=$MESSAGE" >> $GITHUB_OUTPUT
+
+      - name: Create summary
+        run: |
+          echo "## Daily Research Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Status:** ${{ steps.notification.outputs.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.notification.outputs.message }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Research Summary:**" >> $GITHUB_STEP_SUMMARY
+          echo "${{ needs.research.outputs.summary }}" >> $GITHUB_STEP_SUMMARY
+
+      # Optional: Slack notification (uncomment and add SLACK_WEBHOOK_URL secret)
+      # - name: Send Slack notification
+      #   if: always()
+      #   uses: slackapi/slack-github-action@v1.24.0
+      #   with:
+      #     payload: |
+      #       {
+      #         "text": "${{ steps.notification.outputs.status }}: ${{ steps.notification.outputs.message }}",
+      #         "blocks": [
+      #           {
+      #             "type": "section",
+      #             "text": {
+      #               "type": "mrkdwn",
+      #               "text": "*Daily Claude Research*\n${{ steps.notification.outputs.status }}\n${{ steps.notification.outputs.message }}"
+      #             }
+      #           }
+      #         ]
+      #       }
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

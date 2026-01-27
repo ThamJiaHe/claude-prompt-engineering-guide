@@ -1,0 +1,115 @@
+{
+  "version": "1.0",
+  "description": "Search queries for automated research",
+
+  "all": [
+    "Claude AI updates this week 2026",
+    "Anthropic Claude Code CLI latest release",
+    "Claude MCP Model Context Protocol new servers",
+    "Claude API pricing changes January 2026",
+    "Claude Skills marketplace updates",
+    "Claude Opus 4.5 Sonnet 4.5 Haiku 4.5 updates",
+    "Anthropic announcements this week"
+  ],
+
+  "claude-models": [
+    "Claude Opus 4.5 updates features",
+    "Claude Sonnet 4.5 new capabilities",
+    "Claude Haiku 4.5 improvements",
+    "Anthropic model release announcement",
+    "Claude benchmark scores SWE-bench latest",
+    "Claude vs GPT-4o comparison 2026"
+  ],
+
+  "claude-code": [
+    "Claude Code CLI updates release notes",
+    "Claude Code new features January 2026",
+    "Claude Code vs Cursor vs Continue comparison",
+    "Claude Code skills hot-reloading",
+    "Claude Code session teleportation",
+    "Claude Code GitHub Actions integration"
+  ],
+
+  "mcp": [
+    "Model Context Protocol MCP updates",
+    "MCP servers new releases January 2026",
+    "Claude MCP integrations latest",
+    "Context7 MCP server updates",
+    "MCP Linux Foundation governance",
+    "New MCP server announcements"
+  ],
+
+  "pricing": [
+    "Claude API pricing 2026 current",
+    "Anthropic pricing changes",
+    "Claude tokens cost per million",
+    "Claude prompt caching pricing",
+    "Claude batch API discount",
+    "Claude vs GPT-4 pricing comparison"
+  ],
+
+  "tools": [
+    "Claude ecosystem tools 2026",
+    "OpenCode CLI latest release",
+    "AirLLM updates edge inference",
+    "Cursor AI Claude integration",
+    "Continue.dev Claude updates",
+    "Warp terminal Claude integration"
+  ],
+
+  "skills": [
+    "Claude Skills marketplace new",
+    "Popular Claude skills downloads",
+    "Claude skill development guide",
+    "Skills vs MCP comparison"
+  ],
+
+  "api": [
+    "Claude API updates January 2026",
+    "Anthropic SDK Python new version",
+    "Claude API extended thinking updates",
+    "Claude effort parameter changes",
+    "Claude tool use improvements"
+  ],
+
+  "enterprise": [
+    "Claude enterprise updates",
+    "Anthropic HIPAA compliance",
+    "Claude security certifications",
+    "Anthropic enterprise partnerships"
+  ],
+
+  "recency_settings": {
+    "default": "week",
+    "urgent_topics": ["pricing", "api"],
+    "urgent_recency": "day"
+  },
+
+  "source_priorities": {
+    "official": [
+      "anthropic.com",
+      "docs.anthropic.com",
+      "github.com/anthropics",
+      "modelcontextprotocol.io"
+    ],
+    "trusted": [
+      "github.com",
+      "news.ycombinator.com",
+      "reddit.com/r/ClaudeAI",
+      "dev.to"
+    ],
+    "general": [
+      "medium.com",
+      "substack.com",
+      "twitter.com"
+    ]
+  },
+
+  "exclusions": [
+    "job posting",
+    "hiring",
+    "careers",
+    "sponsored",
+    "advertisement"
+  ]
+}
