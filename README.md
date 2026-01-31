@@ -328,6 +328,10 @@ claude-prompt-engineering-guide/
 │   ├── minimal-prompt-template.md    # Quick template
 │   └── comprehensive-prompt-template.md # Full template
 │
+├── prompts/                           # Automation prompts
+│   ├── README.md                     # Automation prompts guide
+│   └── auto-update-plugins-skills.md # Auto-update all skills/plugins
+│
 ├── skills/                            # Claude Skills collection
 │   ├── README.md                     # Skills guide and documentation
 │   └── examples/                      # Example skills
@@ -386,6 +390,12 @@ This is **Anthropic's recommended structure** for professional prompts:
 - **Comprehensive Template** — Full framework for complex projects
 
 See the [templates/](./templates/) directory for complete examples.
+
+### Automation Prompts
+
+- **Auto-Update All Plugins and Skills** — Comprehensive prompt for Claude Code Max Opus 4.5 to systematically update all 22 skills and plugin documentation
+
+See the [prompts/](./prompts/) directory for automation prompts that can be used with Claude Code to maintain and update the repository.
 
 ---
 
