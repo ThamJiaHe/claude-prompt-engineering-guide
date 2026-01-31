@@ -72,6 +72,17 @@ Master navigation for the Claude Prompt Engineering Guide repository.
 
 ---
 
+## Automation Prompts (`prompts/`)
+
+| File | Description |
+|------|-------------|
+| [README.md](./prompts/README.md) | Automation prompts guide |
+| [auto-update-plugins-skills.md](./prompts/auto-update-plugins-skills.md) | Comprehensive prompt for updating all 22 skills and plugin docs |
+
+**Purpose**: Ready-to-use prompts for Claude Code Max Opus 4.5 to automate repository maintenance tasks.
+
+---
+
 ## Skills (`skills/`)
 
 | File | Description |
