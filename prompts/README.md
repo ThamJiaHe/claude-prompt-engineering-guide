@@ -29,6 +29,10 @@ This directory contains specialized prompts designed for automating repository m
 
 **How to Use:**
 
+See the detailed [USAGE-GUIDE.md](./USAGE-GUIDE.md) for step-by-step instructions.
+
+Quick start:
+
 1. **Copy the prompt**
    ```bash
    cat prompts/auto-update-plugins-skills.md
@@ -50,6 +54,10 @@ This directory contains specialized prompts designed for automating repository m
 - ✅ All code examples validated
 - ✅ Version numbers incremented
 - ✅ Dates updated consistently
+
+**Documentation:**
+- 📖 [Usage Guide](./USAGE-GUIDE.md) - Detailed step-by-step instructions
+- 📊 [Implementation Summary](../IMPLEMENTATION-SUMMARY.md) - Complete implementation details
 
 ---
 
