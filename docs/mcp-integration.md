@@ -2,7 +2,7 @@
 
 Learn how to integrate Model Context Protocol (MCP) with Claude for extended capabilities.
 
-> **Last Updated: January 23, 2026** | Includes OAuth 2.0 + step-up authorization, 50+ pre-built servers, and Skills integration
+> **Last Updated: February 4, 2026** | Includes MCP Apps, 350+ connectors, MCP Tool Search, OAuth 2.0, and Skills integration
 
 ---
 
@@ -17,15 +17,18 @@ Learn how to integrate Model Context Protocol (MCP) with Claude for extended cap
 - ✅ **Local Files** — Read and write files on your machine
 - ✅ **External Services** — Integrate with databases, APIs, and platforms
 
-### January 2026 Updates
+### January–February 2026 Updates
 
+- **MCP Apps** — UI rendering within Claude's chat window (charts, forms, dashboards) from third-party apps (Jan 26, 2026)
+- **350+ Connectors** — Managed connector directory expanded from 50+ to 350+ sources (Jan 26, 2026)
+- **MCP Tool Search** — Claude Code dynamically loads MCP tools into context, reducing token overhead by up to 95%
 - **OAuth 2.0 + Step-up Authorization** — Enhanced security model (Jan 15, 2026)
-- **50+ Pre-built Servers** — Extensive ecosystem of ready-to-use MCP servers
-- **Remote Server Deployment** — Coming soon for enterprise deployments
+- **Pre-configured OAuth** — `--client-id` and `--client-secret` flags for MCP servers without Dynamic Client Registration
 - **Skills Integration Deepening** — MCP and Skills working together seamlessly
 - **Context7 MCP** — Up-to-date library documentation (#2 ranked MCP server)
 - **Dynamic loading** — Load/unload MCP servers during sessions
 - **SSE deprecated** — Migrate to streamableHttp transport
+- **Beta header updated** — Use `mcp-client-2025-11-20` (previous `2025-04-04` is deprecated)
 
 ### MCP vs Skills: Token Comparison
 
@@ -37,15 +40,18 @@ Learn how to integrate Model Context Protocol (MCP) with Claude for extended cap
 | **Community Consensus** | Essential for real-time data | "Bigger than MCP" for workflows |
 
 > **Key Insight**: Skills consume only ~5 tokens until activated, compared to MCP's 42.6K base overhead. This makes Skills ideal for complex workflows where you need capability without constant context cost.
+>
+> **February 2026 Update**: Claude Code's new **MCP Tool Search** feature dynamically loads MCP tools into context on demand, reducing MCP token overhead by up to 95%. This significantly narrows the gap between MCP and Skills for Claude Code users.
 
 ---
 
 ## MCP in Different Environments
 
 ### Claude.ai Web Interface
-- **MCP Support**: Limited
-- **Available**: Built-in tools only (web search, file upload)
-- **Custom MCP**: Not currently available
+- **MCP Support**: Full ✅ (as of January 2026)
+- **Available**: 350+ connectors via Connector Directory, plus built-in tools (web search, file upload)
+- **Custom MCP**: Yes, via remote MCP servers (OAuth-authenticated)
+- **MCP Apps**: UI rendering within chat window (charts, forms, dashboards) from Asana, Figma, Slack, and more (Jan 26, 2026)
 
 ### Claude Desktop App
 - **MCP Support**: Full ✅
@@ -65,7 +71,7 @@ Learn how to integrate Model Context Protocol (MCP) with Claude for extended cap
 ### Claude API
 - **MCP Support**: Full ✅
 - **Custom MCP**: Yes, in message requests
-- **Requires**: Beta header `anthropic-beta: mcp-client-2025-04-04`
+- **Requires**: Beta header `anthropic-beta: mcp-client-2025-11-20` (previous `2025-04-04` is deprecated)
 
 ---
 
@@ -211,7 +217,7 @@ response = client.messages.create(
     ],
     # Beta feature for MCP
     headers={
-        "anthropic-beta": "mcp-client-2025-04-04"
+        "anthropic-beta": "mcp-client-2025-11-20"
     },
     # MCP configuration
     mcp_config={
@@ -402,7 +408,7 @@ not outdated training data from 2024.
 | **Stripe** | Payment processing | Popular |
 | **Twilio** | Communications API | Popular |
 
-> **Note**: As of January 2026, the MCP ecosystem has grown to **50+ pre-built servers**, with remote server deployment capabilities coming soon for enterprise use cases.
+> **Note**: As of January 2026, the MCP ecosystem has grown to **350+ connectors** in the managed directory, with thousands more community-built servers available.
 
 ---
 
@@ -573,12 +579,49 @@ For trusted MCP servers, you can grant wildcard permissions:
 
 ---
 
+## MCP Apps (January 26, 2026)
+
+**MCP Apps** extends MCP beyond data fetching to enable **UI rendering within Claude's chat window**. Third-party applications can now present interactive interfaces — charts, forms, dashboards — directly inside Claude.
+
+### Supported Apps (Launch Partners)
+
+| App | Capabilities |
+|-----|-------------|
+| **Asana** | Task management, project views |
+| **Box** | File browsing, document preview |
+| **Canva** | Design editing, template selection |
+| **Figma** | Design review, component inspection |
+| **Hex** | Data dashboards, SQL results |
+| **monday.com** | Board views, status updates |
+| **Slack** | Channel browsing, message composition |
+
+### How MCP Apps Work
+
+1. Claude connects to a remote MCP server via the existing connector infrastructure
+2. The MCP server returns structured UI templates (based on MCP-UI specification)
+3. Claude renders the UI within an iframe sandbox in the chat window
+4. User interactions (clicks, form inputs) are routed back through the MCP server
+
+### Security Model
+
+- **Iframe sandboxing** — apps cannot access the parent page
+- **Pre-declared templates** — HTML content must be declared before rendering
+- **Auditable messages** — all MCP App interactions are logged
+- **Host-managed approvals** — UI-initiated tool calls require user confirmation
+
+### Cross-Platform Availability
+
+MCP Apps work across: Claude.ai, Goose, Visual Studio Code, and ChatGPT (rolling out).
+
+---
+
 ## Learn More
 
 - [MCP Official Documentation](https://modelcontextprotocol.io)
 - [Anthropic MCP Guide](https://docs.anthropic.com)
 - [Community MCP Servers](https://github.com/modelcontextprotocol)
 - [Context7 MCP](https://github.com/upstash/context7)
+- [MCP Apps Announcement](https://www.anthropic.com/news)
 
 ---
 
@@ -599,5 +642,5 @@ MCP and Skills are increasingly working together as complementary systems:
 
 ---
 
-*Last Updated: January 23, 2026*
+*Last Updated: February 4, 2026*
 

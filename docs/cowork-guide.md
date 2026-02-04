@@ -2,7 +2,7 @@
 
 Autonomous desktop workflow automation with Claude.
 
-> **Last Updated: January 23, 2026** | Covers Cowork (shipped Jan 12, 2026), macOS desktop agent, and autonomous workflow patterns
+> **Last Updated: February 4, 2026** | Covers Cowork (shipped Jan 12, 2026), macOS desktop agent, plugins, and autonomous workflow patterns
 
 ---
 
@@ -23,10 +23,12 @@ Autonomous desktop workflow automation with Claude.
 
 | Requirement | Details |
 |-------------|---------|
-| **Platform** | macOS only (as of Jan 2026) |
-| **Plan** | Pro, Max, or Team plans |
-| **Release** | Shipped January 12, 2026 |
+| **Platform** | macOS only (as of Feb 2026; Windows planned, no timeline) |
+| **Plan** | Max (from Jan 12), expanded to Pro (Jan 16, 2026) |
+| **Release** | Research preview, shipped January 12, 2026 |
 | **Model** | Claude Opus 4.5 |
+| **Architecture** | Built on Claude Agent SDK; runs in VZVirtualMachine (Apple Virtualization Framework) Linux VM |
+| **Built by** | Claude Code itself, in 10 days |
 
 ---
 
@@ -149,6 +151,42 @@ Cowork workflow:
 5. Imports charts and adds context
 6. Saves final presentation
 ```
+
+---
+
+## Plugins
+
+Cowork supports **plugins** — ready-made bundles that customize Claude for specific roles:
+
+| Plugin Category | Examples |
+|----------------|---------|
+| **Productivity** | File organization, report generation |
+| **Enterprise search** | Cross-system document retrieval |
+| **Sales** | CRM integration, proposal drafting |
+| **Finance** | Expense analysis, budget tracking |
+
+Each plugin bundles skills, connectors, slash commands, and sub-agents into a single package. Install via the plugin browser in Cowork settings.
+
+### Integration with Claude in Chrome
+
+Pairing Cowork with the **Claude in Chrome** browser extension enables hybrid workflows:
+- Cowork handles local file operations
+- Chrome extension handles web-based tasks
+- Example: Complete a revenue analysis spreadsheet locally, then email it via Gmail connector
+
+---
+
+## Usage & Limits
+
+Cowork consumes **more usage than standard chat** because complex, multi-step tasks require more tokens.
+
+| Plan | Approximate Messages/5hr | Cowork Access |
+|------|--------------------------|---------------|
+| **Pro** ($20/mo) | Limited | Basic access (added Jan 16) |
+| **Max 5x** ($100/mo) | ~225+ | Full access |
+| **Max 20x** ($200/mo) | Effectively unlimited | Full access, maximum priority |
+
+**Key limitation**: The desktop app must remain open for sessions to continue. Closing the app ends the session.
 
 ---
 
@@ -307,6 +345,6 @@ Output:
 
 ---
 
-**Last Updated:** January 23, 2026
-**Version:** 1.0.0
+**Last Updated:** February 4, 2026
+**Version:** 1.1.0
 **Status:** Production Ready

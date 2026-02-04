@@ -2,7 +2,7 @@
 
 Master Claude Code CLI for agentic software development.
 
-> **Last Updated: January 23, 2026** | Covers v2.1.0 features, GitHub Actions, workflow patterns, and safety considerations
+> **Last Updated: February 4, 2026** | Covers v2.1.x features, checkpoints, new commands, GitHub Actions, workflow patterns, and safety considerations
 
 ---
 
@@ -32,7 +32,7 @@ npm install -g @anthropic-ai/claude-code
 claude --version
 ```
 
-**Current Version**: v2.1.0 (January 2026)
+**Current Version**: v2.1.12 (February 2026)
 
 ---
 
@@ -54,7 +54,7 @@ claude --mcp-config ./mcp-config.json -p "Search the codebase"
 
 ---
 
-## Claude Code v2.x Features (Dec 2025 - Jan 2026)
+## Claude Code v2.x Features (Dec 2025 - Feb 2026)
 
 ### Plan Mode with Subagents
 
@@ -73,19 +73,29 @@ Plan Mode enables Claude to create structured plans before implementation:
 
 Subagents can execute plan steps in parallel when tasks are independent.
 
-### /rewind Command
+### Checkpoints & /rewind
 
-Undo code changes with a simple command:
+Claude Code automatically tracks file edits as you work, creating checkpoints before each change. You can rewind to any previous state.
+
+**Rewind options** (double-tap Escape or use `/rewind`):
+1. **Conversation only** — rewinds chat context, keeps file changes
+2. **Code only** — reverts files, keeps conversation
+3. **Both** — full reset to a specific point in time
 
 ```bash
-# Undo last change
+# Rewind via command
 /rewind
 
-# Undo specific number of steps
-/rewind 3
+# Or double-tap Escape for the rewind dialog
 ```
 
-**Note**: If experiencing performance issues, disable `/rewind` as a workaround.
+**Checkpoint details:**
+- Created automatically on each user prompt that results in edits
+- Survive closing and reopening conversations (cleaned up after 30 days)
+- Only track edits made through Claude's editing tools (not manual external edits)
+- Complement but do not replace git version control
+
+**Note**: VS Code extension does not support conversation rewind; use CLI for full rewind capability.
 
 ### /usage Command
 
@@ -145,6 +155,31 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
 ```
+
+### New in v2.1.x (January–February 2026)
+
+| Feature | Description |
+|---------|-------------|
+| **Shift+Enter** | Newlines in input with zero setup |
+| **Skill hot-reload** | Edit skills and see changes live |
+| **Hooks in frontmatter** | Add hooks directly to agent/skill YAML |
+| **Forked sub-agents** | True parallel agent execution via frontmatter |
+| **Wildcard permissions** | e.g., `Bash(*-h*)` for tool permission patterns |
+| **Response language** | Configure model to respond in Japanese, Spanish, etc. |
+| **Agent continues after denial** | Agents no longer stop when you deny a tool use |
+| **`/teleport`** | Send your session to claude.ai/code |
+| **`/debug`** | Claude helps troubleshoot the current session |
+| **Prompt suggestions** | Claude suggests prompts; press Tab to accept |
+| **Quick model switch** | `alt+p` (Linux/Win) or `option+p` (macOS) |
+| **Thinking mode default** | Enabled by default for Opus 4.5 |
+| **Token metrics** | Token count, tool uses, and duration in Task results |
+| **PDF page ranges** | Read specific pages from PDF files |
+| **Pre-configured OAuth** | `--client-id`/`--client-secret` for MCP servers |
+| **`/mcp enable\|disable`** | Replaces @-mention MCP enable/disable pattern |
+
+**Environment variables:**
+- `CLAUDE_CODE_TMPDIR` — override temp directory for internal files
+- `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS` — disable background task functionality
 
 ---
 
@@ -614,4 +649,4 @@ As of December 2025, Anthropic offers **HIPAA-ready Enterprise plans** with offi
 
 ---
 
-*Last Updated: January 23, 2026*
+*Last Updated: February 4, 2026*

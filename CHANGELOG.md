@@ -7,6 +7,51 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.1.0] - 2026-02-04
+
+### Added
+
+#### MCP Ecosystem Updates
+- ✨ **MCP Apps Documentation** — UI rendering within Claude chat (charts, forms, dashboards) from Asana, Figma, Slack, and more (Jan 26, 2026)
+- ✨ **MCP Tool Search** — Claude Code dynamically loads MCP tools, reducing token overhead by 95%
+- ✨ **350+ Connectors** — Managed connector directory expanded from 50+ to 350+ sources
+- ✨ **Pre-configured OAuth** — `--client-id`/`--client-secret` flags for MCP servers
+
+#### Claude Code v2.1.x Features
+- ✨ **Checkpoints Documentation** — Auto-save code states, 30-day retention, 3 rewind modes
+- ✨ **18 New Features Documented** — `/teleport`, `/debug`, prompt suggestions, Shift+Enter, skill hot-reload, forked sub-agents, wildcard permissions, response language config, and more
+- ✨ **Environment Variables** — `CLAUDE_CODE_TMPDIR`, `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS`
+
+#### Cowork Enhancements
+- ✨ **Plugins Section** — Productivity, Enterprise search, Sales, Finance bundles
+- ✨ **Usage Limits Table** — Per-plan breakdown (Pro/Max 5x/Max 20x)
+- ✨ **Chrome Integration** — Hybrid workflows with Claude in Chrome extension
+
+#### Model Deprecation Tracking
+- ✨ **Deprecation Table** — Opus 4, 4.1 removed from UI/Code; Claude 3 Opus retired Jan 5
+
+### Changed
+
+- 🔄 **MCP Integration Guide** — Corrected Claude.ai from "Limited/Not available" to full support with 350+ connectors; added MCP Apps section; updated beta header from `2025-04-04` to `2025-11-20`
+- 🔄 **Claude Code Guide** — Updated version from v2.1.0 to v2.1.12; expanded /rewind with full checkpoints system; added v2.1.x features table
+- 🔄 **Pricing Guide** — Fixed "Sonnet 4" → "Sonnet 4.5" and "Haiku 3.5" → "Haiku 4.5" throughout; split Max into 5x/20x tiers
+- 🔄 **Cowork Guide** — Corrected availability (Max-only Jan 12, Pro added Jan 16); added architecture details (VZVirtualMachine)
+- 🔄 **Migration Guide** — Added model deprecation table; updated dates
+- 🔄 **README** — Expanded product scorecard from 8 to 13 products; updated all quick links; changed badge to Feb 2026
+- 🔄 **All dates** — Updated to February 4, 2026
+
+### Fixed
+
+- 🐛 **MCP API Beta Header** — Corrected deprecated `mcp-client-2025-04-04` to current `mcp-client-2025-11-20`
+- 🐛 **Model Names in Pricing** — 30+ incorrect "Sonnet 4" and "Haiku 3.5" references corrected
+- 🐛 **Claude.ai MCP Status** — Was "Not currently available", now correctly shows full support
+
+### Research Sources
+- 📚 **25+ sources analyzed** — GitHub CHANGELOG, npm registry, official Anthropic announcements, community reports
+- 📚 **Cross-validated** — All CRITICAL items verified against 3+ independent sources
+
+---
+
 ## [2.0.3] - 2026-01-27
 
 ### Added
@@ -357,6 +402,12 @@ When submitting a PR, include a changelog entry describing your changes:
 ---
 
 ## Release History
+
+### Version 2.1.0 (February 2026 Research Update)
+
+- **Release Date**: February 4, 2026
+- **Status**: ✅ Stable
+- **Changes**: Research-driven update correcting critical outdated information (MCP beta header, model names, connector counts), adding MCP Apps documentation, checkpoints system, 18 new Claude Code v2.1.x features, model deprecation tracking, and Cowork plugin/usage documentation
 
 ### Version 2.0.0 (January 2026 Update)
 

@@ -2,7 +2,7 @@
 
 > Detailed pricing analysis with cost optimization strategies, ROI calculations, and practical guidance for enterprise deployment.
 
-**Last Updated:** January 24, 2026
+**Last Updated:** February 4, 2026
 **Version:** 1.0.0
 **Status:** Production Ready
 
@@ -29,8 +29,8 @@ Claude Opus 4.5 now offers **67% cost reduction** from previous flagship pricing
 | Model | Input | Output | Batch Input | Batch Output |
 |-------|-------|--------|-------------|--------------|
 | **Claude Opus 4.5** | $5.00 | $25.00 | $2.50 | $12.50 |
-| **Claude Sonnet 4** | $3.00 | $15.00 | $1.50 | $7.50 |
-| **Claude Haiku 3.5** | $0.25 | $1.25 | $0.125 | $0.625 |
+| **Claude Sonnet 4.5** | $3.00 | $15.00 | $1.50 | $7.50 |
+| **Claude Haiku 4.5** | $0.25 | $1.25 | $0.125 | $0.625 |
 
 ### 1.2 Subscription Plans
 
@@ -38,7 +38,8 @@ Claude Opus 4.5 now offers **67% cost reduction** from previous flagship pricing
 |------|---------------|--------------|----------|
 | **Free** | $0 | Limited usage | Evaluation |
 | **Pro** | $20 | 5x usage, extended thinking | Individual professionals |
-| **Max** | $100-200 | Heavy use, long memory | Power users |
+| **Max 5x** | $100 | 5x Pro usage, Cowork access | Power users |
+| **Max 20x** | $200 | 20x Pro usage, maximum priority | Heavy power users |
 | **Team** | $25-30/seat | Admin controls, shared projects | Small teams |
 | **Enterprise** | Custom | SCIM, audit logs, SLA | Organizations |
 
@@ -81,8 +82,8 @@ Claude Opus 4.5 now offers **67% cost reduction** from previous flagship pricing
 | Tier | Claude | OpenAI | Google | Best Value |
 |------|--------|--------|--------|------------|
 | **Flagship** | Opus 4.5: $5/$25 | o1: $15/$60 | Pro: $3.50/$10.50 | Gemini (cost) / Claude (quality) |
-| **Balanced** | Sonnet 4: $3/$15 | GPT-4o: $5/$15 | Pro: $3.50/$10.50 | Claude (performance/cost) |
-| **Fast/Cheap** | Haiku 3.5: $0.25/$1.25 | 4o-mini: $0.15/$0.60 | Flash: $0.075/$0.30 | Gemini Flash |
+| **Balanced** | Sonnet 4.5: $3/$15 | GPT-4o: $5/$15 | Pro: $3.50/$10.50 | Claude (performance/cost) |
+| **Fast/Cheap** | Haiku 4.5: $0.25/$1.25 | 4o-mini: $0.15/$0.60 | Flash: $0.075/$0.30 | Gemini Flash |
 
 ---
 
@@ -169,8 +170,8 @@ The Batch API provides **50% discount** for asynchronous processing completed wi
 | Model | Standard Input | Batch Input | Standard Output | Batch Output |
 |-------|----------------|-------------|-----------------|--------------|
 | Opus 4.5 | $5.00 | **$2.50** | $25.00 | **$12.50** |
-| Sonnet 4 | $3.00 | **$1.50** | $15.00 | **$7.50** |
-| Haiku 3.5 | $0.25 | **$0.125** | $1.25 | **$0.625** |
+| Sonnet 4.5 | $3.00 | **$1.50** | $15.00 | **$7.50** |
+| Haiku 4.5 | $0.25 | **$0.125** | $1.25 | **$0.625** |
 
 ### 4.2 Batch Use Cases
 
@@ -212,8 +213,8 @@ When combining Batch API with prompt caching:
 |------|-------------------|-----------------|------------|
 | Code Review | Opus 4.5 | $75 (with caching) | 10-20x |
 | Bug Fixing | Opus 4.5 | $150 | 5-10x |
-| Documentation | Sonnet 4 | $25 | 15-25x |
-| Simple Formatting | Haiku 3.5 | $2 | 50x+ |
+| Documentation | Sonnet 4.5 | $25 | 15-25x |
+| Simple Formatting | Haiku 4.5 | $2 | 50x+ |
 
 **Case Study: CRED**
 - Deployment: Claude Code across development lifecycle
@@ -226,17 +227,17 @@ When combining Batch API with prompt caching:
 | Task | Recommended Model | Cost/1000 Docs | ROI Factor |
 |------|-------------------|----------------|------------|
 | Contract Analysis | Opus 4.5 | $500 (batch) | 5-10x |
-| Summarization | Sonnet 4 | $150 | 10-15x |
-| Classification | Haiku 3.5 | $15 | 50x+ |
-| Data Extraction | Sonnet 4 | $200 | 8-12x |
+| Summarization | Sonnet 4.5 | $150 | 10-15x |
+| Classification | Haiku 4.5 | $15 | 50x+ |
+| Data Extraction | Sonnet 4.5 | $200 | 8-12x |
 
 ### 5.3 Customer Service
 
 | Task | Recommended Model | Cost/1000 Interactions | ROI Factor |
 |------|-------------------|------------------------|------------|
 | Complex Support | Opus 4.5 | $300 | 3-5x |
-| Standard Queries | Sonnet 4 | $100 | 8-12x |
-| FAQ Routing | Haiku 3.5 | $10 | 30x+ |
+| Standard Queries | Sonnet 4.5 | $100 | 8-12x |
+| FAQ Routing | Haiku 4.5 | $10 | 30x+ |
 
 **Case Study: Intercom**
 - Impact: 86% first-contact resolution (vs 60-70% average)
@@ -247,8 +248,8 @@ When combining Batch API with prompt caching:
 | Task | Recommended Model | Cost/Analysis | ROI Factor |
 |------|-------------------|---------------|------------|
 | Deep Research | Opus 4.5 (high effort) | $50-100 | 2-5x |
-| Market Analysis | Sonnet 4 | $20-50 | 5-10x |
-| Quick Summaries | Haiku 3.5 | $2-5 | 20x+ |
+| Market Analysis | Sonnet 4.5 | $20-50 | 5-10x |
+| Quick Summaries | Haiku 4.5 | $2-5 | 20x+ |
 
 ---
 
@@ -261,10 +262,10 @@ Is the task time-sensitive (< 24 hours)?
 ├── Yes → Use Standard API
 │   ├── Is precision critical?
 │   │   ├── Yes → Opus 4.5
-│   │   └── No → Sonnet 4 or Haiku 3.5
+│   │   └── No → Sonnet 4.5 or Haiku 4.5
 │   └── Is cost the primary concern?
-│       ├── Yes → Haiku 3.5
-│       └── No → Sonnet 4
+│       ├── Yes → Haiku 4.5
+│       └── No → Sonnet 4.5
 └── No → Use Batch API (50% savings)
     └── Apply same model selection logic
 
@@ -280,11 +281,11 @@ Is the context reused across requests?
 | Security Audit | Opus 4.5 | High |
 | Architecture Design | Opus 4.5 | High |
 | Complex Debugging | Opus 4.5 | Medium-High |
-| Code Generation | Sonnet 4 | Medium |
-| Documentation | Sonnet 4 | Low-Medium |
-| Simple Edits | Haiku 3.5 | Low |
-| Classification | Haiku 3.5 | Low |
-| Routing/Triage | Haiku 3.5 | Low |
+| Code Generation | Sonnet 4.5 | Medium |
+| Documentation | Sonnet 4.5 | Low-Medium |
+| Simple Edits | Haiku 4.5 | Low |
+| Classification | Haiku 4.5 | Low |
+| Routing/Triage | Haiku 4.5 | Low |
 
 ---
 
@@ -342,7 +343,7 @@ Where:
 | Cache Hit Rate | 70% |
 | Batch Eligible | 30% |
 
-**Using Sonnet 4**:
+**Using Sonnet 4.5**:
 
 | Component | Calculation | Cost |
 |-----------|-------------|------|
@@ -443,7 +444,7 @@ Where:
 
 **Document Version:** 1.0.0
 **Classification:** Pricing Guide
-**Last Updated:** January 24, 2026
+**Last Updated:** February 4, 2026
 
 ---
 

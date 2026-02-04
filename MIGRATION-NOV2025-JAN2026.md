@@ -2,7 +2,7 @@
 
 Migrate your Claude workflows from November 2025 to January 2026 ecosystem.
 
-> **Last Updated: January 15, 2026** | Covers all breaking changes and new features
+> **Last Updated: February 4, 2026** | Covers all breaking changes, deprecations, and new features
 
 ---
 
@@ -11,6 +11,7 @@ Migrate your Claude workflows from November 2025 to January 2026 ecosystem.
 | Area | Change | Action Required |
 |------|--------|-----------------|
 | **Model** | Opus 4.1 → Opus 4.5 | Update model ID |
+| **Deprecations** | Opus 4, 4.1 removed from UI & Claude Code | Use Opus 4.5; API-only for 4.x |
 | **API** | Effort parameter added | Optional, use for complex tasks |
 | **MCP** | SSE deprecated | Migrate to streamableHttp |
 | **Claude Code** | v1.x → v2.x | Update CLI, learn new commands |
@@ -60,6 +61,19 @@ Migrate your Claude workflows from November 2025 to January 2026 ecosystem.
 | `low` | Simple queries, quick responses | ~1x baseline |
 | `medium` | Standard tasks, balanced | ~2x baseline |
 | `high` | Complex reasoning, deep analysis | ~4x baseline |
+
+### Model Deprecations (January 2026)
+
+The following models have been **removed from Claude's UI and Claude Code**:
+
+| Model | Status | API Access | Action Required |
+|-------|--------|------------|-----------------|
+| **Claude Opus 4** | Removed from UI/Code | GA via API only | Migrate to Opus 4.5 |
+| **Claude Opus 4.1** | Removed from UI/Code | GA via API only | Migrate to Opus 4.5 |
+| **Claude 3 Opus** | Fully retired (Jan 5, 2026) | No longer available | Migrate to Opus 4.5 |
+| **Claude Sonnet 3.5** | Retired (Oct 28, 2025) | No longer available | Migrate to Sonnet 4.5 |
+
+Anthropic published guidance on "Adapting to new model personas after deprecations" for users transitioning to Opus 4.5.
 
 ---
 
@@ -485,4 +499,4 @@ See [templates/example-clauderules.md](./templates/example-clauderules.md) for c
 
 ---
 
-*Last Updated: January 15, 2026*
+*Last Updated: February 4, 2026*

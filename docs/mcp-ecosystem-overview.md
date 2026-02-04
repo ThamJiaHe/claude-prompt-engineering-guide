@@ -204,7 +204,7 @@ claude --mcp-config ./mcp-config.json -p "Your prompt"
 
 **Beta Header Required**:
 ```
-anthropic-beta: mcp-client-2025-04-04
+anthropic-beta: mcp-client-2025-11-20
 ```
 
 **API Request**:
@@ -216,7 +216,7 @@ client = anthropic.Anthropic()
 message = client.beta.messages.create(
     model="claude-opus-4-5-20251101",
     max_tokens=4096,
-    betas=["mcp-client-2025-04-04"],
+    betas=["mcp-client-2025-11-20"],
     mcp_servers=[
         {
             "type": "url",
