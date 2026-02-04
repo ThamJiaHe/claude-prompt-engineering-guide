@@ -2,7 +2,7 @@
 
 Master Claude Code CLI for agentic software development.
 
-> **Last Updated: January 23, 2026** | Covers v2.1.0 features, GitHub Actions, workflow patterns, and safety considerations
+> **Last Updated: February 4, 2026** | Covers v2.1.x features, checkpoints, new commands, GitHub Actions, workflow patterns, and safety considerations
 
 ---
 
@@ -32,7 +32,7 @@ npm install -g @anthropic-ai/claude-code
 claude --version
 ```
 
-**Current Version**: v2.1.0 (January 2026)
+**Current Version**: v2.1.12 (February 2026)
 
 ---
 
@@ -54,7 +54,7 @@ claude --mcp-config ./mcp-config.json -p "Search the codebase"
 
 ---
 
-## Claude Code v2.x Features (Dec 2025 - Jan 2026)
+## Claude Code v2.x Features (Dec 2025 - Feb 2026)
 
 ### Plan Mode with Subagents
 
