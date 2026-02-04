@@ -11,6 +11,8 @@
 
 # 🎯 Claude Prompt Engineering Guide
 
+[![Anthropic Claude Max](https://img.shields.io/badge/Anthropic-Claude_Max_Subscriber-cc785c?logo=anthropic&logoColor=white&style=for-the-badge)](https://claude.ai)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/yourusername/claude-prompt-engineering-guide?style=social)](https://github.com/yourusername/claude-prompt-engineering-guide)
 [![Last Updated](https://img.shields.io/badge/Last%20Updated-Jan%202026-blue)](https://github.com/yourusername/claude-prompt-engineering-guide)
@@ -502,6 +504,10 @@ Want to improve this guide? [See CONTRIBUTING.md](./CONTRIBUTING.md) for the pro
 <div align="center">
 
 **Made with ❤️ for the Claude community**
+
+[![Anthropic Claude Max](https://img.shields.io/badge/Powered_by-Claude_Max_Plan-cc785c?logo=anthropic&logoColor=white)](https://claude.ai)
+
+*This guide is researched, written, and maintained using the [Anthropic Claude Max Plan](https://claude.ai) — with access to Claude Opus 4.5, extended thinking, and Claude Code.*
 
 [⭐ Star this repository](https://github.com/yourusername/claude-prompt-engineering-guide) if you found it helpful!
 
