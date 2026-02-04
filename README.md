@@ -15,38 +15,42 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/yourusername/claude-prompt-engineering-guide?style=social)](https://github.com/yourusername/claude-prompt-engineering-guide)
-[![Last Updated](https://img.shields.io/badge/Last%20Updated-Jan%202026-blue)](https://github.com/yourusername/claude-prompt-engineering-guide)
+[![Last Updated](https://img.shields.io/badge/Last%20Updated-Feb%202026-blue)](https://github.com/yourusername/claude-prompt-engineering-guide)
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
 > 🚀 **The definitive guide to writing professional Claude Standard prompts for Opus 4.5, Sonnet 4.5, and Haiku 4.5 models** with comprehensive coverage of MCP, Skills, Superpowers, Claude Cowork, and advanced prompt engineering techniques.
 
 ---
 
-## 📅 January 2026 Major Update
+## 📅 February 2026 Update
 
-> **Last Updated: January 23, 2026** | **170+ verified sources** | **Complete ecosystem refresh**
+> **Last Updated: February 4, 2026** | **190+ verified sources** | **Complete ecosystem refresh**
 
-### Product Ecosystem Status (Jan 23, 2026)
+### Product Ecosystem Status (Feb 4, 2026)
 
 | Status | Products | Notes |
 |--------|----------|-------|
-| **Excellent** | Desktop, CLI, API, Browser Extension | Stable, feature-complete |
-| ⚠️ **Broken** | Usage Limits, Context Compression | Critical issues since Jan 1 |
-| ✨ **Emerging** | Claude Cowork (Jan 12), Skills | New, evolving features |
+| **Excellent** | Desktop, CLI (v2.1.12), API, Browser Extension | Stable, feature-complete |
+| **New** | MCP Apps, Claude for Excel, Infinite Chats, Memory | Major Jan 2026 launches |
+| ⚠️ **Monitor** | Usage Limits, Context Compression | Ongoing issues since Jan 1 |
+| ✨ **Emerging** | Claude Cowork (Pro+Max), Skills, Plugins | Evolving features |
 
-**Scorecard**: 4 Excellent, 2 Broken, 2 Emerging (8 total products evaluated)
+**Scorecard**: 4 Excellent, 4 New, 2 Monitor, 3 Emerging (13 products evaluated)
 
-### What's New
+### What's New (Jan–Feb 2026)
 
 | Feature | Description |
 |---------|-------------|
-| ✨ **Claude Opus 4.5** | New effort parameter (low/medium/high), infinite chats, enhanced computer use |
-| 🤖 **Claude Cowork** | Autonomous file management for non-technical users (Jan 12, 2026) |
-| 🔌 **Context7 MCP** | Up-to-date library documentation, ranked #2 MCP server |
+| 🖼️ **MCP Apps** | UI rendering within Claude chat (charts, forms, dashboards) — Jan 26, 2026 |
+| 🔄 **Claude Code v2.1.x** | Checkpoints, /teleport, /debug, prompt suggestions, skill hot-reload, 12 patch releases |
+| 🤖 **Claude Cowork** | Autonomous desktop agent, expanded to Pro plan (Jan 16), plugins support |
+| 📊 **Claude for Excel** | Beta: pivot tables, charts, file uploads |
+| ♾️ **Infinite Chats** | Context auto-compaction for unlimited conversation length |
+| 🧠 **Memory** | Persistent memory across conversations (Enterprise), incognito chats |
+| 📱 **350+ MCP Connectors** | Managed connector directory, up from 50+ |
+| ⚠️ **Model Deprecations** | Opus 4, 4.1 removed from UI and Claude Code |
+| 🔌 **MCP Tool Search** | Dynamic tool loading, 95% token reduction |
 | 📋 **Self-Evolving CLAUDE.md** | Auto-updating rules pattern for project learning |
-| 🛠️ **Skills Wrapper Pattern** | Token-efficient progressive disclosure architecture |
-| 🔐 **System Prompt Insights** | Analysis of 24,000-token leaked system prompt |
-| ⚠️ **Usage Limit Changes** | Important updates since Jan 1, 2026 |
 
 ### ⚠️ Critical Issues (Jan 2026)
 
@@ -61,10 +65,12 @@
 
 ### Quick Links to New Content
 
-- [Effort Parameter Guide](./Claude-Prompt-Guide.md#effort-parameter-opus-45) — Control token usage vs thoroughness
-- [Claude Cowork Guide](./docs/cowork-guide.md) — Autonomous workflow automation
-- [Context7 MCP Setup](./docs/mcp-integration.md#context7-mcp-configuration) — Up-to-date library docs
-- [Self-Evolving CLAUDE.md](./templates/example-clauderules.md) — Auto-updating project rules
+- [MCP Apps Guide](./docs/mcp-integration.md#mcp-apps-january-26-2026) — UI rendering within Claude chat
+- [Claude Code v2.1.x Features](./docs/claude-code-guide.md#new-in-v21x-januaryfebruary-2026) — All new commands and features
+- [Checkpoints & Rewind](./docs/claude-code-guide.md#checkpoints--rewind) — Auto-save and rewind system
+- [Claude Cowork Guide](./docs/cowork-guide.md) — Autonomous workflow automation with plugins
+- [Model Deprecations](./MIGRATION-NOV2025-JAN2026.md#model-deprecations-january-2026) — Opus 4/4.1 removal notice
+- [Pricing Guide](./docs/pricing-comparison-jan-2026.md) — Updated model names and Max 5x/20x tiers
 - [Migration Guide](./MIGRATION-NOV2025-JAN2026.md) — Upgrade from Nov 2025
 
 ---
@@ -414,7 +420,7 @@ The Claude Prompt Engineering Guide synthesizes publicly available information f
 ## 🙏 Acknowledgments
 
 **Created:** November 19, 2025
-**Last Major Update:** January 23, 2026
+**Last Major Update:** February 4, 2026
 **Location:** Singapore
 **Purpose:** Deep research synthesis for professional Claude prompt engineering
 
