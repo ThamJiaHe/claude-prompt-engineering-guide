@@ -15,8 +15,8 @@ The Claude API enables you to integrate Claude's capabilities into your applicat
 | Model | Model ID | Best For |
 |-------|----------|----------|
 | **Claude Opus 4.5** | `claude-opus-4-5-20251101` | Complex reasoning, coding, analysis |
-| **Claude Sonnet 4** | `claude-sonnet-4-20250514` | Balanced performance and cost |
-| **Claude Haiku 3.5** | `claude-3-5-haiku-20241022` | Fast, cost-effective tasks |
+| **Claude Sonnet 4.5** | `claude-sonnet-4-5-20250929` | Balanced performance and cost |
+| **Claude Haiku 4.5** | `claude-haiku-4-5-20251201` | Fast, cost-effective tasks |
 
 **Recommended**: Use Claude Opus 4.5 for high-stakes tasks requiring deep reasoning.
 
@@ -494,9 +494,9 @@ result = json.loads(message.content[0].text)
 
 | Model | Input (per 1M tokens) | Output (per 1M tokens) |
 |-------|----------------------|------------------------|
-| Opus 4.5 | $15.00 | $75.00 |
-| Sonnet 4 | $3.00 | $15.00 |
-| Haiku 3.5 | $0.25 | $1.25 |
+| Opus 4.5 | $5.00 | $25.00 |
+| Sonnet 4.5 | $3.00 | $15.00 |
+| Haiku 4.5 | $0.25 | $1.25 |
 
 **Tip**: Use Haiku for simple tasks, Opus for complex reasoning to optimize costs.
 

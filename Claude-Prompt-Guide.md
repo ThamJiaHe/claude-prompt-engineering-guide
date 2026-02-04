@@ -476,7 +476,7 @@ MCP is Anthropic's standardized protocol that allows Claude to interact with ext
 
 #### MCP Connector Feature (API)
 - **Purpose**: Connect to remote MCP servers directly from the Messages API
-- **Requires**: Beta header `anthropic-beta: mcp-client-2025-04-04`
+- **Requires**: Beta header `anthropic-beta: mcp-client-2025-11-20`
 - **Supports**: Tool calling, OAuth authentication, multiple servers
 
 **Example MCP Server Configuration**:
