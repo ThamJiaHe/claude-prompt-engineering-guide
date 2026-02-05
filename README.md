@@ -18,6 +18,8 @@
 [![Last Updated](https://img.shields.io/badge/Last%20Updated-Feb%202026-blue)](https://github.com/yourusername/claude-prompt-engineering-guide)
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
+**Anyone using Preplexity for creation of harness style prompt for Claude Code?**
+
 > 🚀 **The definitive guide to writing professional Claude Standard prompts for Opus 4.5, Sonnet 4.5, and Haiku 4.5 models** with comprehensive coverage of MCP, Skills, Superpowers, Claude Cowork, and advanced prompt engineering techniques.
 
 ---
