@@ -2,7 +2,7 @@
 
 Learn how to integrate Model Context Protocol (MCP) with Claude for extended capabilities.
 
-> **Last Updated: February 4, 2026** | Includes MCP Apps, 350+ connectors, MCP Tool Search, OAuth 2.0, and Skills integration
+> **Last Updated: February 24, 2026** | Includes MCP Apps, 8,610+ servers, 97M+ monthly SDK downloads, MCP Tool Search, OAuth 2.0, and Skills integration
 
 ---
 
@@ -20,7 +20,7 @@ Learn how to integrate Model Context Protocol (MCP) with Claude for extended cap
 ### January–February 2026 Updates
 
 - **MCP Apps** — UI rendering within Claude's chat window (charts, forms, dashboards) from third-party apps (Jan 26, 2026)
-- **350+ Connectors** — Managed connector directory expanded from 50+ to 350+ sources (Jan 26, 2026)
+- **8,610+ Servers** — PulseMCP registry catalogs 8,610+ servers; mcp.so lists 17,837+ (Feb 2026)
 - **MCP Tool Search** — Claude Code dynamically loads MCP tools into context, reducing token overhead by up to 95%
 - **OAuth 2.0 + Step-up Authorization** — Enhanced security model (Jan 15, 2026)
 - **Pre-configured OAuth** — `--client-id` and `--client-secret` flags for MCP servers without Dynamic Client Registration
@@ -48,8 +48,8 @@ Learn how to integrate Model Context Protocol (MCP) with Claude for extended cap
 ## MCP in Different Environments
 
 ### Claude.ai Web Interface
-- **MCP Support**: Full ✅ (as of January 2026)
-- **Available**: 350+ connectors via Connector Directory, plus built-in tools (web search, file upload)
+- **MCP Support**: Full ✅ (as of February 2026)
+- **Available**: 8,610+ servers via registries, 350+ managed connectors, plus built-in tools (web search, file upload)
 - **Custom MCP**: Yes, via remote MCP servers (OAuth-authenticated)
 - **MCP Apps**: UI rendering within chat window (charts, forms, dashboards) from Asana, Figma, Slack, and more (Jan 26, 2026)
 
@@ -206,7 +206,7 @@ client = anthropic.Anthropic(api_key="your-api-key")
 
 # Include beta header for MCP support
 response = client.messages.create(
-    model="claude-opus-4-5-20251101",
+    model="claude-opus-4-6-20250205",
     max_tokens=2048,
     system="You are a helpful assistant with access to local files and web search.",
     messages=[
@@ -408,7 +408,7 @@ not outdated training data from 2024.
 | **Stripe** | Payment processing | Popular |
 | **Twilio** | Communications API | Popular |
 
-> **Note**: As of January 2026, the MCP ecosystem has grown to **350+ connectors** in the managed directory, with thousands more community-built servers available.
+> **Note**: As of February 2026, the MCP ecosystem has grown to **8,610+ servers** (PulseMCP) and **17,837+ servers** (mcp.so), with 9 official SDKs and **97M+ monthly SDK downloads** (npm + PyPI combined).
 
 ---
 
@@ -642,5 +642,5 @@ MCP and Skills are increasingly working together as complementary systems:
 
 ---
 
-*Last Updated: February 4, 2026*
+*Last Updated: February 24, 2026*
 

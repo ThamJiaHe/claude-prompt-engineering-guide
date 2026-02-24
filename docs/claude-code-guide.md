@@ -2,7 +2,7 @@
 
 Master Claude Code CLI for agentic software development.
 
-> **Last Updated: February 4, 2026** | Covers v2.1.x features, checkpoints, new commands, GitHub Actions, workflow patterns, and safety considerations
+> **Last Updated: February 24, 2026** | Covers v2.1.51, Agent Teams, worktree isolation, Security features, Fast Mode, Claude in Chrome, and workflow patterns
 
 ---
 
@@ -25,14 +25,21 @@ Master Claude Code CLI for agentic software development.
 ## Installation
 
 ```bash
-# Install via npm
-npm install -g @anthropic-ai/claude-code
+# Native installer (recommended — npm is deprecated for Claude Code)
+# macOS/Linux:
+curl -fsSL https://claude.ai/install.sh | sh
+# macOS (Homebrew):
+brew install claude-code
+# Windows (WinGet):
+winget install Anthropic.ClaudeCode
 
 # Verify installation
 claude --version
 ```
 
-**Current Version**: v2.1.12 (February 2026)
+**Current Version**: v2.1.51 (February 2026)
+
+> **Note**: `npm install -g @anthropic-ai/claude-code` is deprecated. Use the native installer, Homebrew, or WinGet instead.
 
 ---
 
@@ -160,21 +167,28 @@ jobs:
 
 | Feature | Description |
 |---------|-------------|
+| **Agent Teams** | Multi-agent parallel workflows with file ownership boundaries |
+| **`--worktree`** | Git worktree isolation for parallel feature development |
+| **Claude Code Security** | Signed settings, network egress controls for enterprise |
+| **`--from-pr`** | Review PRs directly from the CLI |
+| **Automatic Memories** | Persistent context across sessions |
+| **Session Forking** | Branch conversations into parallel paths |
+| **Fast Mode (`/fast`)** | Faster output with same model (toggle on/off) |
+| **Claude in Chrome** | Browser-integrated AI assistance via extension |
+| **`claude auth`** | Authentication management CLI command |
+| **`claude agents`** | Agent management CLI command |
 | **Shift+Enter** | Newlines in input with zero setup |
 | **Skill hot-reload** | Edit skills and see changes live |
 | **Hooks in frontmatter** | Add hooks directly to agent/skill YAML |
 | **Forked sub-agents** | True parallel agent execution via frontmatter |
 | **Wildcard permissions** | e.g., `Bash(*-h*)` for tool permission patterns |
 | **Response language** | Configure model to respond in Japanese, Spanish, etc. |
-| **Agent continues after denial** | Agents no longer stop when you deny a tool use |
 | **`/teleport`** | Send your session to claude.ai/code |
 | **`/debug`** | Claude helps troubleshoot the current session |
-| **Prompt suggestions** | Claude suggests prompts; press Tab to accept |
 | **Quick model switch** | `alt+p` (Linux/Win) or `option+p` (macOS) |
-| **Thinking mode default** | Enabled by default for Opus 4.5 |
+| **Thinking mode default** | Enabled by default for Opus 4.6 |
 | **Token metrics** | Token count, tool uses, and duration in Task results |
 | **PDF page ranges** | Read specific pages from PDF files |
-| **Pre-configured OAuth** | `--client-id`/`--client-secret` for MCP servers |
 | **`/mcp enable\|disable`** | Replaces @-mention MCP enable/disable pattern |
 
 **Environment variables:**
@@ -649,4 +663,4 @@ As of December 2025, Anthropic offers **HIPAA-ready Enterprise plans** with offi
 
 ---
 
-*Last Updated: February 4, 2026*
+*Last Updated: February 24, 2026*

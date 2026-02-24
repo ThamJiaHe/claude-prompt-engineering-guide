@@ -7,6 +7,56 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.2.0] - 2026-02-24
+
+### Added
+
+#### New Model Coverage
+- ✨ **Claude Opus 4.6** — Released Feb 5, 2026. Model ID `claude-opus-4-6-20250205`. Adaptive thinking, 128K max output, effort `max` level
+- ✨ **Claude Sonnet 4.6** — Released Feb 17, 2026. Model ID `claude-sonnet-4-6-20250217`. Near-Opus performance at Sonnet pricing
+- ✨ **Effort Parameter GA** — Now Generally Available across all models. No beta header required. New `max` level (Opus 4.6 only)
+- ✨ **Adaptive Thinking** — `thinking: {type: "adaptive"}` auto-calibrates depth (Opus 4.6 only)
+
+#### Claude Code v2.1.51
+- ✨ **Agent Teams** — Multi-agent coordination with team-lead, team-implementer, team-reviewer, team-debugger
+- ✨ **Git Worktree Isolation** — `--worktree` flag for parallel development in isolated branches
+- ✨ **Claude Code Security** — Signed settings, network egress controls, `claude auth` CLI
+- ✨ **Fast Mode** — `/fast` toggle for faster Opus 4.6 output ($30/$150 per MTok)
+- ✨ **Claude in Chrome** — Browser automation via MCP extension
+- ✨ **Automatic Memories** — Persistent memory across sessions
+- ✨ **Session Forking** — Fork conversations to explore alternatives
+- ✨ **`--from-pr` Flag** — Start Claude Code from PR context
+
+### Changed
+
+- 🔄 **API Guide** — Complete overhaul: Opus 4.6/Sonnet 4.6 models, effort GA (removed beta header), adaptive thinking, corrected API version header to `2023-06-01`, updated pricing with Fast Mode and long context notes
+- 🔄 **Claude-Prompt-Guide.md** — Updated models to 4.6, effort parameter from beta to GA, fixed knowledge cutoff to May 2025, corrected Haiku pricing ($1/$5), updated revenue to $14B ARR
+- 🔄 **Claude Code Guide** — Updated to v2.1.51, npm install replaced with native installer, expanded features table with Agent Teams/worktree/Security/Fast Mode/Chrome
+- 🔄 **Pricing Guide** — Fixed Haiku 4.5 pricing throughout ($0.25/$1.25 → $1/$5), added Opus 4.6/Sonnet 4.6 rows, Fast Mode pricing
+- 🔄 **MCP Integration** — Updated ecosystem numbers (350+ → 8,610+ servers), model references in code examples
+- 🔄 **README** — Expanded product scorecard to 18 products, updated all model references to 4.6, new Critical Issues section with prefill removal
+- 🔄 **All URLs** — `docs.anthropic.com` → `platform.claude.com/docs` across all files
+- 🔄 **All dates** — Updated to February 24, 2026
+
+### Breaking Changes
+
+- ⚠️ **Prefill Removal** — Opus 4.6 and Sonnet 4.6 return 400 error when prefilling assistant messages
+- ⚠️ **Model Retirements** — Sonnet 3.7 and Haiku 3.5 retired February 19, 2026
+- ⚠️ **npm Install Deprecated** — Claude Code now uses native installer (Homebrew/WinGet/curl)
+
+### Fixed
+
+- 🐛 **API Version Header** — Corrected `2024-01-01` to `2023-06-01` in api-guide.md
+- 🐛 **Haiku Pricing** — Fixed from $0.25/$1.25 to $1/$5 per MTok across all guides
+- 🐛 **Model Names** — Fixed "Sonnet 4" → "Sonnet 4.5/4.6", "Haiku 3.5" → "Haiku 4.5"
+- 🐛 **Knowledge Cutoff** — Corrected from "January 2025" to "May 2025"
+
+### Research Sources
+- 📚 **8 parallel research agents** — Reddit, GitHub, X/Twitter, web, Anthropic official, community forums
+- 📚 **Cross-validated** — All findings verified against official Anthropic announcements
+
+---
+
 ## [2.1.0] - 2026-02-04
 
 ### Added
@@ -402,6 +452,12 @@ When submitting a PR, include a changelog entry describing your changes:
 ---
 
 ## Release History
+
+### Version 2.2.0 (February 2026 Model Update)
+
+- **Release Date**: February 24, 2026
+- **Status**: ✅ Stable
+- **Changes**: Opus 4.6 and Sonnet 4.6 model coverage, effort parameter GA, adaptive thinking, Claude Code v2.1.51 (Agent Teams, worktree, Security, Fast Mode, Chrome), prefill removal breaking change, Haiku pricing corrections, URL migrations to platform.claude.com
 
 ### Version 2.1.0 (February 2026 Research Update)
 
