@@ -2,7 +2,7 @@
 
 Build applications with the Claude API.
 
-> **Last Updated: January 23, 2026** | Covers Claude Opus 4.5, effort parameter, streaming, and best practices
+> **Last Updated: February 24, 2026** | Covers Claude Opus 4.6, Sonnet 4.6, effort parameter (GA), adaptive thinking, streaming, and best practices
 
 ---
 
@@ -10,15 +10,17 @@ Build applications with the Claude API.
 
 The Claude API enables you to integrate Claude's capabilities into your applications. This guide covers authentication, basic requests, advanced features, and best practices.
 
-### Current Models (January 2026)
+### Current Models (February 2026)
 
 | Model | Model ID | Best For |
 |-------|----------|----------|
-| **Claude Opus 4.5** | `claude-opus-4-5-20251101` | Complex reasoning, coding, analysis |
-| **Claude Sonnet 4.5** | `claude-sonnet-4-5-20250929` | Balanced performance and cost |
-| **Claude Haiku 4.5** | `claude-haiku-4-5-20251201` | Fast, cost-effective tasks |
+| **Claude Opus 4.6** | `claude-opus-4-6-20250205` | Complex reasoning, coding, analysis, agentic tasks |
+| **Claude Sonnet 4.6** | `claude-sonnet-4-6-20250217` | Balanced performance and cost, near-Opus quality |
+| **Claude Haiku 4.5** | `claude-haiku-4-5-20251001` | Fast, cost-effective tasks |
+| Claude Opus 4.5 | `claude-opus-4-5-20251101` | Previous flagship (still available) |
+| Claude Sonnet 4.5 | `claude-sonnet-4-5-20250929` | Previous balanced model (still available) |
 
-**Recommended**: Use Claude Opus 4.5 for high-stakes tasks requiring deep reasoning.
+**Recommended**: Use Claude Opus 4.6 for high-stakes tasks requiring deep reasoning. Sonnet 4.6 for cost-effective near-Opus performance.
 
 ---
 
@@ -40,7 +42,7 @@ export ANTHROPIC_API_KEY="sk-ant-api03-..."
 ```bash
 Authorization: Bearer $ANTHROPIC_API_KEY
 Content-Type: application/json
-anthropic-version: 2024-01-01
+anthropic-version: 2023-06-01
 ```
 
 ---
@@ -53,7 +55,7 @@ anthropic-version: 2024-01-01
 curl https://api.anthropic.com/v1/messages \
   -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "anthropic-version: 2024-01-01" \
+  -H "anthropic-version: 2023-06-01" \
   -d '{
     "model": "claude-opus-4-5-20251101",
     "max_tokens": 1024,
@@ -129,45 +131,58 @@ message = client.messages.create(
 
 ---
 
-## Effort Parameter (Claude Opus 4.5)
+## Effort Parameter (GA — All Models)
 
-The `effort` parameter controls Claude's thinking depth for complex tasks.
-
-### Beta Header Required
-
-```bash
-anthropic-beta: effort-2025-11-24
-```
+The `effort` parameter controls Claude's thinking depth. **Now Generally Available** — no beta header required.
 
 ### Effort Levels
 
-| Level | Use Case | Token Usage |
-|-------|----------|-------------|
-| `low` | Quick tasks, simple questions | Minimal |
-| `medium` | Balanced reasoning (default) | Moderate |
-| `high` | Complex analysis, critical decisions | Maximum |
+| Level | Use Case | Token Usage | Availability |
+|-------|----------|-------------|-------------|
+| `low` | Quick tasks, simple questions | Minimal | All models |
+| `medium` | Balanced reasoning (default) | Moderate | All models |
+| `high` | Complex analysis, critical decisions | High | All models |
+| `max` | Deepest reasoning, hardest problems | Maximum | Opus 4.6 only |
 
 ### Python Example
 
 ```python
 message = client.messages.create(
-    model="claude-opus-4-5-20251101",
+    model="claude-opus-4-6-20250205",
     max_tokens=8192,
-    betas=["effort-2025-11-24"],
-    effort="high",
     messages=[
         {"role": "user", "content": "Analyze this codebase for security vulnerabilities"}
-    ]
+    ],
+    # No beta header needed — effort is GA
+    output_config={"effort": "high"}
 )
 ```
 
-### When to Use High Effort
+### Adaptive Thinking (Opus 4.6)
+
+Opus 4.6 introduces adaptive thinking — Claude automatically calibrates thinking depth:
+
+```python
+message = client.messages.create(
+    model="claude-opus-4-6-20250205",
+    max_tokens=16384,
+    messages=[
+        {"role": "user", "content": "Design a distributed caching architecture"}
+    ],
+    thinking={"type": "adaptive"}  # Auto-calibrates thinking depth
+)
+```
+
+> **Note**: Opus 4.6 only supports adaptive thinking (not manual `budget_tokens` for interleaved thinking). Sonnet 4.6 and Haiku 4.5 still support manual thinking budgets.
+
+### When to Use High/Max Effort
 
 - Security audits
 - Complex debugging
 - Architecture decisions
 - Multi-step reasoning
 - Critical code reviews
+- **Max (Opus 4.6 only)**: Research-grade analysis, novel problem solving
 
 ---
 
@@ -490,15 +505,18 @@ result = json.loads(message.content[0].text)
 
 ---
 
-## Pricing (January 2026)
+## Pricing (February 2026)
 
 | Model | Input (per 1M tokens) | Output (per 1M tokens) |
 |-------|----------------------|------------------------|
-| Opus 4.5 | $5.00 | $25.00 |
-| Sonnet 4.5 | $3.00 | $15.00 |
-| Haiku 4.5 | $0.25 | $1.25 |
+| Opus 4.6 | $5.00 | $25.00 |
+| Opus 4.6 Fast | $30.00 | $150.00 |
+| Sonnet 4.6 | $3.00 | $15.00 |
+| Haiku 4.5 | $1.00 | $5.00 |
 
-**Tip**: Use Haiku for simple tasks, Opus for complex reasoning to optimize costs.
+> **Long context (>200K tokens)**: 2x standard pricing. **Data residency (`inference_geo: "us"`)**: 1.1x pricing.
+
+**Tip**: Use Haiku for simple tasks, Sonnet 4.6 for balanced work, Opus 4.6 for complex reasoning.
 
 ---
 
@@ -519,8 +537,8 @@ result = json.loads(message.content[0].text)
 
 ## Resources
 
-- **API Reference**: [docs.anthropic.com/api](https://docs.anthropic.com/api)
-- **Console**: [console.anthropic.com](https://console.anthropic.com)
+- **API Reference**: [platform.claude.com/docs/api](https://platform.claude.com/docs/api)
+- **Console**: [platform.claude.com](https://platform.claude.com)
 - **Status**: [status.anthropic.com](https://status.anthropic.com)
 - **Discord**: [discord.gg/anthropic](https://discord.gg/anthropic)
 
@@ -534,6 +552,6 @@ result = json.loads(message.content[0].text)
 
 ---
 
-**Last Updated:** January 23, 2026
-**Version:** 1.0.0
+**Last Updated:** February 24, 2026
+**Version:** 2.0.0
 **Status:** Production Ready

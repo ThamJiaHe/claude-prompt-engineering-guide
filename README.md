@@ -18,61 +18,62 @@
 [![Last Updated](https://img.shields.io/badge/Last%20Updated-Feb%202026-blue)](https://github.com/yourusername/claude-prompt-engineering-guide)
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-**Anyone using Preplexity for creation of harness style prompt for Claude Code?**
-
-> 🚀 **The definitive guide to writing professional Claude Standard prompts for Opus 4.5, Sonnet 4.5, and Haiku 4.5 models** with comprehensive coverage of MCP, Skills, Superpowers, Claude Cowork, and advanced prompt engineering techniques.
+> 🚀 **The definitive guide to writing professional Claude Standard prompts for Opus 4.6, Sonnet 4.6, and Haiku 4.5 models** with comprehensive coverage of MCP, Skills, Superpowers, Claude Cowork, and advanced prompt engineering techniques.
 
 ---
 
 ## 📅 February 2026 Update
 
-> **Last Updated: February 4, 2026** | **190+ verified sources** | **Complete ecosystem refresh**
+> **Last Updated: February 24, 2026** | **220+ verified sources** | **Complete ecosystem refresh**
 
-### Product Ecosystem Status (Feb 4, 2026)
+### Product Ecosystem Status (Feb 24, 2026)
 
 | Status | Products | Notes |
 |--------|----------|-------|
-| **Excellent** | Desktop, CLI (v2.1.12), API, Browser Extension | Stable, feature-complete |
-| **New** | MCP Apps, Claude for Excel, Infinite Chats, Memory | Major Jan 2026 launches |
-| ⚠️ **Monitor** | Usage Limits, Context Compression | Ongoing issues since Jan 1 |
+| **Excellent** | Desktop, CLI (v2.1.51), API, Browser Extension | Stable, feature-complete |
+| **New** | Opus 4.6, Sonnet 4.6, Agent Teams, Fast Mode, Claude in Chrome | Major Feb 2026 launches |
+| **Updated** | MCP Apps, Claude for Excel, Infinite Chats, Memory | Jan 2026 launches, maturing |
+| ⚠️ **Monitor** | Usage Limits, Prefill Removal (4.6) | Ongoing issues / breaking changes |
 | ✨ **Emerging** | Claude Cowork (Pro+Max), Skills, Plugins | Evolving features |
 
-**Scorecard**: 4 Excellent, 4 New, 2 Monitor, 3 Emerging (13 products evaluated)
+**Scorecard**: 4 Excellent, 5 New, 4 Updated, 2 Monitor, 3 Emerging (18 products evaluated)
 
-### What's New (Jan–Feb 2026)
+### What's New (Feb 2026)
 
 | Feature | Description |
 |---------|-------------|
-| 🖼️ **MCP Apps** | UI rendering within Claude chat (charts, forms, dashboards) — Jan 26, 2026 |
-| 🔄 **Claude Code v2.1.x** | Checkpoints, /teleport, /debug, prompt suggestions, skill hot-reload, 12 patch releases |
-| 🤖 **Claude Cowork** | Autonomous desktop agent, expanded to Pro plan (Jan 16), plugins support |
-| 📊 **Claude for Excel** | Beta: pivot tables, charts, file uploads |
-| ♾️ **Infinite Chats** | Context auto-compaction for unlimited conversation length |
-| 🧠 **Memory** | Persistent memory across conversations (Enterprise), incognito chats |
-| 📱 **350+ MCP Connectors** | Managed connector directory, up from 50+ |
-| ⚠️ **Model Deprecations** | Opus 4, 4.1 removed from UI and Claude Code |
-| 🔌 **MCP Tool Search** | Dynamic tool loading, 95% token reduction |
-| 📋 **Self-Evolving CLAUDE.md** | Auto-updating rules pattern for project learning |
+| 🧠 **Claude Opus 4.6** | New flagship — adaptive thinking, `max` effort level, 128K output, 1M context (beta) — Feb 5, 2026 |
+| ⚡ **Claude Sonnet 4.6** | Near-Opus quality at Sonnet pricing, effort parameter now available — Feb 17, 2026 |
+| 🤝 **Agent Teams** | Multi-agent coordination with file ownership and parallel execution |
+| 🌲 **Git Worktree Isolation** | `--worktree` flag for safe parallel development |
+| 🔒 **Claude Code Security** | Signed settings, network egress controls, MCP lockdown |
+| 🏎️ **Fast Mode** | `/fast` toggle — same Opus 4.6 model with faster output ($30/$150 per MTok) |
+| 🌐 **Claude in Chrome** | Browser automation via MCP extension |
+| 📝 **Automatic Memories** | Claude auto-saves key learnings across sessions |
+| 🔀 **Session Forking** | Branch conversations for parallel exploration |
+| ⚠️ **Prefill Removed** | 4.6 models return 400 error on assistant prefilling — BREAKING CHANGE |
+| ⚠️ **Model Retirements** | Sonnet 3.7, Haiku 3.5 retired Feb 19, 2026 |
+| 🔌 **MCP Ecosystem** | 8,610+ servers (PulseMCP), 97M+ monthly SDK downloads, 9 official SDKs |
 
-### ⚠️ Critical Issues (Jan 2026)
+### ⚠️ Critical Issues & Breaking Changes (Feb 2026)
 
 | Issue | Status | Reference |
 |-------|--------|-----------|
-| **Usage Limits Crisis** | Max subscribers getting ~80% less than promised | [GitHub #16868](https://github.com/anthropics/claude-code/issues/16868), [#17358](https://github.com/anthropics/claude-code/issues/17358) |
-| **Context Compression** | Broken Jan 14-19, may still have issues | [GitHub #354](https://github.com/anthropics/claude-code/issues/354) |
-| **Quality Regression** | Reports of degraded output quality | Community reports |
-| **Prompt Ignoring Bug** | Claude ignoring instructions (Jan 13-15) | Now resolved |
+| **Prefill Removal (4.6)** | Opus 4.6 and Sonnet 4.6 return 400 error on assistant prefilling | BREAKING — migrate to system prompts |
+| **Model Retirements** | Sonnet 3.7 and Haiku 3.5 retired Feb 19, 2026 | Migrate to 4.5/4.6 models |
+| **Usage Limits** | Max subscribers still reporting throttling | [GitHub Issues](https://github.com/anthropics/claude-code/issues) |
+| **Effort Parameter GA** | No longer requires beta header — update API calls | Remove `betas=["effort-..."]` |
 
-**Recommendation**: Monitor [GitHub Issues](https://github.com/anthropics/claude-code/issues) for updates on these critical issues.
+**Recommendation**: Test 4.6 models for prefill compatibility before migrating production workloads.
 
 ### Quick Links to New Content
 
+- [Opus 4.6 & Sonnet 4.6 Models](./Claude-Prompt-Guide.md#claude-models-overview) — New flagship models with adaptive thinking
+- [Claude Code v2.1.51 Features](./docs/claude-code-guide.md#new-in-v21x-januaryfebruary-2026) — Agent Teams, worktree, Fast Mode, and more
+- [API Integration Guide](./docs/api-guide.md) — Updated with effort parameter GA and adaptive thinking
 - [MCP Apps Guide](./docs/mcp-integration.md#mcp-apps-january-26-2026) — UI rendering within Claude chat
-- [Claude Code v2.1.x Features](./docs/claude-code-guide.md#new-in-v21x-januaryfebruary-2026) — All new commands and features
-- [Checkpoints & Rewind](./docs/claude-code-guide.md#checkpoints--rewind) — Auto-save and rewind system
 - [Claude Cowork Guide](./docs/cowork-guide.md) — Autonomous workflow automation with plugins
-- [Model Deprecations](./MIGRATION-NOV2025-JAN2026.md#model-deprecations-january-2026) — Opus 4/4.1 removal notice
-- [Pricing Guide](./docs/pricing-comparison-jan-2026.md) — Updated model names and Max 5x/20x tiers
+- [Pricing Guide](./docs/pricing-comparison-jan-2026.md) — Updated with 4.6 models and Fast Mode pricing
 - [Migration Guide](./MIGRATION-NOV2025-JAN2026.md) — Upgrade from Nov 2025
 
 ---
@@ -241,8 +242,8 @@ The comprehensive reference document containing:
 - How Claude processes prompts
 
 #### Section 2: Claude Models Overview
-- **Claude Opus 4.5** — Most powerful model with effort parameter (Nov 2025)
-- **Claude Sonnet 4.5** — Balanced performance and cost
+- **Claude Opus 4.6** — Most powerful model with adaptive thinking (Feb 2026)
+- **Claude Sonnet 4.6** — Near-Opus performance at balanced cost (Feb 2026)
 - **Claude Haiku 4.5** — Fast and efficient with extended thinking
 - Pricing and performance comparison
 
@@ -422,7 +423,7 @@ The Claude Prompt Engineering Guide synthesizes publicly available information f
 ## 🙏 Acknowledgments
 
 **Created:** November 19, 2025
-**Last Major Update:** February 4, 2026
+**Last Major Update:** February 24, 2026
 **Location:** Singapore
 **Purpose:** Deep research synthesis for professional Claude prompt engineering
 
@@ -487,7 +488,7 @@ Want to improve this guide? [See CONTRIBUTING.md](./CONTRIBUTING.md) for the pro
 - **Patterns:** 5 real-world prompt examples
 - **Templates:** 2 production-ready templates
 - **Examples:** 15+ use cases across different domains
-- **Coverage:** Claude Opus, Sonnet, Haiku, API, Desktop, CLI, Web
+- **Coverage:** Claude Opus 4.6, Sonnet 4.6, Haiku 4.5, API, Desktop, CLI, Web, Cowork
 
 ---
 
@@ -495,10 +496,10 @@ Want to improve this guide? [See CONTRIBUTING.md](./CONTRIBUTING.md) for the pro
 
 ### Official Anthropic
 
-- [Prompt Engineering Guide](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)
-- [Claude API Documentation](https://docs.anthropic.com)
-- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
-- [System Prompts Guide](https://docs.anthropic.com/en/release-notes/system-prompts)
+- [Prompt Engineering Guide](https://platform.claude.com/docs/build-with-claude/prompt-engineering/overview)
+- [Claude API Documentation](https://platform.claude.com/docs)
+- [Claude Code Documentation](https://platform.claude.com/docs/claude-code)
+- [System Prompts Guide](https://platform.claude.com/docs/release-notes/system-prompts)
 
 ### Community
 
@@ -515,7 +516,7 @@ Want to improve this guide? [See CONTRIBUTING.md](./CONTRIBUTING.md) for the pro
 
 [![Anthropic Claude Max](https://img.shields.io/badge/Powered_by-Claude_Max_Plan-cc785c?logo=anthropic&logoColor=white)](https://claude.ai)
 
-*This guide is researched, written, and maintained using the [Anthropic Claude Max Plan](https://claude.ai) — with access to Claude Opus 4.5, extended thinking, and Claude Code.*
+*This guide is researched, written, and maintained using the [Anthropic Claude Max Plan](https://claude.ai) — with access to Claude Opus 4.6, adaptive thinking, and Claude Code.*
 
 [⭐ Star this repository](https://github.com/yourusername/claude-prompt-engineering-guide) if you found it helpful!
 

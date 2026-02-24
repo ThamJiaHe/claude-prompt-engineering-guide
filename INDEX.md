@@ -1,6 +1,6 @@
 # Repository Index
 
-> **Version:** 2.0.3 | **Last Updated:** January 27, 2026
+> **Version:** 2.2.0 | **Last Updated:** February 24, 2026
 
 Master navigation for the Claude Prompt Engineering Guide repository.
 
@@ -157,5 +157,5 @@ Master navigation for the Claude Prompt Engineering Guide repository.
 ---
 
 **Repository:** Claude Prompt Engineering Guide
-**Version:** 2.0.3
-**Updated:** January 27, 2026
+**Version:** 2.2.0
+**Updated:** February 24, 2026

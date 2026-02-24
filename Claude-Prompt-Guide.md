@@ -1,12 +1,12 @@
 # Claude Professional Prompt Engineering Guide
-## Comprehensive Reference for Claude Opus 4.5, Sonnet 4.5 & Haiku 4.5 with Superpowers, Skills, MCP & Perplexity Integration
+## Comprehensive Reference for Claude Opus 4.6, Sonnet 4.6 & Haiku 4.5 with Superpowers, Skills, MCP & Perplexity Integration
 
 **Created:** November 19, 2025
-**Last Major Update:** January 15, 2026
+**Last Major Update:** February 24, 2026
 **Location:** Singapore
 **Purpose:** Deep research synthesis for professional Claude prompt engineering
 
-> **January 2026 Update**: This guide now covers Claude Opus 4.5 (effort parameter), Claude Cowork, Context7 MCP, system prompt insights, and self-evolving CLAUDE.md patterns. Based on 170+ verified sources.
+> **February 2026 Update**: This guide now covers Claude Opus 4.6 (adaptive thinking), Sonnet 4.6, effort parameter (GA), Claude Code v2.1.51 (Agent Teams, Fast Mode), prefill removal breaking change, and 200+ verified sources.
 
 ---
 
@@ -14,7 +14,7 @@
 0. ["Ask Claude" Protocol - How to Use This Guide](#ask-claude-protocol---how-to-use-this-guide)
 1. [Understanding Claude's Architecture](#understanding-claudes-architecture)
 2. [Claude Models Overview](#claude-models-overview)
-3. [Claude vs Competition (January 2026)](#claude-vs-competition-january-2026)
+3. [Claude vs Competition (February 2026)](#claude-vs-competition-february-2026)
 4. [System Prompts vs User Prompts](#system-prompts-vs-user-prompts)
 5. [Anthropic's Official Prompt Structure](#anthropics-official-prompt-structure)
 6. [Claude 4.x Best Practices](#claude-4x-best-practices)
@@ -33,35 +33,39 @@
 Claude was developed with **character training** - not just safety, but rich traits like curiosity, honesty, thoughtfulness, open-mindedness, and intellectual humility. Claude doesn't pretend to be objective or have no opinions. Instead, it's trained to be honest about its leanings while remaining curious and open to other perspectives.
 
 ### Knowledge Cutoff
-- **Claude 4.x models**: January 2025
-- **Claude Sonnet 3.7**: October 2024
+- **Claude 4.x models**: May 2025
+- **Claude Sonnet 3.7**: October 2024 (retired Feb 19, 2026)
 
 ---
 
 ## Claude Models Overview
 
-### Current Model Family (as of January 2026)
+### Current Model Family (as of February 2026)
 
-#### Claude Opus 4.5 (Released Nov 24, 2025)
+#### Claude Opus 4.6 (Released Feb 5, 2026)
 - **Purpose**: Most powerful model for complex challenges
-- **Best for**: Long-horizon reasoning, complex analysis, legal/financial work
-- **API String**: `claude-opus-4-5-20251101`
-- **Pricing**: $5/MTok (input), $25/MTok (output)
+- **Best for**: Long-horizon reasoning, complex analysis, legal/financial work, agentic tasks
+- **API String**: `claude-opus-4-6-20250205`
+- **Pricing**: $5/MTok (input), $25/MTok (output) | Fast: $30/$150
 - **NEW Features**:
-  - **Effort parameter** (low/medium/high) — controls token usage vs thoroughness
-  - **Infinite chats** — automatic context summarization, no hard limit errors
-  - **Enhanced computer use** — zoom action for UI inspection
-  - **Persistent thinking blocks** — reasoning history maintained across conversations
+  - **Adaptive thinking** — `thinking: {type: "adaptive"}` auto-calibrates reasoning depth
+  - **Effort parameter GA** — `max` level exclusive to Opus 4.6 (no beta header needed)
+  - **128K max output tokens** — doubled from previous models
+  - **1M context window** (beta) — extended context support
+  - **Prefill removed** — assistant message prefilling returns 400 error (BREAKING CHANGE)
 
-#### Effort Parameter (Opus 4.5)
+> **Previous**: Claude Opus 4.5 (`claude-opus-4-5-20251101`) remains available.
 
-The effort parameter is a major new feature for controlling token usage:
+#### Effort Parameter (GA — All Models)
 
-| Effort | Token Savings | Use Case |
-|--------|---------------|----------|
-| **High** | 0% (default) | Complex reasoning, difficult coding, agentic tasks |
-| **Medium** | ~76% fewer output tokens | Balanced speed/cost/performance |
-| **Low** | ~50% token savings | Simple tasks, subagents, quick formatting |
+The effort parameter controls token usage vs thoroughness. **Now Generally Available** — no beta header required.
+
+| Effort | Token Savings | Use Case | Availability |
+|--------|---------------|----------|--------------|
+| **Max** | 0% (deepest) | Research-grade analysis, novel problem solving | Opus 4.6 only |
+| **High** | 0% (default) | Complex reasoning, difficult coding, agentic tasks | All models |
+| **Medium** | ~76% fewer output tokens | Balanced speed/cost/performance | All models |
+| **Low** | ~50% token savings | Simple tasks, subagents, quick formatting | All models |
 
 **API Usage**:
 ```python
@@ -69,23 +73,34 @@ import anthropic
 
 client = anthropic.Anthropic(api_key="your-api-key")
 
-response = client.beta.messages.create(
-    model="claude-opus-4-5-20251101",
-    betas=["effort-2025-11-24"],  # REQUIRED for effort parameter
+# Effort parameter — GA, no beta header needed
+response = client.messages.create(
+    model="claude-opus-4-6-20250205",
     max_tokens=4096,
     messages=[{"role": "user", "content": "Analyze trade-offs..."}],
-    output_config={"effort": "medium"}  # "low", "medium", "high"
+    output_config={"effort": "medium"}  # "low", "medium", "high", "max" (Opus 4.6 only)
+)
+
+# Adaptive thinking — Opus 4.6 exclusive
+response = client.messages.create(
+    model="claude-opus-4-6-20250205",
+    max_tokens=16384,
+    messages=[{"role": "user", "content": "Design a distributed caching architecture"}],
+    thinking={"type": "adaptive"}  # Auto-calibrates thinking depth
 )
 ```
 
-**Key Insight**: At medium effort, Opus 4.5 matches Sonnet 4.5's best SWE-bench score while using 76% fewer output tokens.
+**Key Insight**: At medium effort, Opus performs at Sonnet's best SWE-bench score while using 76% fewer output tokens. The `max` level (Opus 4.6 only) enables deepest reasoning for the hardest problems.
 
-#### Claude Sonnet 4.5
-- **Purpose**: Smart, efficient model for everyday use
+#### Claude Sonnet 4.6 (Released Feb 17, 2026)
+- **Purpose**: Near-Opus performance at balanced cost
 - **Best for**: Balanced performance and cost, coding, research
-- **API String**: `claude-sonnet-4-5-20250929`
+- **API String**: `claude-sonnet-4-6-20250217`
 - **Pricing**: $3/MTok (input), $15/MTok (output)
+- **NEW Features**: Effort parameter support, default for Free/Pro users
 - **Special Features**: Exceptional state tracking, context awareness, parallel tool execution
+
+> **Previous**: Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`) remains available.
 
 #### Claude Haiku 4.5
 - **Purpose**: Fastest model for daily tasks
@@ -95,11 +110,11 @@ response = client.beta.messages.create(
 
 ---
 
-## Claude vs Competition (January 2026)
+## Claude vs Competition (February 2026)
 
-This section provides a factual comparison of Claude against major competitors based on January 2026 benchmarks and capabilities.
+This section provides a factual comparison of Claude against major competitors based on February 2026 benchmarks and capabilities.
 
-### January 2026 Market Position
+### February 2026 Market Position
 
 Anthropic has established itself as the enterprise AI leader:
 
@@ -107,7 +122,8 @@ Anthropic has established itself as the enterprise AI leader:
 |--------|-------|--------|
 | **Enterprise LLM Market Share** | 40% | Menlo Ventures |
 | **Enterprise Coding Share** | 54% | ZDNET |
-| **2025 Revenue** | $10 billion | CEO Dario Amodei |
+| **2025 Revenue** | $14 billion ARR | CEO Dario Amodei |
+| **Valuation** | $380 billion | Feb 2026 funding round |
 | **2026 Revenue Target** | $20-26 billion | Industry Projections |
 
 **Competitive Landscape**:
@@ -120,8 +136,8 @@ Anthropic has established itself as the enterprise AI leader:
 
 | Model | SWE-bench Accuracy | Notes |
 |-------|-------------------|-------|
-| **Claude Opus 4.5** | 80.9% (Verified) | Highest verified accuracy |
-| Claude Opus 4.5 | 74.4% (Failing Fast) | Outperforms GPT-4o |
+| **Claude Opus 4.6** | 80.9% (Verified) | Highest verified accuracy |
+| Claude Opus 4.6 | 74.4% (Failing Fast) | Outperforms GPT-4o |
 | GPT-4o | 72.9% (Failing Fast) | Strong but trails Claude |
 | Gemini 2.5 Pro | ~70% | Gap in coding precision |
 
@@ -133,14 +149,14 @@ Anthropic has established itself as the enterprise AI leader:
 |-------|---------------|-------|
 | Gemini 2.5 Pro | 1,000,000 tokens | Largest available context |
 | Claude Enterprise | 400,000+ tokens | Enterprise-tier extended context |
-| Claude Opus 4.5 | 200,000 tokens | Standard context window |
+| Claude Opus 4.6 | 200,000 tokens (1M beta) | Standard + extended context |
 | ChatGPT (GPT-4o) | 128,000 tokens | Smaller context window |
 
 **Key Finding**: Claude Enterprise offers 400K+ tokens, suitable for processing entire codebases and large documents. Gemini leads for research requiring 1M+ token context.
 
 ### Multimodal Capabilities
 
-| Capability | Claude 4.5 | ChatGPT (GPT-4o) | Gemini 3 Pro |
+| Capability | Claude 4.6 | ChatGPT (GPT-4o) | Gemini 3 Pro |
 |------------|-----------|------------------|--------------|
 | Text | ✅ | ✅ | ✅ |
 | Images | ✅ | ✅ | ✅ |
@@ -193,18 +209,19 @@ When choosing Claude, be aware of these limitations:
 - **Regulated industries**: HIPAA compliance and safety guarantees
 - **Complex multi-step reasoning**: Extended thinking and effort parameter
 - **Instruction following**: Claude excels at following detailed specifications
-- **Agentic workflows**: Claude Code v2.1.0 + Skills + MCP ecosystem
+- **Agentic workflows**: Claude Code v2.1.51 + Skills + MCP ecosystem
 - **Enterprise adoption**: 40% market share, trusted by Sanofi, CRED, Intercom
 
-### January 2026 Pricing Advantage
-
-Claude Opus 4.5 now offers **67% cost reduction** from previous flagship pricing:
+### February 2026 Pricing
 
 | Model | Input (per 1M) | Output (per 1M) | Batch Input | Batch Output |
 |-------|----------------|-----------------|-------------|--------------|
-| Opus 4.5 | $5.00 | $25.00 | $2.50 | $12.50 |
-| Sonnet 4 | $3.00 | $15.00 | $1.50 | $7.50 |
-| Haiku 3.5 | $0.25 | $1.25 | $0.125 | $0.625 |
+| Opus 4.6 | $5.00 | $25.00 | $2.50 | $12.50 |
+| Opus 4.6 Fast | $30.00 | $150.00 | — | — |
+| Sonnet 4.6 | $3.00 | $15.00 | $1.50 | $7.50 |
+| Haiku 4.5 | $1.00 | $5.00 | $0.50 | $2.50 |
+
+> **Long context (>200K tokens)**: 2x standard pricing. **Data residency**: 1.1x pricing.
 
 **Cost Optimization**:
 - **Prompt Caching**: Up to 90% savings on cache reads
@@ -466,12 +483,13 @@ You speak with authority, provide specific recommendations, and don't shy away f
 ### Model Context Protocol (MCP)
 
 **What is MCP?**
-MCP is Anthropic's standardized protocol that allows Claude to interact with external tools, data sources, and services. As of January 2026, MCP has become an **industry standard** governed under the Linux Foundation's Anthropic AI Foundation (AAIF).
+MCP is Anthropic's standardized protocol that allows Claude to interact with external tools, data sources, and services. As of February 2026, MCP has become an **industry standard** governed under the Linux Foundation's Anthropic AI Foundation (AAIF).
 
-**January 2026 Ecosystem Scale**:
-- **Community Servers**: "Tens of thousands" available
-- **Official Integrations**: 50+ first-party servers
-- **Plugin Hubs**: ClaudePluginHub with 9,000+ plugins
+**February 2026 Ecosystem Scale**:
+- **PulseMCP Registry**: 8,610+ servers cataloged
+- **mcp.so Registry**: 17,837+ servers listed
+- **Official SDKs**: 9 language SDKs (Python, TypeScript, Java, Kotlin, C#, Swift, Go, Ruby, Elixir)
+- **Monthly SDK Downloads**: 97M+ (npm + PyPI)
 - **Security Framework**: Enterprise-grade with audit capabilities
 
 #### MCP Connector Feature (API)
@@ -527,7 +545,7 @@ Gives Claude access to your local filesystem:
 **What are Skills?**
 Skills are modular, reusable task packages that teach Claude how to execute repeatable workflows.
 
-**January 2026 Skills Marketplace Statistics**:
+**February 2026 Skills Marketplace Statistics**:
 
 | Skill | Installs | Category |
 |-------|----------|----------|
@@ -674,7 +692,7 @@ The leaked prompt reveals specific rules for how Claude handles citations, sourc
 **Example: Forcing Web Search**
 ```xml
 <task>
-Research the current status of [topic] as of January 2026.
+Research the current status of [topic] as of February 2026.
 </task>
 
 <rules>
@@ -720,24 +738,27 @@ The full leaked prompt is available at: `github.com/asgeirtj/system_prompts_leak
 - **Skills Support**: Install via plugin marketplace
 - **Agents**: Can create specialized sub-agents
 - **Best for**: Software development, complex coding tasks, automation
-- **Latest Version**: v2.1.0 (Released January 7, 2026)
-- **Repository Stats**: 1,096+ commits, active development
+- **Latest Version**: v2.1.51 (February 2026)
+- **Repository Stats**: Active development, frequent releases
 
-**New in Claude Code v2.1.0 (January 2026)**:
-- **Skill Hot-Reloading**: Skills update without restart
-- **Session Teleportation**: Transfer context between sessions
-- **3x Memory Improvement**: Expanded context handling for larger codebases
-- **Hooks System**: PreToolUse, PostToolUse events for workflow customization
-- **Git Worktrees**: Isolated development branches for parallel feature work
+**New in Claude Code v2.1.x (January–February 2026)**:
+- **Agent Teams**: Multi-agent parallel workflows with file ownership
+- **Git Worktree Isolation**: `--worktree` flag for parallel feature work
+- **Claude Code Security**: Signed settings, network egress controls
+- **`--from-pr` Flag**: Review PRs directly from CLI
+- **Automatic Memories**: Persistent context across sessions
+- **Session Forking**: Branch conversations into parallel paths
+- **Fast Mode**: `/fast` toggle for faster output (same model)
+- **Claude in Chrome**: Browser-integrated AI assistance
+- **New CLI Commands**: `claude auth`, `claude agents`
+- **npm Deprecated**: Native installer, Homebrew, or WinGet preferred
+- Hooks System: PreToolUse, PostToolUse events for workflow customization
 - Plan Mode with subagents
 - `/rewind` command for undo operations
-- `/usage` command for plan limits
-- Automatic continuation when output token limit reached
-- GitHub Actions integration
 
 **Performance Metrics**:
 - Terminal-Bench Score: 52% (via Warp integration)
-- SWE-bench Verified: 80.9% (Claude Opus 4.5)
+- SWE-bench Verified: 80.9% (Claude Opus 4.6)
 - Failing Fast Benchmark: 74.4%
 
 **Enterprise Case Study - CRED**: Fintech with 15M+ users deployed Claude Code, achieving **2x execution speed** while maintaining quality.
@@ -793,7 +814,7 @@ import anthropic
 client = anthropic.Anthropic(api_key="your-api-key")
 
 response = client.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-sonnet-4-6-20250217",
     max_tokens=2048,
     system="You are a senior software architect specializing in distributed systems.",
     messages=[
@@ -1069,7 +1090,7 @@ Before creating the deck:
 
 ---
 
-## Ecosystem Tools (January 2026)
+## Ecosystem Tools (February 2026)
 
 Beyond Claude's core offerings, several tools complement or extend Claude-driven development workflows.
 
@@ -1335,21 +1356,23 @@ This is NOT about asking Claude AI directly—it's about crafting the optimal pr
 
 ## Document Metadata
 
-**Version**: 2.0
+**Version**: 2.2
 **Created**: November 19, 2025
-**Last Major Update**: January 15, 2026
+**Last Major Update**: February 24, 2026
 **Maintained By**: Research synthesis from official Anthropic sources
 **Sources**:
-- 170+ verified web sources (January 2026 research)
+- 200+ verified web sources (February 2026 research)
 - Official Anthropic documentation and engineering blogs
 - GitHub issues and community discussions
 - System prompt leak analysis
-- Comprehensive analysis of Claude 4.5 model capabilities
+- Comprehensive analysis of Claude 4.6 model capabilities
 
-**January 2026 Update Includes**:
-- Claude Opus 4.5 effort parameter documentation
-- Claude Cowork guide
-- Context7 MCP configuration
+**February 2026 Update Includes**:
+- Claude Opus 4.6 adaptive thinking and effort parameter GA
+- Claude Sonnet 4.6 coverage
+- Claude Code v2.1.51 (Agent Teams, Security, Fast Mode)
+- Updated MCP ecosystem stats (8,610+ servers, 97M+ downloads)
+- Pricing corrections (Haiku 4.5: $1/$5)
 - System prompt insights from leaked prompt
 - Self-evolving CLAUDE.md patterns
 - Skills wrapper architecture

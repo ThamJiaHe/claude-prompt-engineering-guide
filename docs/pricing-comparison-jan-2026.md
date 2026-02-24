@@ -1,36 +1,39 @@
-# Complete Pricing Comparison: Claude vs GPT-4 vs Gemini (January 2026)
+# Complete Pricing Comparison: Claude vs GPT-4 vs Gemini (February 2026)
 
 > Detailed pricing analysis with cost optimization strategies, ROI calculations, and practical guidance for enterprise deployment.
 
-**Last Updated:** February 4, 2026
-**Version:** 1.0.0
+**Last Updated:** February 24, 2026
+**Version:** 1.1.0
 **Status:** Production Ready
 
 ---
 
 ## Executive Summary
 
-Claude Opus 4.5 now offers **67% cost reduction** from previous flagship pricing while maintaining superior coding performance. This guide provides comprehensive pricing comparison and optimization strategies for enterprise deployments.
+Claude Opus 4.6 maintains competitive pricing while adding adaptive thinking and 128K max output. This guide provides comprehensive pricing comparison and optimization strategies for enterprise deployments.
 
 ### Quick Comparison
 
 | Provider | Flagship Model | Input (per 1M) | Output (per 1M) |
 |----------|----------------|----------------|-----------------|
-| **Anthropic** | Claude Opus 4.5 | $5.00 | $25.00 |
+| **Anthropic** | Claude Opus 4.6 | $5.00 | $25.00 |
 | OpenAI | GPT-4o | $5.00 | $15.00 |
 | Google | Gemini 1.5 Pro | $3.50 | $10.50 |
 
 ---
 
-## 1. Claude Pricing Tiers (January 2026)
+## 1. Claude Pricing Tiers (February 2026)
 
 ### 1.1 API Pricing (Per 1 Million Tokens)
 
 | Model | Input | Output | Batch Input | Batch Output |
 |-------|-------|--------|-------------|--------------|
-| **Claude Opus 4.5** | $5.00 | $25.00 | $2.50 | $12.50 |
-| **Claude Sonnet 4.5** | $3.00 | $15.00 | $1.50 | $7.50 |
-| **Claude Haiku 4.5** | $0.25 | $1.25 | $0.125 | $0.625 |
+| **Claude Opus 4.6** | $5.00 | $25.00 | $2.50 | $12.50 |
+| **Claude Opus 4.6 Fast** | $30.00 | $150.00 | — | — |
+| **Claude Sonnet 4.6** | $3.00 | $15.00 | $1.50 | $7.50 |
+| **Claude Haiku 4.5** | $1.00 | $5.00 | $0.50 | $2.50 |
+
+> **Long context (>200K tokens)**: 2x standard pricing. **Data residency (`inference_geo: "us"`)**: 1.1x pricing.
 
 ### 1.2 Subscription Plans
 
@@ -81,9 +84,9 @@ Claude Opus 4.5 now offers **67% cost reduction** from previous flagship pricing
 
 | Tier | Claude | OpenAI | Google | Best Value |
 |------|--------|--------|--------|------------|
-| **Flagship** | Opus 4.5: $5/$25 | o1: $15/$60 | Pro: $3.50/$10.50 | Gemini (cost) / Claude (quality) |
-| **Balanced** | Sonnet 4.5: $3/$15 | GPT-4o: $5/$15 | Pro: $3.50/$10.50 | Claude (performance/cost) |
-| **Fast/Cheap** | Haiku 4.5: $0.25/$1.25 | 4o-mini: $0.15/$0.60 | Flash: $0.075/$0.30 | Gemini Flash |
+| **Flagship** | Opus 4.6: $5/$25 | o1: $15/$60 | Pro: $3.50/$10.50 | Gemini (cost) / Claude (quality) |
+| **Balanced** | Sonnet 4.6: $3/$15 | GPT-4o: $5/$15 | Pro: $3.50/$10.50 | Claude (performance/cost) |
+| **Fast/Cheap** | Haiku 4.5: $1/$5 | 4o-mini: $0.15/$0.60 | Flash: $0.075/$0.30 | Gemini Flash |
 
 ---
 
@@ -169,9 +172,9 @@ The Batch API provides **50% discount** for asynchronous processing completed wi
 
 | Model | Standard Input | Batch Input | Standard Output | Batch Output |
 |-------|----------------|-------------|-----------------|--------------|
-| Opus 4.5 | $5.00 | **$2.50** | $25.00 | **$12.50** |
-| Sonnet 4.5 | $3.00 | **$1.50** | $15.00 | **$7.50** |
-| Haiku 4.5 | $0.25 | **$0.125** | $1.25 | **$0.625** |
+| Opus 4.6 | $5.00 | **$2.50** | $25.00 | **$12.50** |
+| Sonnet 4.6 | $3.00 | **$1.50** | $15.00 | **$7.50** |
+| Haiku 4.5 | $1.00 | **$0.50** | $5.00 | **$2.50** |
 
 ### 4.2 Batch Use Cases
 
@@ -442,9 +445,9 @@ Where:
 
 ---
 
-**Document Version:** 1.0.0
+**Document Version:** 1.1.0
 **Classification:** Pricing Guide
-**Last Updated:** February 4, 2026
+**Last Updated:** February 24, 2026
 
 ---
 
