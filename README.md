@@ -20,7 +20,7 @@
 
 <!-- Animated typing tagline -->
 <a href="https://claudeforge.vercel.app">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1000&color=E94560&center=true&vCenter=true&multiline=true&repeat=true&width=700&height=60&lines=Transform+plain+English+into+production-ready+prompts+%E2%9A%A1;7+Providers+%C2%B7+5+Targets+%C2%B7+9+Formats+%C2%B7+Unlimited+Possibilities" alt="Typing Animation" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1000&color=E94560&center=true&vCenter=true&repeat=true&width=900&height=80&lines=Transform+plain+English+into+production-ready+prompts+%E2%9A%A1;7+Providers+%C2%B7+5+Targets+%C2%B7+9+Formats+%C2%B7+Unlimited+Possibilities" alt="Typing Animation" />
 </a>
 
 <br/>
