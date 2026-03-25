@@ -7,7 +7,9 @@
       "Bash(git config:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(gh pr:*)",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []
