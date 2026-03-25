@@ -1,3 +1,8 @@
+<!-- Auto-Update Notice -->
+> 🤖 **This repository is automatically kept up to date.** Every week, an AI agent researches the latest Claude, Anthropic, MCP, and AI news — then opens a PR with updates across all guides, skills, and templates. I review and merge it manually. You're always reading current information.
+
+---
+
 <!-- Language Selector -->
 <div align="center">
 
