@@ -220,6 +220,7 @@ cd claudeforge && npm install && npm run dev
 - [Overview](#overview)
 - [Features](#features)
 - [Quick Start](#quick-start)
+- [Make Claude Code Behave Like a Senior Engineer](#-make-claude-code-behave-like-a-senior-engineer)
 - [Skills Collection](#skills-collection)
 - [Core Content](#core-content)
 - [Documentation Structure](#documentation-structure)
@@ -318,6 +319,32 @@ Discover reusable skill packages in our growing collection:
 - **[Skills Directory](./skills/)** — Browse available skills and contribute your own
 - **[Skill Template](./skills/examples/example-feedback-analyzer.md)** — Example feedback analyzer skill
 - **Learn to create skills** — Full documentation in [skills/README.md](./skills/README.md)
+
+---
+
+## ⚙️ Make Claude Code Behave Like a Senior Engineer
+
+Reading this guide teaches you *what* to prompt. **[claude-kopitiam](https://github.com/ThamJiaHe/claude-kopitiam)** makes Claude *automatically act on it* — without you having to ask every time.
+
+It's a companion config layer: 7 rules files that install into `~/.claude/rules/` and load on every single Claude Code session.
+
+| Without kopitiam | With kopitiam |
+|---|---|
+| Write Python → generic response | `router.md` auto-triggers `python-reviewer` |
+| Start planning → Claude dives into code | Routes to `brainstorming` → `writing-plans` first |
+| Touch auth or tokens → no safety net | `security.md` guards fire by default |
+| Any commit message accepted | Conventional commits enforced automatically |
+| Hit 85% context → silent degradation | `/save-session` + `/compact` discipline triggers |
+
+```bash
+# Install in 30 seconds
+git clone https://github.com/ThamJiaHe/claude-kopitiam
+cd claude-kopitiam && bash INSTALL.sh
+```
+
+> Your existing `CLAUDE.md` is never touched. Rules files extend it, never override it.
+
+[![claude-kopitiam](https://img.shields.io/badge/Companion_Tool-claude--kopitiam-0f3460?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ThamJiaHe/claude-kopitiam)
 
 ---
 
