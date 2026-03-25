@@ -77,3 +77,6 @@ htmlcov/
 .env.*.local
 secrets.json
 credentials.json
+
+# Local Claude Code settings (private, not for public repos)
+.claude/
