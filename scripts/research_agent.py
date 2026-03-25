@@ -3,7 +3,7 @@
 Daily AI Research & Documentation Update Agent
 
 What this does:
-  1. Researches latest Claude/Anthropic/AI news via Perplexity sonar-pro
+  1. Researches latest Claude/Anthropic/AI news via Perplexity sonar-pro (parallel)
   2. Detects the current latest Claude model automatically
   3. Plans which files need updating AND which new skill files to create
   4. Updates ALL relevant files: skills, templates, docs, guides, READMEs
@@ -20,12 +20,18 @@ Required secrets (GitHub repo → Settings → Secrets → Actions):
 import os
 import sys
 import json
-import time
 import subprocess
 import requests
 import anthropic
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
+
+
+def log(msg: str) -> None:
+    """Print with immediate flush so GitHub Actions shows output in real-time."""
+    print(msg, flush=True)
+
 
 # ─── Config ──────────────────────────────────────────────────────────────────
 
@@ -36,8 +42,9 @@ PERPLEXITY_KEY = os.environ["PERPLEXITY_API_KEY"]
 ANTHROPIC_KEY  = os.environ["ANTHROPIC_API_KEY"]
 GH_TOKEN       = os.environ["GH_TOKEN"]
 
-claude = anthropic.Anthropic(api_key=ANTHROPIC_KEY)
-CLAUDE_MODEL = "claude-opus-4-6"  # always latest
+# 180s timeout per Claude call — prevents infinite hangs on large files
+claude = anthropic.Anthropic(api_key=ANTHROPIC_KEY, timeout=180.0)
+CLAUDE_MODEL = "claude-opus-4-6"
 
 # Files to never modify
 SKIP_FILES = {
@@ -49,7 +56,7 @@ SKIP_FILES = {
     "planning/task.md",
     "planning/progress.md",
     "planning/activity.md",
-    "scripts/research_agent.py",   # never self-modify
+    "scripts/research_agent.py",
     "scripts/requirements.txt",
     ".github/workflows/daily-research-agent.yml",
 }
@@ -62,11 +69,10 @@ SKIP_DIRS = {
 }
 
 ELIGIBLE_EXTENSIONS = {".md", ".txt", ".yml", ".yaml", ".json"}
+MAX_FILE_SIZE_BYTES  = 150_000
 
-MAX_FILE_SIZE_BYTES = 150_000  # skip files >150 KB
 
-
-# ─── Phase 1: Research ───────────────────────────────────────────────────────
+# ─── Phase 1: Research (parallel) ────────────────────────────────────────────
 
 RESEARCH_QUERIES = [
     (
@@ -128,7 +134,8 @@ RESEARCH_QUERIES = [
 
 
 def perplexity_query(topic: str, query: str) -> dict:
-    """Run a single Perplexity sonar-pro query. Returns content + citations."""
+    """Single Perplexity sonar-pro query with 60s timeout."""
+    log(f"    → [{topic}] starting...")
     try:
         resp = requests.post(
             "https://api.perplexity.ai/chat/completions",
@@ -144,9 +151,8 @@ def perplexity_query(topic: str, query: str) -> dict:
                         "content": (
                             "You are a professional AI research analyst. "
                             "Provide factual, precise, citation-backed findings. "
-                            "Focus on concrete details: exact version numbers, dates, "
-                            "feature names, pricing figures, API model IDs. "
-                            "No speculation or filler."
+                            "Focus on: exact version numbers, dates, feature names, "
+                            "pricing figures, API model IDs. No speculation or filler."
                         ),
                     },
                     {"role": "user", "content": query},
@@ -154,44 +160,54 @@ def perplexity_query(topic: str, query: str) -> dict:
             },
             timeout=60,
         )
+        resp.raise_for_status()
         data = resp.json()
-        return {
-            "topic": topic,
-            "content": data["choices"][0]["message"]["content"],
-            "citations": data.get("citations", []),
-        }
+        content  = data["choices"][0]["message"]["content"]
+        citations = data.get("citations", [])
+        log(f"    ✓ [{topic}] done ({len(content)} chars, {len(citations)} sources)")
+        return {"topic": topic, "content": content, "citations": citations}
     except Exception as e:
-        print(f"  ⚠️  Perplexity [{topic}] failed: {e}")
+        log(f"    ⚠️  [{topic}] failed: {e}")
         return {"topic": topic, "content": "", "citations": []}
 
 
 def gather_research() -> tuple[str, str]:
     """
-    Run all research queries via Perplexity.
+    Run all Perplexity queries IN PARALLEL.
     Returns: (full_research_text, latest_opus_model_name)
     """
-    print("  Querying Perplexity sonar-pro...")
+    log("  Launching 6 Perplexity queries in parallel...")
+    results_map: dict[str, dict] = {}
+
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        futures = {
+            pool.submit(perplexity_query, topic, query): topic
+            for topic, query in RESEARCH_QUERIES
+        }
+        for future in as_completed(futures):
+            result = future.result()
+            results_map[result["topic"]] = result
+
+    # Assemble in original query order for consistent research doc
     sections = []
     latest_model_raw = ""
-
-    for topic, query in RESEARCH_QUERIES:
-        print(f"    → {topic}...")
-        result = perplexity_query(topic, query)
-        if result["content"]:
+    for topic, _ in RESEARCH_QUERIES:
+        result = results_map.get(topic, {})
+        if result.get("content"):
             sources = "\n".join(f"  - {c}" for c in result["citations"][:6])
             sections.append(
                 f"## {topic.upper()}\n{result['content']}\n\nSources:\n{sources}"
             )
             if topic == "latest_claude_model":
                 latest_model_raw = result["content"]
-        time.sleep(0.5)  # gentle rate limiting
 
     full_research = f"# Research — {TODAY}\n\n" + "\n\n---\n\n".join(sections)
 
-    # Ask Claude to extract the canonical latest Opus model name
+    # Extract canonical latest model name
     latest_model = "Claude Opus 4.6"  # safe fallback
     if latest_model_raw:
         try:
+            log("  Extracting latest model name from research...")
             resp = claude.messages.create(
                 model=CLAUDE_MODEL,
                 max_tokens=50,
@@ -208,13 +224,13 @@ def gather_research() -> tuple[str, str]:
             extracted = resp.content[0].text.strip()
             if extracted:
                 latest_model = extracted
-        except Exception:
-            pass  # use fallback
+        except Exception as e:
+            log(f"  ⚠️  Model extraction failed ({e}), using fallback: {latest_model}")
 
     return full_research, latest_model
 
 
-# ─── Phase 2: Discover all repo files ────────────────────────────────────────
+# ─── Phase 2: Discover files ──────────────────────────────────────────────────
 
 def get_all_eligible_files() -> list[Path]:
     """Return every file in the repo eligible for agent review."""
@@ -222,7 +238,7 @@ def get_all_eligible_files() -> list[Path]:
     for path in REPO_ROOT.rglob("*"):
         if not path.is_file():
             continue
-        rel = path.relative_to(REPO_ROOT)
+        rel   = path.relative_to(REPO_ROOT)
         parts = rel.parts
 
         if any(part in SKIP_DIRS for part in parts):
@@ -238,19 +254,16 @@ def get_all_eligible_files() -> list[Path]:
     return sorted(eligible)
 
 
-# ─── Phase 3: Planning ───────────────────────────────────────────────────────
+# ─── Phase 3: Planning ────────────────────────────────────────────────────────
 
 def plan_all_updates(research: str, latest_model: str, files: list[Path]) -> dict:
-    """
-    Ask Claude to decide:
-    - Which existing files need updating and why
-    - Which brand new skill files to create
-    """
+    """Ask Claude to decide which files to update and which new skills to create."""
     file_index = "\n".join(f"- {f.relative_to(REPO_ROOT)}" for f in files)
+    log(f"  Sending plan request to Claude ({len(file_index)} chars file index)...")
 
     resp = claude.messages.create(
         model=CLAUDE_MODEL,
-        max_tokens=6000,
+        max_tokens=4096,
         messages=[{
             "role": "user",
             "content": f"""You are the chief editor of a Claude/Anthropic prompt engineering repository.
@@ -258,58 +271,53 @@ def plan_all_updates(research: str, latest_model: str, files: list[Path]) -> dic
 Today is {TODAY}. The latest Claude Opus model is: {latest_model}
 
 ## Today's Research
-{research[:10000]}
+{research[:8000]}
 
-## All Files Currently in Repo
+## All Files in Repo
 {file_index}
 
-## Your Task
-Produce a complete update plan as a JSON object with two keys:
+## Task
+Return a JSON object with two keys:
 
-### Key 1: "updates"
-Array of EXISTING files that need changes. For each:
+"updates" — existing files that need changes:
 {{
-  "file": "relative/path/from/repo/root",
-  "reason": "specific description of what is outdated or missing",
+  "file": "relative/path",
+  "reason": "specific description of what is outdated",
   "priority": "high|medium|low",
-  "update_compatibility": true
+  "update_compatibility": true/false
 }}
 
-Set "update_compatibility": true for ANY file that contains:
-- Claude model names (Opus 4.5, Sonnet 4.5, etc.)
-- Compatibility fields in frontmatter
-- Model ID strings (claude-opus-4-5-..., etc.)
-- Version numbers for Claude Code
+Set update_compatibility=true for files with Claude model names, compatibility frontmatter,
+model ID strings, or Claude Code version numbers.
 
-Priority guide:
-- "high"   = model names/IDs, version numbers, pricing, breaking changes, compatibility fields
-- "medium" = new features, ecosystem stats, server counts, new commands
-- "low"    = minor additions, supplementary info
+Priority:
+- high   = model names/IDs, version numbers, pricing, breaking changes
+- medium = new features, ecosystem stats, new commands
+- low    = minor additions
 
-### Key 2: "new_skills"
-Array of brand NEW skill files to create under skills/examples/. Only include if the
-research reveals a genuinely important tool not already covered in the repo. For each:
+"new_skills" — brand new skill files to create in skills/examples/:
 {{
   "filename": "tool-name-skill.md",
-  "topic": "Human-readable topic name",
-  "reason": "why this tool is newly important for Claude Code users"
+  "topic": "Human-readable name",
+  "reason": "why this is newly important"
 }}
 
-Return valid JSON only. No markdown code fences, no explanation.""",
+Only add new_skills if research reveals genuinely important tools not yet in the repo.
+
+Return valid JSON only. No markdown fences.""",
         }],
     )
 
     try:
         text = resp.content[0].text.strip()
-        # Strip markdown fences if Claude added them
         if text.startswith("```"):
-            lines = text.split("\n")
-            text = "\n".join(lines[1:])
-            if text.endswith("```"):
-                text = "\n".join(text.split("\n")[:-1])
+            text = "\n".join(text.split("\n")[1:])
+        if text.endswith("```"):
+            text = "\n".join(text.split("\n")[:-1])
         return json.loads(text)
     except Exception as e:
-        print(f"  ⚠️  Planning JSON parse failed: {e}")
+        log(f"  ⚠️  Plan JSON parse failed: {e}")
+        log(f"  Raw response: {resp.content[0].text[:500]}")
         return {"updates": [], "new_skills": []}
 
 
@@ -322,42 +330,40 @@ def update_existing_file(
     reason: str,
     update_compatibility: bool,
 ) -> bool:
-    """
-    Ask Claude to intelligently update a single file.
-    Returns True if the file was actually changed.
-    """
+    """Update a single file. Returns True if file was changed."""
     rel = str(file_path.relative_to(REPO_ROOT))
     try:
         current = file_path.read_text(encoding="utf-8")
     except Exception as e:
-        print(f"     ⚠️  Could not read {rel}: {e}")
+        log(f"     ⚠️  Cannot read {rel}: {e}")
         return False
 
     compat_block = ""
     if update_compatibility:
         compat_block = f"""
 COMPATIBILITY UPDATE (mandatory):
-- Replace ALL occurrences of old Claude model names with "{latest_model}"
-  e.g. "Claude Opus 4.5" → "{latest_model}", "Claude Opus 4.6" → keep if already latest
-- Update frontmatter `compatibility:` to: "{latest_model}, Claude Code v2.x"
-- Update frontmatter `updated:` to: {TODAY}
-- Update model ID strings in code examples to latest (e.g. claude-opus-4-6-20250205)
-- Update any inline text referring to old model versions
+- Replace old Claude model names → "{latest_model}"
+- Update frontmatter `compatibility:` → "{latest_model}, Claude Code v2.x"
+- Update frontmatter `updated:` → {TODAY}
+- Update model ID strings in code examples to the latest version
+- Update any inline text referencing old model versions
 """
 
-    resp = claude.messages.create(
-        model=CLAUDE_MODEL,
-        max_tokens=8192,
-        messages=[{
-            "role": "user",
-            "content": f"""You are updating a file in a Claude/Anthropic prompt engineering guide repository.
+    log(f"     Calling Claude for {rel} ({len(current)} chars)...")
+    try:
+        resp = claude.messages.create(
+            model=CLAUDE_MODEL,
+            max_tokens=8192,
+            messages=[{
+                "role": "user",
+                "content": f"""Update this file from a Claude/Anthropic prompt engineering guide repository.
 
 ## File: {rel}
 ## Current Content:
 {current}
 
 ## Research (as of {TODAY}):
-{research[:5000]}
+{research[:4000]}
 
 ## What needs updating:
 {reason}
@@ -367,14 +373,17 @@ COMPATIBILITY UPDATE (mandatory):
 1. Preserve ALL existing structure, formatting, and writing style exactly
 2. Update version numbers, model IDs, pricing, feature lists, stats, dates
 3. Update "Last Updated" / "Last Major Update" dates to {TODAY}
-4. Add new information revealed by research that genuinely belongs in this file
-5. Do NOT restructure, reformat, or rewrite content that is still accurate
-6. Do NOT add padding, speculation, or content outside this file's scope
-7. If nothing actually needs changing after careful review, return exactly: NO_CHANGES_NEEDED
+4. Add new information from research that genuinely belongs in this file
+5. Do NOT restructure or rewrite content that is already accurate
+6. Do NOT add padding, speculation, or off-topic content
+7. If nothing needs changing after review, return exactly: NO_CHANGES_NEEDED
 
 Return the complete updated file content only (or NO_CHANGES_NEEDED). No preamble.""",
-        }],
-    )
+            }],
+        )
+    except Exception as e:
+        log(f"     ⚠️  Claude call failed for {rel}: {e}")
+        return False
 
     new_content = resp.content[0].text.strip()
 
@@ -397,22 +406,21 @@ def create_new_skill(
     latest_model: str,
     format_reference: str,
 ) -> bool:
-    """
-    Generate and write a new skill file under skills/examples/.
-    Returns True if file was created.
-    """
+    """Generate and write a new skill file. Returns True if created."""
     skill_path = REPO_ROOT / "skills" / "examples" / filename
 
     if skill_path.exists():
-        print(f"     – {filename} already exists, skipping")
+        log(f"     – {filename} already exists, skipping")
         return False
 
-    resp = claude.messages.create(
-        model=CLAUDE_MODEL,
-        max_tokens=8192,
-        messages=[{
-            "role": "user",
-            "content": f"""Create a complete, production-ready Claude Code skill file for: {topic}
+    log(f"     Generating skill file for: {topic}...")
+    try:
+        resp = claude.messages.create(
+            model=CLAUDE_MODEL,
+            max_tokens=8192,
+            messages=[{
+                "role": "user",
+                "content": f"""Create a complete, production-ready Claude Code skill file for: {topic}
 
 Why this skill is needed (from research):
 {reason}
@@ -429,12 +437,15 @@ Requirements:
 - Set updated to: {TODAY}
 - Sections: Overview, core patterns with real code examples, anti-patterns, verification checklist, Resources
 - Code examples must be practical and production-ready
-- Match the exact writing style, depth, and format of the reference above
-- End with a Resources section containing real, valid URLs
+- Match the exact writing style, depth, and format of the reference
+- End with a Resources section with real valid URLs
 
-Return the complete skill file content only. No preamble or explanation.""",
-        }],
-    )
+Return the complete skill file content only. No preamble.""",
+            }],
+        )
+    except Exception as e:
+        log(f"     ⚠️  Skill generation failed for {filename}: {e}")
+        return False
 
     content = resp.content[0].text.strip()
     skill_path.write_text(content + "\n", encoding="utf-8")
@@ -453,12 +464,14 @@ def update_skills_readme(new_skill_defs: list[dict], latest_model: str):
         for s in new_skill_defs
     )
 
-    resp = claude.messages.create(
-        model=CLAUDE_MODEL,
-        max_tokens=6000,
-        messages=[{
-            "role": "user",
-            "content": f"""Update this skills/README.md to include newly created skill files.
+    log("     Updating skills/README.md index...")
+    try:
+        resp = claude.messages.create(
+            model=CLAUDE_MODEL,
+            max_tokens=6000,
+            messages=[{
+                "role": "user",
+                "content": f"""Update this skills/README.md to include newly created skill files.
 
 Current README:
 {current}
@@ -467,18 +480,18 @@ New skills to add:
 {skills_summary}
 
 Rules:
-1. Add each new skill to the appropriate table/section based on its topic category
+1. Add each new skill to the appropriate table/section based on its topic
 2. Follow the exact existing table format: | [Name](./examples/filename.md) | Purpose | Status |
-3. Update the total skill count mentioned in the intro text
+3. Update the total skill count in the intro text
 4. Update any "Last Updated" date to {TODAY}
-5. Preserve everything else exactly as-is
+5. Preserve everything else exactly
 
 Return the complete updated README content only.""",
-        }],
-    )
-
-    new_content = resp.content[0].text.strip()
-    readme_path.write_text(new_content + "\n", encoding="utf-8")
+            }],
+        )
+        readme_path.write_text(resp.content[0].text.strip() + "\n", encoding="utf-8")
+    except Exception as e:
+        log(f"     ⚠️  skills/README.md update failed: {e}")
 
 
 # ─── Phase 6: PR creation ────────────────────────────────────────────────────
@@ -487,7 +500,9 @@ def create_pr(updated_files: list[str], created_files: list[str], latest_model: 
     """Commit all changes to a new branch and open a PR."""
     branch = f"chore/research-update-{TODAY}"
 
-    run = lambda cmd: subprocess.run(cmd, cwd=REPO_ROOT, check=True)
+    def run(cmd: list[str]):
+        log(f"  $ {' '.join(cmd)}")
+        subprocess.run(cmd, cwd=REPO_ROOT, check=True)
 
     run(["git", "config", "user.name",  "Research Agent"])
     run(["git", "config", "user.email", "agent@noreply.github.com"])
@@ -520,7 +535,7 @@ Automated update by the Daily Research Agent.
 - Claude Code CLI — version, commands, features
 - Anthropic API — models, pricing, parameters
 - MCP Ecosystem — server counts, new integrations
-- New tools/frameworks → new skill files
+- New tools/frameworks → new skill files created
 - Superpowers & skills marketplace updates
 
 ### Before Merging
@@ -547,41 +562,45 @@ Automated update by the Daily Research Agent.
 # ─── Main ────────────────────────────────────────────────────────────────────
 
 def main():
-    print(f"\n🤖  Daily Research Agent — {TODAY}\n{'─' * 50}")
+    log(f"\n🤖  Daily Research Agent — {TODAY}")
+    log("─" * 50)
 
-    # Phase 1 — Research
-    print("\n[1/6] Gathering research via Perplexity sonar-pro...")
+    # Phase 1 — Research (parallel)
+    log("\n[1/6] Gathering research via Perplexity sonar-pro (parallel)...")
     research, latest_model = gather_research()
-    print(f"  ✓ Research complete")
-    print(f"  ✓ Latest model: {latest_model}")
+    log(f"  ✓ Research complete — {len(research)} chars gathered")
+    log(f"  ✓ Latest model detected: {latest_model}")
 
     # Phase 2 — Discover files
-    print("\n[2/6] Scanning repo files...")
+    log("\n[2/6] Scanning repo files...")
     files = get_all_eligible_files()
-    print(f"  ✓ {len(files)} eligible files found")
+    log(f"  ✓ {len(files)} eligible files found")
+    for f in files:
+        log(f"    - {f.relative_to(REPO_ROOT)}")
 
     # Phase 3 — Plan
-    print("\n[3/6] Planning updates (Claude opus-4-6)...")
+    log("\n[3/6] Planning updates (Claude opus-4-6)...")
     plan       = plan_all_updates(research, latest_model, files)
     updates    = plan.get("updates", [])
     new_skills = plan.get("new_skills", [])
-    print(f"  ✓ {len(updates)} files queued for update")
-    print(f"  ✓ {len(new_skills)} new skill files to create")
+    log(f"  ✓ {len(updates)} files queued for update")
+    log(f"  ✓ {len(new_skills)} new skill files to create")
 
     if not updates and not new_skills:
-        print("\n✓ Repo is fully current. Nothing to do today.")
+        log("\n✓ Repo is fully current. Nothing to do today.")
         sys.exit(0)
 
     # Phase 4 — Update existing files
-    print("\n[4/6] Updating existing files...")
+    log("\n[4/6] Updating existing files...")
     updated_files = []
     for item in sorted(
         updates,
         key=lambda x: {"high": 0, "medium": 1, "low": 2}.get(x.get("priority", "low"), 2),
     ):
-        fpath = REPO_ROOT / item["file"]
+        fpath    = REPO_ROOT / item["file"]
         priority = item.get("priority", "?")
-        print(f"  → {item['file']} [{priority}]")
+        log(f"  → {item['file']} [{priority}]")
+        log(f"     reason: {item['reason'][:80]}...")
 
         changed = update_existing_file(
             fpath,
@@ -592,15 +611,14 @@ def main():
         )
         if changed:
             updated_files.append(item["file"])
-            print(f"     ✓ updated")
+            log(f"     ✓ updated")
         else:
-            print(f"     – no changes needed")
+            log(f"     – no changes needed")
 
     # Phase 5 — Create new skill files
-    print("\n[5/6] Creating new skill files...")
+    log("\n[5/6] Creating new skill files...")
     created_files = []
 
-    # Load format reference from an existing skill
     format_ref = ""
     ref_path = REPO_ROOT / "skills" / "examples" / "api-development-skill.md"
     if ref_path.exists():
@@ -610,38 +628,35 @@ def main():
         fname  = skill_def["filename"]
         topic  = skill_def["topic"]
         reason = skill_def["reason"]
-        print(f"  → Creating: {fname} ({topic})")
+        log(f"  → {fname} ({topic})")
 
         created = create_new_skill(
             fname, topic, reason, research, latest_model, format_ref
         )
         if created:
-            rel = f"skills/examples/{fname}"
-            created_files.append(rel)
-            print(f"     ✓ created")
+            created_files.append(f"skills/examples/{fname}")
+            log(f"     ✓ created")
 
-    # Update skills/README.md if new skills were added
     if created_files:
-        print("  → Updating skills/README.md...")
+        log("  → Updating skills/README.md...")
         update_skills_readme(new_skills, latest_model)
         if "skills/README.md" not in updated_files:
             updated_files.append("skills/README.md")
 
-    # Done?
     all_changed = updated_files + created_files
     if not all_changed:
-        print("\n✓ No actual changes after processing. Repo is already current.")
+        log("\n✓ No actual changes after processing. Repo is already current.")
         sys.exit(0)
 
     # Phase 6 — Open PR
-    print(f"\n[6/6] Creating PR ({len(all_changed)} total changes)...")
+    log(f"\n[6/6] Creating PR ({len(all_changed)} total changes)...")
     create_pr(updated_files, created_files, latest_model)
 
-    print(f"\n{'─' * 50}")
-    print(f"✅  Done.")
-    print(f"   Updated : {len(updated_files)} files")
-    print(f"   Created : {len(created_files)} new skill files")
-    print(f"   Model   : {latest_model}")
+    log("\n" + "─" * 50)
+    log("✅  Done.")
+    log(f"   Updated : {len(updated_files)} files")
+    log(f"   Created : {len(created_files)} new skill files")
+    log(f"   Model   : {latest_model}")
 
 
 if __name__ == "__main__":

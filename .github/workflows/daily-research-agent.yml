@@ -34,7 +34,8 @@ jobs:
           PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GH_TOKEN: ${{ secrets.GH_PAT }}
-        run: python scripts/research_agent.py
+          PYTHONUNBUFFERED: "1"   # flush stdout immediately so logs appear in real-time
+        run: python -u scripts/research_agent.py
 
       - name: Report status
         if: always()
