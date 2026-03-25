@@ -1,8 +1,8 @@
-name: Daily Research Agent
+name: Weekly Research Agent
 
 on:
   schedule:
-    - cron: '0 6 * * *' # 06:00 UTC daily
+    - cron: '0 1 * * 2' # Every Tuesday 01:00 UTC (09:00 SGT) — hottest AI news day
   workflow_dispatch:     # manual trigger from GitHub Actions tab
 
 jobs:
@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r scripts/requirements.txt
 
-      - name: Run Daily Research Agent
+      - name: Run Weekly Research Agent
         env:
           PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
