@@ -3,6 +3,21 @@
 
 ---
 
+<!-- Ko-Fi Support Banner -->
+<div align="center">
+
+<a href="https://ko-fi.com/thamjiahe" target="_blank">
+  <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support on Ko-fi" height="36"/>
+</a>
+
+**This repo runs on API credits — every coffee keeps it alive and updated.**<br/>
+Perplexity + Anthropic APIs power the weekly research agent that keeps every guide current.<br/>
+If this guide saved you time, a coffee goes a long way. ☕
+
+</div>
+
+---
+
 <!-- Language Selector -->
 <div align="center">
 
@@ -210,6 +225,7 @@ cd claudeforge && npm install && npm run dev
 - [Documentation Structure](#documentation-structure)
 - [Key Sections](#key-sections)
 - [Examples & Templates](#examples--templates)
+- [Support This Project](#-support-this-project)
 - [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
@@ -526,6 +542,43 @@ See the [templates/](./templates/) directory for complete examples.
 
 ---
 
+## ☕ Support This Project
+
+<div align="center">
+
+<a href="https://ko-fi.com/thamjiahe" target="_blank">
+  <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support on Ko-fi" height="44"/>
+</a>
+
+<br/><br/>
+
+[![Ko-Fi](https://img.shields.io/badge/Ko--Fi-Support_This_Repo-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/thamjiahe)
+
+</div>
+
+This guide is **free and always will be** — but keeping it accurate costs real money.
+
+Every week, an AI agent queries the **Perplexity API** to research the latest Claude, Anthropic, and AI ecosystem news, then uses the **Anthropic API** to intelligently update every guide, skill, and template in this repo. That automation runs on API credits.
+
+**Your donation directly funds:**
+
+| What | Why it matters |
+|---|---|
+| 🔍 **Perplexity API** | Powers the weekly internet research agent |
+| 🤖 **Anthropic API** | Claude Opus rewrites and updates the guides |
+| ⚡ **Weekly automation** | Keeps every section current as AI evolves fast |
+
+> Without API credits, the research agent stops and this repo goes stale.<br/>
+> A coffee or two each month keeps it running and up to date for everyone.
+
+<div align="center">
+
+**[☕ Buy me a coffee on Ko-Fi →](https://ko-fi.com/thamjiahe)**
+
+</div>
+
+---
+
 ## 🤝 Contributing
 
 We welcome contributions! Whether you're:
@@ -650,6 +703,6 @@ Want to improve this guide? [See CONTRIBUTING.md](./CONTRIBUTING.md) for the pro
 
 [⭐ Star this repository](https://github.com/ThamJiaHe/claude-prompt-engineering-guide) if you found it helpful!
 
-[Report Issues](https://github.com/ThamJiaHe/claude-prompt-engineering-guide/issues) • [Contribute](./CONTRIBUTING.md) • [Discuss](https://github.com/ThamJiaHe/claude-prompt-engineering-guide/discussions)
+[Report Issues](https://github.com/ThamJiaHe/claude-prompt-engineering-guide/issues) • [Contribute](./CONTRIBUTING.md) • [Discuss](https://github.com/ThamJiaHe/claude-prompt-engineering-guide/discussions) • [☕ Ko-Fi](https://ko-fi.com/thamjiahe)
 
 </div>
