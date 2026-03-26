@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.4.0] - 2026-03-26
+
+### Added
+
+#### New Guides (5 new files)
+- **Plugins Guide** (`docs/plugins-guide.md`) — Plugin ecosystem, marketplace, top plugins (Superpowers, ECC, PR Review Toolkit), plugin.json manifest, creating and publishing plugins
+- **CLAUDE.md Guide** (`docs/claude-md-guide.md`) — File locations & scope hierarchy, rules files, auto-memory system, best practices, self-evolving and auto-router patterns
+- **Subagents Guide** (`docs/subagents-guide.md`) — Agent tool parameters, tool inheritance (allowlist/denylist), model routing, parallel execution, markdown agent definitions
+- **Tips & Tricks** (`docs/claude-code-tips-and-tricks.md`) — 37 power user tips across 11 categories: context management, remote execution, keyboard shortcuts, model optimization, hooks, prompting
+- **Skills Catalog** (`docs/skills-catalog.md`) — Curated catalog of 100+ skills from ECC/ClawHub, Superpowers, and community sources across 15 categories
+
+#### README Update
+- Complete README.md rewrite — shorter, categorical guide listing, March 2026 update section, "How to Use" quickstart
+
+#### INDEX.md Update
+- Added 5 new guide entries and 5 new quick links
+- Version bump to 2.4.0
+
+---
+
 ## [2.3.0] - 2026-03-25
 
 ### Added
