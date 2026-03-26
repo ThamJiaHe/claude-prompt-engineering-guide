@@ -1,6 +1,6 @@
 # Repository Index
 
-> **Version:** 2.2.0 | **Last Updated:** February 24, 2026
+> **Version:** 2.3.0 | **Last Updated:** 25 March 2026
 
 Master navigation for the Claude Prompt Engineering Guide repository.
 
@@ -32,6 +32,12 @@ Master navigation for the Claude Prompt Engineering Guide repository.
 | [mcp-ecosystem-overview.md](./docs/mcp-ecosystem-overview.md) | MCP ecosystem guide (Jan 2026) |
 | [skills-guide.md](./docs/skills-guide.md) | Skills documentation and patterns |
 | [superpowers-guide.md](./docs/superpowers-guide.md) | Superpowers plugin guide |
+| [hooks-guide.md](./docs/hooks-guide.md) | Claude Code Hooks (24 events) reference |
+| [agent-teams-guide.md](./docs/agent-teams-guide.md) | Agent Teams multi-agent coordination |
+| [ultrathink-thinking-modes.md](./docs/ultrathink-thinking-modes.md) | Ultrathink, adaptive thinking, effort levels |
+| [antigravity-comparison.md](./docs/antigravity-comparison.md) | Google Antigravity vs Claude Code |
+| [messenger-integrations.md](./docs/messenger-integrations.md) | WhatsApp, Telegram, Slack, Discord integrations |
+| [motion-graphics-claude-remotion-guide.md](./docs/motion-graphics-claude-remotion-guide.md) | Remotion video generation with Claude Code |
 | [healthcare-compliance.md](./docs/healthcare-compliance.md) | HIPAA/healthcare integration |
 
 ### Research & Analysis (`docs/`)
@@ -146,6 +152,9 @@ Master navigation for the Claude Prompt Engineering Guide repository.
 - **New to Claude?** Start with [Quick Start Guide](./docs/quick-start.md)
 - **Building an app?** Read [API Integration Guide](./docs/api-guide.md)
 - **Using Claude Code?** See [Claude Code Guide](./docs/claude-code-guide.md)
+- **Hooks?** See [Hooks Guide](./docs/hooks-guide.md)
+- **Agent Teams?** See [Agent Teams Guide](./docs/agent-teams-guide.md)
+- **Ultrathink?** See [Thinking Modes Guide](./docs/ultrathink-thinking-modes.md)
 - **Need skills?** Browse [Skills Examples](./skills/examples/)
 - **Migrating?** Check [Migration Guide](./MIGRATION-NOV2025-JAN2026.md)
 - **Market Analysis?** Read [Ecosystem Market Analysis](./docs/ecosystem-market-analysis.md)
@@ -157,5 +166,5 @@ Master navigation for the Claude Prompt Engineering Guide repository.
 ---
 
 **Repository:** Claude Prompt Engineering Guide
-**Version:** 2.2.0
-**Updated:** February 24, 2026
+**Version:** 2.3.0
+**Updated:** 25 March 2026

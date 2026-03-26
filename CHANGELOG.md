@@ -7,6 +7,56 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.3.0] - 2026-03-25
+
+### Added
+
+#### New Guides (5 new files)
+- **Hooks Guide** (`docs/hooks-guide.md`) — Complete reference for all 24 Claude Code hook events, 4 hook types (command/http/prompt/agent), matchers, exit codes, and common patterns
+- **Agent Teams Guide** (`docs/agent-teams-guide.md`) — Multi-agent coordination: architecture, team-lead/teammate model, file ownership, display modes, slash commands
+- **Ultrathink & Thinking Modes** (`docs/ultrathink-thinking-modes.md`) — Adaptive thinking, effort levels (low/medium/high/max), ultrathink keyword, /effort command, API usage, migration from legacy extended thinking
+- **Antigravity Comparison** (`docs/antigravity-comparison.md`) — Google Antigravity vs Claude Code: philosophy, features, Mission Control vs Agent Teams, pricing, interoperability, skill compatibility
+- **Messenger Integrations** (`docs/messenger-integrations.md`) — WhatsApp, Telegram, Slack, Discord integration patterns: MCP servers, bot frameworks, remote control architecture
+
+#### Claude Code v2.1.83 Features
+- Voice Mode with push-to-talk in 20 languages
+- 1M token context window (Opus 4.6)
+- 128K max output tokens (Opus 4.6)
+- `/loop` command for recurring tasks
+- `/effort` command for thinking level control
+- `/context` command for context optimization
+- Computer Use (remote Mac control, research preview)
+- `CwdChanged` and `FileChanged` hooks
+- `managed-settings.d/` drop-in settings directory
+- Transcript search
+- Agent frontmatter: `effort`, `maxTurns`, `disallowedTools`
+- `ExitWorktree` tool for programmatic worktree exit
+- `worktree.sparsePaths` for monorepo sparse checkout
+- MCP Elicitation for mid-tool-call user input
+
+#### MCP 2026 Updates
+- MCP is now a Linux Foundation open standard
+- 2026 roadmap: transport evolution, agent communication, governance, enterprise readiness
+- MCP Tool Search now GA (enabled by default, 95% context reduction)
+- OAuth 2.1 with Dynamic Client Registration
+- FastMCP registry: 1,864+ servers (Context7 #1, Playwright #2)
+- MCP Apps: UI rendering via `ui://` scheme in sandboxed iframes
+- MCP Elicitation events in Claude Code hooks
+
+### Changed
+
+- Claude Code Guide — Updated to v2.1.83 with March 2026 features, platforms table, web app documentation
+- MCP Integration Guide — Updated with Linux Foundation status, 2026 roadmap, Tool Search GA, OAuth 2.1, FastMCP stats
+- INDEX.md — Added 5 new guide entries and quick links
+- VERSION — Bumped to 2.3.0
+
+### Research Sources
+- 4 parallel research agents — Web search, official docs, community sources
+- 340+ web searches conducted across all agents
+- Cross-validated against official Anthropic/MCP announcements and changelogs
+
+---
+
 ## [2.2.0] - 2026-02-24
 
 ### Added

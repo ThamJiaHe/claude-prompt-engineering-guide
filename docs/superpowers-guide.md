@@ -2,7 +2,7 @@
 
 Master advanced Claude Code capabilities with the Superpowers plugin.
 
-> **Last Updated: January 15, 2026** | Includes hooks best practices and browser automation
+> **Last Updated: 25 March 2026** | Includes hooks best practices and browser automation
 
 ---
 

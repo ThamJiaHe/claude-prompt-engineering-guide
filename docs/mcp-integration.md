@@ -2,7 +2,7 @@
 
 Learn how to integrate Model Context Protocol (MCP) with Claude for extended capabilities.
 
-> **Last Updated: February 24, 2026** | Includes MCP Apps, 8,610+ servers, 97M+ monthly SDK downloads, MCP Tool Search, OAuth 2.0, and Skills integration
+> **Last Updated: 25 March 2026** | Includes MCP as Linux Foundation standard, 2026 roadmap, MCP Apps, 1,864+ FastMCP servers, Tool Search GA, OAuth 2.1, MCP Elicitation, and Skills integration
 
 ---
 
@@ -17,18 +17,21 @@ Learn how to integrate Model Context Protocol (MCP) with Claude for extended cap
 - ✅ **Local Files** — Read and write files on your machine
 - ✅ **External Services** — Integrate with databases, APIs, and platforms
 
-### January–February 2026 Updates
+### January–March 2026 Updates
 
-- **MCP Apps** — UI rendering within Claude's chat window (charts, forms, dashboards) from third-party apps (Jan 26, 2026)
-- **8,610+ Servers** — PulseMCP registry catalogs 8,610+ servers; mcp.so lists 17,837+ (Feb 2026)
-- **MCP Tool Search** — Claude Code dynamically loads MCP tools into context, reducing token overhead by up to 95%
-- **OAuth 2.0 + Step-up Authorization** — Enhanced security model (Jan 15, 2026)
-- **Pre-configured OAuth** — `--client-id` and `--client-secret` flags for MCP servers without Dynamic Client Registration
-- **Skills Integration Deepening** — MCP and Skills working together seamlessly
-- **Context7 MCP** — Up-to-date library documentation (#2 ranked MCP server)
+- **Linux Foundation Standard** — MCP is now an open standard under the Linux Foundation with Working Groups, Spec Enhancement Proposals (SEPs), and contributor ladder
+- **2026 Roadmap** — 4 priority areas: Transport evolution (stateless Streamable HTTP), Agent communication (Tasks primitive), Governance maturation, Enterprise readiness
+- **MCP Apps** — UI rendering within Claude's chat window (charts, forms, dashboards) from third-party apps (Jan 26, 2026). Uses `ui://` scheme with sandboxed iframes
+- **MCP Tool Search (GA)** — Now enabled by default. Reduces context overhead from 77K to ~8.7K tokens (95% reduction). Activates automatically when tool descriptions exceed 10% of context window
+- **MCP Elicitation** — MCP servers can request user input mid-tool-call (Claude Code v2.1.76)
+- **OAuth 2.1** — Dynamic Client Registration (DCR), SSO via Cross-App Access (XAA). Roadmap: DPoP (SEP-1932), Workload Identity Federation (SEP-1933)
+- **FastMCP Registry** — 1,864+ servers tracked. Context7 is #1 (11K views, 690 installs). Playwright #2 (~6K views)
+- **Context7 MCP** — Up-to-date, version-specific library docs injected at query time. Eliminates stale training data
+- **Firecrawl MCP** — 12+ tools: scrape, crawl, search, structured extraction, autonomous research, cloud browser
 - **Dynamic loading** — Load/unload MCP servers during sessions
-- **SSE deprecated** — Migrate to streamableHttp transport
+- **SSE deprecated** — Migrate to Streamable HTTP transport
 - **Beta header updated** — Use `mcp-client-2025-11-20` (previous `2025-04-04` is deprecated)
+- **On the Horizon** — Triggers & event-driven updates (webhooks), streamed results, security hardening, extensions ecosystem
 
 ### MCP vs Skills: Token Comparison
 
