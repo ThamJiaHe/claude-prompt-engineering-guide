@@ -2,7 +2,7 @@
 
 > **Last updated:** 26 March 2026 | **Claude Code version:** 2.1.83
 
-Advanced techniques, hidden features, and community-discovered workflows for getting the most out of Claude Code.
+Advanced techniques, hidden features, and community-discovered workflows for getting the most out of Claude Code. Now with **50 tips** across 12 categories.
 
 ---
 
@@ -19,6 +19,7 @@ Advanced techniques, hidden features, and community-discovered workflows for get
 - [CLI Flags & Commands](#cli-flags--commands)
 - [MCP Optimization](#mcp-optimization)
 - [Security & Permissions](#security--permissions)
+- [Undocumented & Community-Discovered](#undocumented--community-discovered)
 
 ---
 
@@ -433,12 +434,139 @@ In `settings.json`, allow specific patterns:
 }
 ```
 
+### 38. Devcontainer + Skip-Permissions (Safe YOLO Mode)
+
+Anthropic publishes an official reference devcontainer with firewall rules that restrict outbound connections. Running `--dangerously-skip-permissions` inside this devcontainer gives unattended execution with network-level safety:
+
+```bash
+# Inside the devcontainer
+claude --dangerously-skip-permissions -p "Implement the feature"
+```
+
+This is the **only approved pattern** for fully autonomous runs.
+
+---
+
+## Undocumented & Community-Discovered
+
+### 39. Override Auto-Compaction Threshold
+
+The auto-compaction trigger defaults to ~83.5% context used. Override it:
+
+```bash
+export CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=90
+```
+
+Higher values delay compaction (more usable context) but risk running out of completion buffer. The buffer (~33K tokens) is hardcoded. `CLAUDE_CODE_MAX_OUTPUT_TOKENS` does **not** affect this.
+
+### 40. Cap MCP Output Tokens
+
+Prevent any single MCP call from flooding your context:
+
+```bash
+export MAX_MCP_OUTPUT_TOKENS=50000
+```
+
+Use `claude --mcp-debug` to see exactly which servers are consuming tokens.
+
+### 41. `/batch` — Parallel File Transformations
+
+```
+/batch rename all React class components to functional components
+```
+
+Spawns one background agent per file, all running simultaneously in separate worktrees, each opening its own PR. Up to **10x faster** than sequential prompts for large refactors.
+
+### 42. `/simplify` — 3-Agent Pre-PR Quality Review
+
+Triggers a three-agent pipeline that detects over-engineering, duplicate logic, and architectural issues before you open a PR. Not a linter — it reasons about design decisions.
+
+### 43. `--bare` Flag for Pipeline Integration
+
+```bash
+claude -p "analyze this file" --bare | jq '.issues'
+```
+
+Strips all markdown formatting from headless mode output, making it safe to pipe into `jq`, `awk`, or other CLI tools.
+
+### 44. `--channels` — Mobile Permission Approvals
+
+```bash
+claude --channels
+```
+
+Routes permission prompts to your iOS/Android app instead of blocking the terminal. Enables true unattended local execution — Claude runs on your machine, you approve from your phone.
+
+### 45. `/plan` Accepts Inline Descriptions
+
+```
+/plan authentication system refactor with JWT rotation
+```
+
+Pre-seeds the plan with your intent, reducing back-and-forth and cutting token usage by ~50% on complex planning.
+
+### 46. CLAUDE.md `@path` Imports
+
+Split CLAUDE.md into domain files and import them:
+
+```markdown
+@docs/api-guidelines.md
+@docs/testing-standards.md
+@docs/deployment-checklist.md
+```
+
+Paths are relative to the CLAUDE.md location. Keeps your main file under 200 lines (the compliance cliff — beyond ~150-200 instructions, adherence drops).
+
+### 47. Hooks in Skill Frontmatter
+
+Pre/post hooks can be declared in individual skill frontmatter, not just globally in `settings.json`. Skills become fully self-contained with their own lifecycle:
+
+```markdown
+---
+name: my-skill
+hooks:
+  pre: "echo 'Starting skill...'"
+  post: "pnpm lint"
+---
+```
+
+### 48. "Compounding Engineering" Pattern
+
+When Claude makes a mistake, immediately add a rule to CLAUDE.md so it never repeats that class of error. Each session's failure becomes permanent context for all future sessions:
+
+```markdown
+# Learned Rules
+- Never modify config files without creating a .backup first
+- Always check if the port is in use before starting dev server
+```
+
+The Anthropic team uses this pattern internally.
+
+### 49. `recall` — Full-Text Session History Search
+
+Community tool by zippoxer. Provides full-text search across all previous Claude Code session histories with a terminal UI. Handles sessions up to 2GB.
+
+```bash
+# Install from awesome-claude-code
+npx recall
+```
+
+### 50. `parry` — Prompt Injection Scanner for Hooks
+
+Community tool by vaporif. Scans hook pipelines for prompt injection attacks and data exfiltration attempts — a genuine security blind spot since hooks execute shell commands with system access.
+
 ---
 
 ## Sources
 
 - [Claude Code Changelog](https://code.claude.com/docs/en/changelog)
 - [Claude Code Documentation](https://code.claude.com/docs/en/)
+- [17 Claude Code Releases in 30 Days (DEV Community)](https://dev.to/ji_ai/17-claude-code-releases-in-30-days-everything-that-changed-1ec8)
+- [The Ultimate Claude Code Guide (DEV Community)](https://dev.to/holasoymalva/the-ultimate-claude-code-guide-every-hidden-trick-hack-and-power-feature-you-need-to-know-2l45)
+- [ClaudeFast Context Buffer Management](https://claudefa.st/blog/guide/mechanics/context-buffer-management)
+- [50 Claude Code Tips (Builder.io)](https://www.builder.io/blog/claude-code-tips-best-practices)
+- [Claude Code Hacks (Blockchain Council)](https://www.blockchain-council.org/claude-ai/claude-code-hacks/)
 - [Hooks Guide](./hooks-guide.md)
 - [Agent Teams Guide](./agent-teams-guide.md)
 - [CLAUDE.md Guide](./claude-md-guide.md)
+- [Skills Catalog](./skills-catalog.md)

@@ -214,7 +214,7 @@ cd claude-kopitiam && bash INSTALL.sh
 | [Plugins Guide](./docs/plugins-guide.md) | Plugin structure, marketplace, top plugins, creating plugins |
 | [Skills Guide](./docs/skills-guide.md) | Skills system, progressive disclosure, skill creation |
 | [Skills Catalog](./docs/skills-catalog.md) | **100+ curated skills** across 15 categories |
-| [Tips & Tricks](./docs/claude-code-tips-and-tricks.md) | 37 power user tips, hidden features, community hacks |
+| [Tips & Tricks](./docs/claude-code-tips-and-tricks.md) | 50 power user tips, hidden features, community hacks |
 | [Superpowers Guide](./docs/superpowers-guide.md) | obra's Superpowers plugin: brainstorm, plan, execute, debug |
 
 ### Prompt Engineering
