@@ -613,18 +613,65 @@ Meta Skill-Creator generates:
 3. **Specify constraints** (file types, languages, etc.)
 4. **Iterate** on the generated skill
 
-> **Note**: No official Skills marketplace exists yet (as of Jan 2026), but community sharing through GitHub is growing rapidly.
+> **Note**: As of March 2026, multiple skill marketplaces have launched and the ecosystem has exploded. See below.
+
+---
+
+## Where to Find Skills
+
+The Claude Code skills ecosystem has grown rapidly. Here are the best sources:
+
+### Plugin Collections (Install via Claude Code)
+
+| Source | Skills | Install |
+|--------|:------:|---------|
+| **Everything Claude Code (ECC)** | 100+ | `/plugin install everything-claude-code` |
+| **Superpowers (obra)** | 20+ | `/plugin marketplace add obra/superpowers-marketplace` |
+| **PR Review Toolkit** | 8 | `/plugin install pr-review-toolkit` |
+| **Incident Response** | 6 | `/plugin install incident-response` |
+| **Agent Teams** | 6 | `/plugin install agent-teams` |
+| **Conductor** | 5 | `/plugin install conductor` |
+
+### Curated Awesome Lists (GitHub)
+
+| Repository | What It Offers |
+|------------|---------------|
+| [travisvn/awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills) | Original curated list, quality-gated. Companion site: awesomeclaude.ai |
+| [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | 1,000+ skills from official dev teams (Anthropic, Vercel, Stripe, Sentry) |
+| [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | Curated skills, hooks, slash commands, agent orchestrators |
+| [rohitg00/awesome-claude-code-toolkit](https://github.com/rohitg00/awesome-claude-code-toolkit) | 135 agents, 35+ curated skills, 42 commands, 150+ plugins |
+| [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills) | 1,304+ installable skills with CLI installer |
+| [BehiSecc/awesome-claude-skills](https://github.com/BehiSecc/awesome-claude-skills) | Security-focused: OWASP, ASVS 5.0, 20+ language checklists |
+| [K-Dense-AI/claude-scientific-skills](https://github.com/K-Dense-AI/claude-scientific-skills) | 170+ scientific research skills |
+| [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) | 192+ skills: engineering, marketing, product, compliance |
+| [Anthropic/skills](https://github.com/anthropics/skills) | Official skills: skill-creator, frontend-design, PDF, markdown-converter |
+
+### Skill Marketplaces (Websites)
+
+| Platform | Skills | URL |
+|----------|:------:|-----|
+| **SkillsMP** | 500,000+ | [skillsmp.com](https://skillsmp.com) |
+| **SkillHub** | 7,000+ | [skillhub.club](https://www.skillhub.club) |
+| **LobeHub Skills** | Thousands | [lobehub.com/skills](https://lobehub.com/skills) |
+| **awesome-skills.com** | 128+ | [awesome-skills.com](https://awesome-skills.com) |
+| **AwesomeSkills.dev** | Hundreds | [awesomeskills.dev](https://www.awesomeskills.dev/en) |
+| **MCP Market** | Growing | [mcpmarket.com/tools/skills](https://mcpmarket.com/tools/skills) |
+
+### Top Curated Skills (Our Picks)
+
+See the full [Skills Catalog](./skills-catalog.md) for 100+ skills organized by category, or browse our [skill examples](../skills/examples/) for 30+ copy-paste-ready skills.
 
 ---
 
 ## Learn More
 
-- [Official Anthropic Skills Documentation](https://docs.anthropic.com)
+- [Official Anthropic Skills Documentation](https://code.claude.com/docs/en/skills)
 - [Skills Repository](https://github.com/anthropics/skills)
-- [Claude Prompt Engineering Guide](../Claude-Prompt-Guide.md)
+- [Skills Catalog](./skills-catalog.md) — Our curated 100+ skills across 15 categories
 - [Skill Creator Documentation](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md)
+- [Plugins Guide](./plugins-guide.md) — How plugins bundle skills
 - [MCP Integration Guide](./mcp-integration.md) — How Skills and MCP work together
 
 ---
 
-*Last Updated: January 23, 2026*
+*Last Updated: March 26, 2026*

@@ -339,10 +339,57 @@ Use the `/skill-create` command (ECC) or `/create-plugin` (Plugin Dev) for guide
 
 ---
 
+## Community Skill Sources
+
+The skills ecosystem has exploded beyond ClawHub/ECC. Here are the best places to find more:
+
+### Curated Awesome Lists
+
+| Repository | What It Offers |
+|------------|---------------|
+| [travisvn/awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills) | Original curated list, quality-gated. Visual directory at [awesomeclaude.ai](https://awesomeclaude.ai) |
+| [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | 1,000+ skills from Anthropic, Vercel, Stripe, Cloudflare, Sentry, Expo, Hugging Face |
+| [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents) | 100+ specialized subagent definitions in 10 categories |
+| [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | Curated skills, hooks, slash commands, and agent orchestrators |
+| [rohitg00/awesome-claude-code-toolkit](https://github.com/rohitg00/awesome-claude-code-toolkit) | 135 agents, 35+ skills, 42 commands, 150+ plugins |
+| [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills) | 1,304+ installable skills with CLI (`npx antigravity-awesome-skills`) |
+| [BehiSecc/awesome-claude-skills](https://github.com/BehiSecc/awesome-claude-skills) | Security-focused: OWASP 2025, ASVS 5.0, code review for 20+ languages |
+
+### Specialized Collections
+
+| Collection | Focus | Skills |
+|------------|-------|:------:|
+| [K-Dense-AI/claude-scientific-skills](https://github.com/K-Dense-AI/claude-scientific-skills) | Scientific research (genomics, drug discovery, geospatial) | 170+ |
+| [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) | Enterprise (engineering, marketing, product, C-level, compliance) | 192+ |
+| [Anthropic/skills](https://github.com/anthropics/skills) | Official (skill-creator, frontend-design, PDF, mcp-builder) | 10+ |
+
+### Online Marketplaces
+
+| Platform | Skills | URL |
+|----------|:------:|-----|
+| **SkillsMP** | 500,000+ | [skillsmp.com](https://skillsmp.com) |
+| **SkillHub** | 7,000+ | [skillhub.club](https://www.skillhub.club) |
+| **LobeHub** | Thousands | [lobehub.com/skills](https://lobehub.com/skills) |
+| **awesome-skills.com** | 128+ | [awesome-skills.com](https://awesome-skills.com) |
+| **AwesomeSkills.dev** | Hundreds | [awesomeskills.dev](https://www.awesomeskills.dev/en) |
+| **MCP Market** | Growing | [mcpmarket.com/tools/skills](https://mcpmarket.com/tools/skills) |
+| **Claude Marketplaces** | Growing | [claudemarketplaces.com](https://claudemarketplaces.com) |
+
+### Recommended Reading
+
+- ["I tested 200 Claude Code skills" (Indie Hackers)](https://www.indiehackers.com/post/i-tested-200-claude-code-skills-so-you-dont-have-to-here-are-the-20-that-actually-changed-how-i-work-b383a23ce3) — Top 20 from 200 tested
+- ["10 Must-Have Skills" (Medium)](https://medium.com/@unicodeveloper/10-must-have-skills-for-claude-and-any-coding-agent-in-2026-b5451b013051)
+- ["Best Claude Code Skills" (Firecrawl)](https://www.firecrawl.dev/blog/best-claude-code-skills)
+- ["39 Claude Skills Examples" (Substack)](https://aiblewmymind.substack.com/p/claude-skills-36-examples) — 39 examples from 23 creators
+- [Official Claude Code Skills Docs](https://code.claude.com/docs/en/skills)
+
+---
+
 ## Sources
 
 - [Everything Claude Code](https://github.com/anthropics/everything-claude-code)
 - [Superpowers Plugin](https://github.com/obra/superpowers)
+- [Anthropic Official Skills](https://github.com/anthropics/skills)
 - [Claude Code Skills Documentation](https://code.claude.com/docs/en/skills)
 - [Skills Guide](./skills-guide.md)
 - [Plugins Guide](./plugins-guide.md)

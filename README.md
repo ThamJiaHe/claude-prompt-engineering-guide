@@ -258,14 +258,16 @@ cd claude-kopitiam && bash INSTALL.sh
 | [Business Analysis](./docs/examples/business-analysis.md) | Business and financial analysis |
 | [Document Creation](./docs/examples/document-creation.md) | Documentation and writing tasks |
 
-### Skills Collection (22 example skills)
+### Skills Collection (31 example skills)
 
 Browse [skills/examples/](./skills/examples/) for production-ready skills:
 
 **Development:** Next.js App Router, Tailwind Design System, API Development, Prisma ORM, TypeScript Standards
-**Testing:** Vitest Unit Testing, Playwright E2E, Code Review
-**Infrastructure:** AWS, GCP, Vercel, Neon Serverless, Monitoring
-**Standards:** Performance, SEO, Security, Accessibility, Git Workflow
+**Testing:** Vitest Unit Testing, Playwright E2E, TDD Workflow, Code Review
+**Security:** OWASP Audit, Threat Modeling, API Hardening, Penetration Testing, Security Compliance
+**Infrastructure:** AWS, GCP, Vercel, Neon Serverless, Docker, Monitoring
+**Operations:** Session Management, Strategic Compact, Build Error Resolver, Incident Response
+**Standards:** Performance, SEO, Accessibility, Git Workflow
 
 ---
 
