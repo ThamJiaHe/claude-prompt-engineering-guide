@@ -2,23 +2,27 @@
 
 Master Claude Code CLI for agentic software development.
 
-> **Last Updated: February 24, 2026** | Covers v2.1.51, Agent Teams, worktree isolation, Security features, Fast Mode, Claude in Chrome, and workflow patterns
+> **Last Updated: 25 March 2026** | Covers v2.1.83, Agent Teams, Hooks (24 events), Voice Mode, Desktop/Web/IDE apps, Fast Mode, Computer Use, 1M context, and workflow patterns
 
 ---
 
 ## What is Claude Code?
 
-**Claude Code** is an agentic coding tool that works in your terminal and IDE. It can read, write, and execute code, manage git operations, and perform complex multi-step tasks autonomously.
+**Claude Code** is Anthropic's official agentic CLI and IDE-integrated coding assistant. It runs in the terminal, VS Code, JetBrains IDEs, the web (claude.ai/code), and as a desktop app (macOS + Windows). It can read, write, and execute code, manage git operations, browse the web, and perform complex multi-step tasks autonomously.
 
 ### Key Capabilities
 
-- Terminal and VS Code integration
-- Full filesystem access
-- Git operations and version control
-- MCP server support
+- Terminal CLI, VS Code extension, JetBrains plugin, web app, desktop app
+- Full filesystem access with 1M token context window (Opus 4.6)
+- Git operations, worktree isolation, and version control
+- 24 hook events for deterministic lifecycle automation
+- Agent Teams for multi-agent parallel coordination
+- MCP server support with Tool Search (1,864+ servers)
 - Subagents for parallel execution
-- GitHub Actions integration
-- Plan Mode for complex tasks
+- Voice Mode (20 languages)
+- Fast Mode (2.5x faster Opus 4.6 output)
+- Computer Use (remote desktop control, macOS)
+- Plan Mode and /loop for complex/recurring tasks
 
 ---
 
@@ -37,7 +41,7 @@ winget install Anthropic.ClaudeCode
 claude --version
 ```
 
-**Current Version**: v2.1.51 (February 2026)
+**Current Version**: v2.1.83 (March 25, 2026)
 
 > **Note**: `npm install -g @anthropic-ai/claude-code` is deprecated. Use the native installer, Homebrew, or WinGet instead.
 
@@ -194,6 +198,61 @@ jobs:
 **Environment variables:**
 - `CLAUDE_CODE_TMPDIR` — override temp directory for internal files
 - `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS` — disable background task functionality
+
+### New in v2.1.66–v2.1.83 (March 2026)
+
+| Feature | Description |
+|---------|-------------|
+| **Voice Mode (`/voice`)** | Push-to-talk voice input in 20 languages |
+| **1M Context Window** | Opus 4.6 now supports 1M token context (v2.1.75) |
+| **128K Output Tokens** | Opus 4.6 max output doubled (v2.1.77) |
+| **`/loop` Command** | Recurring prompt/command on an interval (v2.1.71) |
+| **`/effort` Command** | Set thinking effort: low/medium/high/max (v2.1.76) |
+| **`/context` Command** | Actionable context optimization suggestions (v2.1.74) |
+| **`/copy N`** | Copy Nth assistant message to clipboard (v2.1.80) |
+| **`ultrathink` Keyword** | Triggers `max` effort thinking (v2.1.68) |
+| **Computer Use** | Remote Mac control from phone/device (v2.1.83, research preview) |
+| **24 Hook Events** | `CwdChanged`, `FileChanged`, `StopFailure`, `PostCompact` + more |
+| **`InstructionsLoaded` Hook** | Fires when CLAUDE.md/rules files load (v2.1.69) |
+| **`ExitWorktree` Tool** | Agents can exit worktrees programmatically (v2.1.72) |
+| **`worktree.sparsePaths`** | Sparse checkout for large monorepos (v2.1.76) |
+| **MCP Elicitation** | MCP servers can request user input mid-tool-call (v2.1.76) |
+| **`modelOverrides` Setting** | Override model selection per context (v2.1.73) |
+| **Agent Frontmatter** | `effort`, `maxTurns`, `disallowedTools` in agent definitions (v2.1.78) |
+| **`--bare` Flag** | Minimal Claude Code startup (v2.1.81) |
+| **`--console` Flag** | Console output mode (v2.1.79) |
+| **`managed-settings.d/`** | Drop-in directory for enterprise settings (v2.1.83) |
+| **Transcript Search** | Search through conversation transcripts (v2.1.83) |
+| **Compaction API** | Server-side context summarization for infinite conversations |
+
+### Platforms (March 2026)
+
+| Platform | Status |
+|----------|--------|
+| **CLI (Terminal)** | Primary interface |
+| **VS Code Extension** | Requires VS Code 1.98.0+. Native chat panel, checkpoints, `@`-mentions |
+| **JetBrains Plugin** | IntelliJ, WebStorm, PyCharm. Plugin ID: 27310 |
+| **Desktop App (macOS)** | Full feature parity |
+| **Desktop App (Windows)** | Released February 10, 2026. Full feature parity |
+| **Web App (claude.ai/code)** | Cloud execution via GitHub. Diff view, inline commenting, PR creation |
+| **Mobile (iOS/Android)** | Via Claude mobile app — kick off and monitor `--remote` tasks |
+
+### Claude Code on the Web (claude.ai/code)
+
+Remote cloud execution:
+
+1. Connect GitHub account and install the Claude GitHub app
+2. Submit a coding task (or use `--remote` flag from terminal)
+3. Claude clones your repo to an isolated VM
+4. Autonomous execution in the cloud
+5. Review changes in diff view with inline commenting
+6. Create a pull request from the interface
+
+**Key features:**
+- `--remote` flag: Start web session from terminal
+- `/teleport`: Pull web session back to terminal
+- Parallel `--remote` commands create independent sessions
+- Cloud VMs: Ubuntu 24.04 with Python, Node.js, Go, Rust, Java, PostgreSQL 16, Redis 7.0
 
 ---
 

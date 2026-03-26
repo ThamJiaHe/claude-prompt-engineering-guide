@@ -2,7 +2,7 @@
 
 Learn about Claude Skills and how to use them in your workflows.
 
-> **Last Updated: January 23, 2026** | Includes subagent orchestration, token efficiency comparison, and Meta Skill-Creator
+> **Last Updated: 25 March 2026** | Includes subagent orchestration, token efficiency comparison, Meta Skill-Creator, and Opus 4.6/Sonnet 4.6 model references
 
 ---
 
@@ -164,7 +164,7 @@ Skills enable powerful subagent orchestration patterns that achieve **90.2% perf
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    TIER 1: STRATEGIC ORCHESTRATOR               │
-│                         (Claude Opus 4)                         │
+│                         (Claude Opus 4.6)                         │
 │                                                                 │
 │    • High-level planning and coordination                       │
 │    • Resource allocation decisions                              │
@@ -178,7 +178,7 @@ Skills enable powerful subagent orchestration patterns that achieve **90.2% perf
 ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
 │  TIER 2:        │  │  TIER 2:        │  │  TIER 2:        │
 │  COORDINATOR A  │  │  COORDINATOR B  │  │  COORDINATOR C  │
-│  (Sonnet 4)     │  │  (Sonnet 4)     │  │  (Sonnet 4)     │
+│  (Sonnet 4.6)     │  │  (Sonnet 4.6)     │  │  (Sonnet 4.6)     │
 │                 │  │                 │  │                 │
 │  Domain: Docs   │  │  Domain: Code   │  │  Domain: Tests  │
 └─────────────────┘  └─────────────────┘  └─────────────────┘
@@ -204,9 +204,9 @@ Skills enable powerful subagent orchestration patterns that achieve **90.2% perf
 
 | Tier | Model | Purpose | Token Budget |
 |------|-------|---------|--------------|
-| **Orchestrator** | Claude Opus 4 | Strategic planning, coordination | High |
-| **Coordinators** | Claude Sonnet 4 | Domain management, task distribution | Medium |
-| **Specialists** | Claude Sonnet 4 | Focused execution, specific tasks | Focused |
+| **Orchestrator** | Claude Opus 4.6 | Strategic planning, coordination | High |
+| **Coordinators** | Claude Sonnet 4.6 | Domain management, task distribution | Medium |
+| **Specialists** | Claude Sonnet 4.6 | Focused execution, specific tasks | Focused |
 
 ### Implementation Pattern
 
