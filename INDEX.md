@@ -108,6 +108,7 @@ Master navigation for the Claude Prompt Engineering Guide repository.
 | Skill | Description |
 |-------|-------------|
 | [testing-skill.md](./skills/examples/testing-skill.md) | General testing patterns |
+| [tdd-workflow-skill.md](./skills/examples/tdd-workflow-skill.md) | TDD Red-Green-Refactor discipline |
 | [vitest-unit-testing-skill.md](./skills/examples/vitest-unit-testing-skill.md) | Vitest unit testing |
 | [playwright-e2e-testing-skill.md](./skills/examples/playwright-e2e-testing-skill.md) | Playwright E2E testing |
 
@@ -120,13 +121,18 @@ Master navigation for the Claude Prompt Engineering Guide repository.
 | [vercel-deployment-skill.md](./skills/examples/vercel-deployment-skill.md) | Vercel deployment |
 | [neon-serverless-skill.md](./skills/examples/neon-serverless-skill.md) | Neon serverless Postgres |
 | [monitoring-logging-skill.md](./skills/examples/monitoring-logging-skill.md) | Observability patterns |
+| [docker-containerization-skill.md](./skills/examples/docker-containerization-skill.md) | Docker multi-stage builds and hardening |
 
-#### Security & Quality
+#### Security & Cybersecurity
 
 | Skill | Description |
 |-------|-------------|
 | [code-review.md](./skills/examples/code-review.md) | PR review workflow |
 | [security-compliance.md](./skills/examples/security-compliance.md) | Security standards |
+| [owasp-security-audit-skill.md](./skills/examples/owasp-security-audit-skill.md) | OWASP Top 10:2025 audit checklist |
+| [cybersecurity-threat-modeling-skill.md](./skills/examples/cybersecurity-threat-modeling-skill.md) | STRIDE threat modeling methodology |
+| [api-security-hardening-skill.md](./skills/examples/api-security-hardening-skill.md) | API security hardening (REST/GraphQL) |
+| [penetration-testing-skill.md](./skills/examples/penetration-testing-skill.md) | Authorized pentest methodology |
 | [nextauth-authentication-skill.md](./skills/examples/nextauth-authentication-skill.md) | NextAuth.js authentication |
 
 #### Other Skills
@@ -139,6 +145,10 @@ Master navigation for the Claude Prompt Engineering Guide repository.
 | [seo-optimization-skill.md](./skills/examples/seo-optimization-skill.md) | SEO best practices |
 | [accessibility-ux.md](./skills/examples/accessibility-ux.md) | Accessibility and UX |
 | [example-feedback-analyzer.md](./skills/examples/example-feedback-analyzer.md) | Customer feedback analysis |
+| [session-management-skill.md](./skills/examples/session-management-skill.md) | Save, resume, compact sessions |
+| [strategic-compact-skill.md](./skills/examples/strategic-compact-skill.md) | Smart context compaction |
+| [build-error-resolver-skill.md](./skills/examples/build-error-resolver-skill.md) | Fix build failures fast |
+| [incident-response-skill.md](./skills/examples/incident-response-skill.md) | Production incident triage and resolution |
 
 ---
 
