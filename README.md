@@ -162,6 +162,7 @@ cd claudeforge && npm install && npm run dev
 | **MCP as Linux Foundation Standard** | Tool Search GA, OAuth 2.1, MCP Elicitation |
 | **100+ Skills Catalog** | Curated skills from ECC, Superpowers, and community |
 | **5 New Guides** | Hooks, Agent Teams, Ultrathink, Plugins, Subagents |
+| **Deep Research** | 13 community repos analyzed — plugins, agents, skills, orchestration, internal architecture |
 | **Skills Catalog** | Curated top skills across 15 categories |
 
 ---
@@ -173,7 +174,8 @@ cd claudeforge && npm install && npm run dev
 3. **Using Claude Code?** See the [Claude Code Guide](./docs/claude-code-guide.md) + [Tips & Tricks](./docs/claude-code-tips-and-tricks.md)
 4. **Want skills?** Browse the [Skills Catalog](./docs/skills-catalog.md) (100+ curated)
 5. **Building with API?** Read the [API Guide](./docs/api-guide.md)
-6. **Need a template?** Pick from [Templates](./templates/)
+6. **Deep diving?** Explore the [Deep Research Index](./docs/deep-research-index.md) (13 community repos analyzed)
+7. **Need a template?** Pick from [Templates](./templates/)
 
 ---
 
@@ -245,6 +247,26 @@ cd claude-kopitiam && bash INSTALL.sh
 | [Ecosystem Market Analysis](./docs/ecosystem-market-analysis.md) | Market position and growth trends |
 | [Pricing Comparison](./docs/pricing-comparison-jan-2026.md) | Claude vs GPT-4 vs Gemini pricing |
 | [OpenCode & AirLLM Research](./docs/research-opencode-clawbot-jan-2026.md) | Alternative CLI tools |
+
+### Deep Research — Community Repository Analysis
+
+> **13 major Claude Code community repositories analyzed, synthesized, and rewritten from scratch.** [Full index →](./docs/deep-research-index.md)
+
+| Guide | What You'll Learn |
+|-------|-------------------|
+| [Plugin Framework](./docs/plugin-framework/README.md) | Complete dev workflow — brainstorm → plan → TDD → subagent execution → code review |
+| [Everything Plugin](./docs/everything-plugin/README.md) | Agent harness performance — 30 skills, 20 agents, 12 language ecosystems |
+| [Production Skill Library](./docs/production-skill-library/README.md) | 205 skills across 9 domains — the largest open-source skill collection |
+| [Fullstack Skill Packs](./docs/fullstack-skill-packs/README.md) | 66 developer skills with progressive disclosure, ~50% token reduction |
+| [Subagent Catalog](./docs/subagent-catalog/README.md) | 127+ agent definitions, orchestration patterns, model cost routing |
+| [Multi-Agent Orchestration](./docs/multi-agent-orchestration/README.md) | Enterprise swarm platform — 4 topologies, 5 consensus algorithms |
+| [Agent Harness Fundamentals](./docs/agent-harness-fundamentals/README.md) | Build AI agents from scratch in Python — 12-session curriculum |
+| [Command & Config Reference](./docs/command-and-config-reference/README.md) | All 64 slash commands, 13 frontmatter fields, settings hierarchy |
+| [System Prompt Anatomy](./docs/system-prompt-anatomy/README.md) | How Claude Code assembles behavior from 110+ prompt components |
+| [Model Routing](./docs/model-routing/README.md) | Route requests to any LLM provider — cost optimization, per-project routing |
+| [Ecosystem Directory](./docs/ecosystem-directory/README.md) | 150+ tools, plugins, hooks, workflows, and alternative clients |
+| [Core Claude Code Runtime](./docs/core-claude-code-runtime/README.md) | **NEW** Internal architecture from the March 2026 source disclosure — query engine, 40+ tools, 70+ commands, bridge, memory |
+| [Claurst Integration](./docs/claurst-integration/README.md) | **NEW** Rust reimplementation — unreleased features (KAIROS, Buddy, ULTRAPLAN, autoDream), 14-file spec, security findings |
 
 ### Templates & Examples
 
