@@ -74,8 +74,8 @@ We are committed to providing a welcoming and inspiring community for all. Pleas
 
 ```bash
 # Click "Fork" on GitHub to create your own copy
-git clone https://github.com/YOUR-USERNAME/claude-prompt-engineering-guide.git
-cd claude-prompt-engineering-guide
+git clone https://github.com/YOUR-USERNAME/claude-code-handbook.git
+cd claude-code-handbook
 ```
 
 ### 2. Create a Feature Branch
@@ -155,7 +155,7 @@ Go to GitHub and create a PR with:
 ### File Organization
 
 ```
-claude-prompt-engineering-guide/
+claude-code-handbook/
 ├── Claude-Prompt-Guide.md          # Main guide (modify only for major updates)
 ├── docs/
 │   ├── quick-start.md              # Beginner introduction

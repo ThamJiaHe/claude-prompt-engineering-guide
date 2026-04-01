@@ -138,8 +138,8 @@ cd claudeforge && npm install && npm run dev
 [![Anthropic Claude Max](https://img.shields.io/badge/Anthropic-Claude_Max_Subscriber-cc785c?logo=anthropic&logoColor=white&style=for-the-badge)](https://claude.ai)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub stars](https://img.shields.io/github/stars/ThamJiaHe/claude-prompt-engineering-guide?style=social)](https://github.com/ThamJiaHe/claude-prompt-engineering-guide)
-[![Last Updated](https://img.shields.io/badge/Last%20Updated-Mar%202026-blue)](https://github.com/ThamJiaHe/claude-prompt-engineering-guide)
+[![GitHub stars](https://img.shields.io/github/stars/ThamJiaHe/claude-code-handbook?style=social)](https://github.com/ThamJiaHe/claude-code-handbook)
+[![Last Updated](https://img.shields.io/badge/Last%20Updated-Mar%202026-blue)](https://github.com/ThamJiaHe/claude-code-handbook)
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
 > The definitive guide to Claude prompt engineering and Claude Code mastery for Opus 4.6, Sonnet 4.6, and Haiku 4.5 — covering Skills, Plugins, MCP, Hooks, Agent Teams, Subagents, Ultrathink, and 100+ curated skills. Updated for March 2026 with Claude Code v2.1.83.
@@ -345,8 +345,8 @@ MIT License — see [LICENSE](./LICENSE).
 
 *Researched, written, and maintained using the [Anthropic Claude Max Plan](https://claude.ai) — with Claude Opus 4.6, adaptive thinking, and Claude Code v2.1.83.*
 
-[Star this repository](https://github.com/ThamJiaHe/claude-prompt-engineering-guide) if you found it helpful!
+[Star this repository](https://github.com/ThamJiaHe/claude-code-handbook) if you found it helpful!
 
-[Report Issues](https://github.com/ThamJiaHe/claude-prompt-engineering-guide/issues) · [Contribute](./CONTRIBUTING.md) · [Discuss](https://github.com/ThamJiaHe/claude-prompt-engineering-guide/discussions) · [Ko-Fi](https://ko-fi.com/thamjiahe)
+[Report Issues](https://github.com/ThamJiaHe/claude-code-handbook/issues) · [Contribute](./CONTRIBUTING.md) · [Discuss](https://github.com/ThamJiaHe/claude-code-handbook/discussions) · [Ko-Fi](https://ko-fi.com/thamjiahe)
 
 </div>
