@@ -552,6 +552,6 @@ When submitting a PR, include a changelog entry describing your changes:
 ## Questions?
 
 - 📖 See [CONTRIBUTING.md](./CONTRIBUTING.md) for update guidelines
-- 💬 [Open an issue](https://github.com/yourusername/claude-prompt-engineering-guide/issues) with questions
+- 💬 [Open an issue](https://github.com/yourusername/claude-code-handbook/issues) with questions
 - 🙏 Thank you for helping improve this guide!
 
